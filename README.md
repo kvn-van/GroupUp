@@ -76,7 +76,7 @@ contributing to overall well-being.
 - Events page
 - My events page
 
-![Data Flow Diagram](/GroupUp!DataFlow.png "Data Flow Diagram")
+![Data Flow Diagram](/img/datadia.png "Data Flow Diagram")
 
 ### Backend Plan:
 
