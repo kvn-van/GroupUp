@@ -1,0 +1,60 @@
+[33mcommit f843196762746f253196374ce3d9bc6a02f2a81c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Jinyoung Choi <jinyoung5497@gmail.com>
+Date:   Mon Mar 25 12:07:31 2024 +1000
+
+    test2
+
+[33mcommit d2033f474708b4274c430e4574af3c3bc0142aad[m
+Author: Jinyoung Choi <jinyoung5497@gmail.com>
+Date:   Mon Mar 25 12:06:32 2024 +1000
+
+    test1
+
+[33mcommit 0c98fbaa5d86e75fbeb914aa68d2cd292c26ed35[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Daniel <n11545020@qut.edu.au>
+Date:   Sun Mar 24 20:52:02 2024 +1000
+
+    fixed the formatting of the read me file
+
+[33mcommit 358fa5eb32bc6ccb1b53c57f63b073098ad3db97[m
+Merge: a36810e 01e8727
+Author: Daniel <n11545020@qut.edu.au>
+Date:   Sun Mar 24 20:49:42 2024 +1000
+
+    readded readme file due to conflicts
+
+[33mcommit a36810e15871c743c3cf6993f8124d98e154c59d[m
+Author: Daniel <n11545020@qut.edu.au>
+Date:   Sun Mar 24 20:45:40 2024 +1000
+
+    Added the specification document most up to date
+
+[33mcommit 01e8727f0589333b29ff139f2a78c5435dbcd20e[m
+Author: kundaib <148936756+kundaib@users.noreply.github.com>
+Date:   Sun Mar 24 18:49:30 2024 +1000
+
+    Create README.md
+
+[33mcommit 84e050b1e40ac324fdb21b29d50687399d701132[m
+Author: Kundai <kundai.burekeni@connect.qut.edu.au>
+Date:   Sun Mar 24 18:44:58 2024 +1000
+
+    initial commit
+
+[33mcommit 85bf0a66527da2f6c1f49b1c8d51d47bdbb2a51e[m
+Author: Daniel <n11545020@qut.edu.au>
+Date:   Sun Mar 17 18:58:46 2024 +1000
+
+    Added most recent (17th march) specification document
+
+[33mcommit f3eac39d1430f755cc3b54dbb8ea1718add9d82c[m
+Author: broke-ch <kevin.nguyen198@gmail.com>
+Date:   Wed Mar 13 22:31:59 2024 +1000
+
+    added description
+
+[33mcommit bbb909860d4b4bc7746d89b4e570c664e9b1c2a6[m
+Author: broke-ch <kevin.nguyen198@gmail.com>
+Date:   Tue Mar 12 11:28:16 2024 +1000
+
+    first commit
