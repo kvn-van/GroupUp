@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/javafx/fxml" fx:controller="com.example.groupupcab302.SignUpPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/javafx/fxml">
    <children>
       <ImageView fitHeight="608.0" fitWidth="804.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -69,7 +69,7 @@
       <Button layoutX="953.0" layoutY="25.0" mnemonicParsing="false" text="Create Event" />
       <Button layoutX="1141.0" layoutY="25.0" mnemonicParsing="false" text="Sign Up" />
       <Button layoutX="842.0" layoutY="25.0" mnemonicParsing="false" text="Discover Events" />
-      <Button id="SignInButton" layoutX="834.0" layoutY="615.0" mnemonicParsing="false" onAction="#onSignInButtonClick" prefHeight="25.0" prefWidth="366.0" text="Sign In" />
+      <Button id="SignInButton" layoutX="834.0" layoutY="615.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="366.0" text="Sign In" />
       <Button layoutX="837.0" layoutY="673.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="366.0" text="Already Have An Account?" />
       <Line endX="75.0" layoutX="935.0" layoutY="657.0" startX="-100.0" />
       <Text fill="#5b5555" layoutX="1008.0" layoutY="661.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="23.51025390625">
