@@ -9,10 +9,9 @@ public class GroupUpUser {
     private int phoneNumber;
     private int age;
     private String password;
-    private String gender;
 
     // userID will be automatically generated for each user upon database entry. Not required for constructor
-    public GroupUpUser( String userName, String firstName, String lastName, String email, int phoneNumber, int age, String password, String gender){
+    public GroupUpUser( String userName, String firstName, String lastName, String email, int phoneNumber, int age, String password){
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,7 +19,6 @@ public class GroupUpUser {
         this.phoneNumber = phoneNumber;
         this.age = age;
         this.password = password;
-        this.gender = gender;
     }
 
     /*
@@ -55,9 +53,6 @@ public class GroupUpUser {
         return password;
     }
 
-    public String getGender(){
-        return gender;
-    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -87,14 +82,11 @@ public class GroupUpUser {
         this.password = password;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 
     public String getAllUserDetails(){
         String userDetails = ("userName: " + userName + ", First Name: " + firstName +", LastName: "
                 + lastName + ", email: " + email  + ", phoneNumber: " + age + ", password: " +
-                password + ", gender: " + gender);
+                password);
 
         return userDetails;
 
