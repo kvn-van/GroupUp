@@ -13,10 +13,6 @@ public class SignUpPageController {
     private UserDAO userDAO;
 
     //Define a const to represent when there is a value for an integer
-    private final Integer PARSE_ERROR = -1;
-    private final Integer INVALID_AGE = -2;
-
-    private final Integer INVALID_PHONE_NUMBER = -3;
 
     private final String VALIDATION_TYPE_PHONE_NUMBER = "Phone Number";
     private final String VALIDATION_TYPE_AGE = "Age";
@@ -86,56 +82,27 @@ public class SignUpPageController {
     public void handleUserSignUp(){
         if (areBasicTextFieldsValid()){
             if (isEmailValid(textFieldValues[3])){
-
                 Integer phoneNumber = userDAO.validateInteger(intInputValues[0], VALIDATION_TYPE_PHONE_NUMBER);
                 Integer age = userDAO.validateInteger(intInputValues[1], VALIDATION_TYPE_AGE);
-
                 validatedIntInputValues = new Integer[] {phoneNumber, age};
 
                 // Check if phoneNumber is not equal to any of the error codes
-                if ((phoneNumber != PARSE_ERROR && phoneNumber != INVALID_PHONE_NUMBER)
-                        && (age != PARSE_ERROR && age != INVALID_AGE)) {
-
-                    System.out.print(textFieldValues[4]);
-                    if (userDAO.isPasswordValid(textFieldValues[4]) && doPasswordsMatch(textFieldValues[4], textFieldValues[5])){
+                if (validatePhoneNumberAndAge(phoneNumber, age)) {
+                    if (validatePassword(textFieldValues[4],textFieldValues[5])){
                         createUser();
                     }
-
-                    // display error message if passwords dont match
-                    else{
-                        SigningInStatus.setText("The passwords you entered either do not match or your passwords do not" +
-                                " have atleast: 1 upper case letter, 1 lowercase, 1 special character (i.e $,. ^),  1 number " +
-                                "or are not 8 characters long");
-                    }
-
                 }
-
-                // display error message if phone number or age dont satisfy validators
-                else if (age == INVALID_AGE){
-                    SigningInStatus.setText("You must be 18 years or older to use this site!");
-                }
-
-                else if (phoneNumber == INVALID_PHONE_NUMBER){
-                    SigningInStatus.setText("Your phone number must be atleast 10 digits long! Do not include spaces, + or -");
-                }
-
-                else if (phoneNumber == PARSE_ERROR || age == PARSE_ERROR){
-                    SigningInStatus.setText("Please ensure entries for age and phone number are fulfilled with only integers");
-                }
-
             }
-
-            //display error message if email input is incorrect
-            else{
-                SigningInStatus.setText("Email entered is invalid. Please make sure it has a @ in the input!");
-            }
-
         }
-        //dispaly error message if form isnt filled out properly
-        else{
-            SigningInStatus.setText("One or more input fields for either username, first name, last name, password or password " +
-                    "confimation fields were not filled in correctly.");
+    }
+
+    public boolean validatePassword(String password, String passwordConfirmation){
+        if(userDAO.isPasswordValid(password) && doPasswordsMatch(password, passwordConfirmation)){
+            return true;
         }
+        // display error message if passwords dont match
+        SigningInStatus.setText(ErrorConstants.INVALID_PASSWORD.getErrorDescription());
+        return false;
     }
 
     public void createUser(){
@@ -146,10 +113,37 @@ public class SignUpPageController {
         return;
     }
 
+    public boolean validatePhoneNumberAndAge(Integer phoneNumber, Integer age){
+        if ((phoneNumber != ErrorConstants.PARSE_ERROR.getErrorValue() && phoneNumber != ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())
+                && (age != ErrorConstants.PARSE_ERROR.getErrorValue() && age != ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())){
+            return true;
+        }
+
+        // display error message if phone number or age dont satisfy validators
+        else if (age == ErrorConstants.INVALID_AGE.getErrorValue()){
+            SigningInStatus.setText(ErrorConstants.INVALID_AGE.getErrorDescription());
+            return false;
+        }
+
+        else if (phoneNumber == ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue()){
+            SigningInStatus.setText(ErrorConstants.INVALID_PHONE_NUMBER.getErrorDescription());
+            return false;
+        }
+
+        else if (phoneNumber == ErrorConstants.PARSE_ERROR.getErrorValue() || age == ErrorConstants.PARSE_ERROR.getErrorValue()){
+            SigningInStatus.setText(ErrorConstants.PARSE_ERROR.getErrorDescription());
+            return false;
+        }
+
+        return false;
+    }
+
     public boolean areBasicTextFieldsValid() {
         for (int counter = 0; counter < textFieldValues.length; counter++) {
             // Ensure fields are not empty
             if (textFieldValues[counter].length() == 0) {
+                //display error message if form isnt filled out properly
+                SigningInStatus.setText(ErrorConstants.INVALID_USERINPUT.getErrorDescription());
                 return false; // Return false if any string is invalid
             }
         }
@@ -169,6 +163,8 @@ public class SignUpPageController {
         if (email.contains("@") && email.length() > 1){
             return true;
         }
+        //display error message if email input is incorrect
+        SigningInStatus.setText(ErrorConstants.INVALID_EMAIL.getErrorDescription());
         return false;
     }
 

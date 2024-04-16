@@ -87,21 +87,21 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
                 if (valueToValidate.length() == 10) {
                     return convertStringToInt(valueToValidate);
                 }
-                return INVALID_PHONE_NUMBER;
+                return ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue();
 
             case (VALIDATION_TYPE_AGE):
-                if (convertStringToInt(valueToValidate) != PARSE_ERROR) {
-                    //Safe to parse the string as an int
+                if (convertStringToInt(valueToValidate) != ErrorConstants.PARSE_ERROR.getErrorValue()) {
+                    //Safe to parse the string as an int as parsing was validated beforehand
                     Integer valueAsInt = convertStringToInt(valueToValidate);
                     if (valueAsInt >= 18) {
                         return valueAsInt;
                     }
-                    return INVALID_AGE;
+                    return ErrorConstants.INVALID_AGE.getErrorValue();
 
                 }
-                return PARSE_ERROR;
+                return ErrorConstants.PARSE_ERROR.getErrorValue();
         }
-        return PARSE_ERROR;
+        return ErrorConstants.PARSE_ERROR.getErrorValue();
     }
 
     // Check if the password has atleast one capital letter, one lowercase, number and special character as per user story
@@ -117,6 +117,4 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         // Return true if the password matches the pattern, indicating it meets all criteria
         return matcher.matches();
     }
-
-
 }
