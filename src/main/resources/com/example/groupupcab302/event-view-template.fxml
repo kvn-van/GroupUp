@@ -61,19 +61,19 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="133.0" layoutY="459.0" />
+      <TextField layoutX="125.0" layoutY="458.0" />
       <Label layoutX="50.0" layoutY="520.0" text="Event Type:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="133.0" layoutY="517.0" />
+      <TextField layoutX="125.0" layoutY="516.0" />
       <Label layoutX="50.0" layoutY="491.0" text="Time:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="133.0" layoutY="488.0" />
+      <TextField layoutX="125.0" layoutY="487.0" />
       <Button layoutX="39.0" layoutY="566.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
          <font>
             <Font name="System Bold" size="18.0" />
@@ -85,19 +85,19 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="446.0" layoutY="460.0" />
+      <TextField layoutX="437.0" layoutY="459.0" />
       <Label layoutX="363.0" layoutY="521.0" text="Event Type:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="446.0" layoutY="518.0" />
+      <TextField layoutX="437.0" layoutY="517.0" />
       <Label layoutX="363.0" layoutY="492.0" text="Time:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="446.0" layoutY="489.0" />
+      <TextField layoutX="437.0" layoutY="488.0" />
 
       <Button layoutX="351.0" layoutY="566.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
          <font>
@@ -110,19 +110,19 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="766.0" layoutY="461.0" />
+      <TextField layoutX="756.0" layoutY="461.0" />
       <Label layoutX="683.0" layoutY="522.0" text="Event Type:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="766.0" layoutY="519.0" />
+      <TextField layoutX="756.0" layoutY="519.0" />
       <Label layoutX="683.0" layoutY="493.0" text="Time:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="766.0" layoutY="490.0" />
+      <TextField layoutX="756.0" layoutY="490.0" />
 
       <Button layoutX="671.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
          <font>
@@ -135,19 +135,19 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="1086.0" layoutY="461.0" />
+      <TextField layoutX="1076.0" layoutY="460.0" />
       <Label layoutX="1003.0" layoutY="522.0" text="Event Type:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="1086.0" layoutY="519.0" />
+      <TextField layoutX="1076.0" layoutY="518.0" />
       <Label layoutX="1003.0" layoutY="493.0" text="Time:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="1086.0" layoutY="490.0" />
+      <TextField layoutX="1076.0" layoutY="489.0" />
 
       <Button layoutX="991.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
          <font>
