@@ -11,7 +11,11 @@ public enum ErrorConstants {
             " have atleast: 1 upper case letter, 1 lowercase, 1 special character (i.e $,. ^),  1 number or are not 8 characters long"),
     INVALID_USERINPUT(-5,"One or more input fields for either username, first name, last name, password or password " +
             "confimation fields were not filled in correctly."),
-    INVALID_EMAIL(-6, "Email entered is invalid. Please make sure it has a @ in the input!");
+    INVALID_EMAIL(-6, "Email entered is invalid. Please make sure it has a @ in the input!"),
+
+    EMAIL_IN_USE(-7, "Email entered for signup is already registered to a user. Please consider logging in under this email!"),
+
+    INSERTING_USER_ERROR(-8, "Error occured when trying to register you to the database. Please try again and make sure a database has been initialized");
 
     private Integer value;
     private String errorDescription;

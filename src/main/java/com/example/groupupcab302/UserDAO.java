@@ -28,11 +28,11 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
             createTable.execute(
                     "CREATE TABLE IF NOT EXISTS GroupUpUsers ("
                             + "userID INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + "userName VARCHAR UNIQUE NOT NULL, "
+                            + "userName VARCHAR NOT NULL, "
                             + "firstName VARCHAR NOT NULL, "
                             + "lastName VARCHAR NOT NULL, "
                             + "email VARCHAR NOT NULL UNIQUE, "
-                            + "phoneNumber INT(20) NOT NULL UNIQUE, "
+                            + "phoneNumber INT(20) NOT NULL, "
                             + "age INT NOT NULL, "
                             + "password VARCHAR NOT NULL"
                             + ")"
@@ -43,7 +43,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     }
 
     @Override
-    public void insert(GroupUpUser groupUpUser) {
+    public void insert(GroupUpUser groupUpUser) throws CustomSQLException {
         try {
             PreparedStatement insertUser = connectionToDatabase.prepareStatement(
                     "INSERT INTO GroupUpUsers (userName, firstName, lastName, email, phoneNumber, age, password) VALUES (?, ?, ?, ?, ?, ?, ?)"
@@ -57,8 +57,60 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
             insertUser.setInt(6, groupUpUser.getAge());
             insertUser.setString(7, groupUpUser.getPassword());
             insertUser.execute();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+
+        }
+
+        catch (SQLException exception) {
+            if (exception.getMessage().contains("SQLITE_CONSTRAINT_UNIQUE")){
+                throw new CustomSQLException("The email you entered " +
+                        "belongs to a registered user already. Please consider logging in under this email instead");
+            }
+
+            else{
+                throw new CustomSQLException("An error occurred while inserting your details into the database! " +
+                        "Please try again,  confirm all details are correct and ensure a database is found in the directory of GroupUp!");
+            }
+        }
+
+    }
+
+
+    /*
+    @Override
+    public GroupUpUser getRecordByID(Integer ID){
+        try {
+            PreparedStatement getAccount = connectionToDatabase.prepareStatement("SELECT * FROM GroupUpUsers WHERE id = ?");
+            getAccount.setInt(1, ID);
+            ResultSet resultSet = getAccount.executeQuery();
+            if (resultSet.next()) {
+                return new GroupUpUser(
+                        resultSet.getString("userName"),
+                        resultSet.getString("firstName"),
+                        resultSet.getString("lastName"),
+                        resultSet.getString("email"),
+                        resultSet.getInt("phoneNumber"),
+                        resultSet.getInt("age"),
+                        resultSet.getString("password")
+                );
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+
+        return null;
+    }
+    */
+
+
+
+    public void delete(int ID){
+        try {
+            PreparedStatement deleteUserAccount = connectionToDatabase.prepareStatement("DELETE FROM GroupUpUsers WHERE id = ?");
+            deleteUserAccount.setInt(1, ID);
+            deleteUserAccount.execute();
+
+        } catch (SQLException ex) {
+
         }
     }
 
@@ -79,6 +131,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
             return PARSE_ERROR;
         }
     }
+
 
     //Ensure data integrity before entry into database
     public Integer validateInteger(String valueToValidate, String conditionToCheck) {
@@ -117,4 +170,6 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         // Return true if the password matches the pattern, indicating it meets all criteria
         return matcher.matches();
     }
+
+
 }

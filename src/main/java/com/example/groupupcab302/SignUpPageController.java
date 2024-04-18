@@ -6,6 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.w3c.dom.Text;
 
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,10 +62,6 @@ public class SignUpPageController {
     public SignUpPageController(){
         userDAO = new UserDAO();
     }
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
 
     @FXML
@@ -89,7 +86,12 @@ public class SignUpPageController {
                 // Check if phoneNumber is not equal to any of the error codes
                 if (validatePhoneNumberAndAge(phoneNumber, age)) {
                     if (validatePassword(textFieldValues[4],textFieldValues[5])){
+
                         createUser();
+
+
+
+
                     }
                 }
             }
@@ -106,11 +108,18 @@ public class SignUpPageController {
     }
 
     public void createUser(){
-        GroupUpUser registeringUser = new GroupUpUser(textFieldValues[0], textFieldValues[1],
-                textFieldValues[2], textFieldValues[3], validatedIntInputValues[0], validatedIntInputValues[1], textFieldValues[4]);
-        userDAO.insert(registeringUser);
-        SigningInStatus.setText("Sign Up Successful! Welcome to groupup!");
-        return;
+            GroupUpUser groupUpUser = new GroupUpUser(textFieldValues[0], textFieldValues[1],
+                    textFieldValues[2], textFieldValues[3], validatedIntInputValues[0], validatedIntInputValues[1], textFieldValues[4]);
+
+                try {
+                    userDAO.insert(groupUpUser);
+                    SigningInStatus.setText("Successful! Welcome To GroupUp!");
+                }
+
+                catch (CustomSQLException sqlException){
+                    SigningInStatus.setText(sqlException.getMessage());
+                }
+
     }
 
     public boolean validatePhoneNumberAndAge(Integer phoneNumber, Integer age){
