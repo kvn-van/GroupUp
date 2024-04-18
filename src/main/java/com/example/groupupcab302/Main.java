@@ -13,7 +13,9 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         Connection databaseConnection = DatabaseConnection.getInstance();
         UserDAO userDAO = new UserDAO();
+        EventDAO eventDAO = new EventDAO();
         userDAO.createTable();
+        eventDAO.createTable();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Sign-Up-Page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
         stage.setTitle("Hello!");

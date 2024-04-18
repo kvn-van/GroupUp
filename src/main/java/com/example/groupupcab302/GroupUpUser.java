@@ -2,6 +2,7 @@ package com.example.groupupcab302;
 
 public class GroupUpUser {
     private int userID;
+    private static int idCounter = 0;
     private String userName;
     private String firstName;
     private String lastName;
@@ -12,6 +13,8 @@ public class GroupUpUser {
 
     // userID will be automatically generated for each user upon database entry. Not required for constructor
     public GroupUpUser( String userName, String firstName, String lastName, String email, int phoneNumber, int age, String password){
+        idCounter += 1;
+        this.userID = idCounter;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,11 +24,10 @@ public class GroupUpUser {
         this.password = password;
     }
 
-    /*
-    public int getuserId() {
-        return id;
-    } */
 
+    public int getuserID() {
+        return userID;
+    }
     public String getUserName(){
         return userName;
     }

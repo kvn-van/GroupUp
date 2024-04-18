@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// Implement the database interface with the datatype of the class as the parameter
+// Implement the database interface with the datatype of the class group up user as the parameter
 // Allows overriding of interface methods and for specific operations on the user objects and database
+// Defines the generic for the interface to be group up user objects
 public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     private Connection connectionToDatabase;
 
@@ -23,7 +24,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         try {
             Statement createTable = connectionToDatabase.createStatement();
             createTable.execute(
-                    "CREATE TABLE IF NOT EXISTS GroupUpUsers ("
+                    "CREATE TABLE IF NOT EXISTS GroupUpUsers("
                             + "userID INTEGER PRIMARY KEY AUTOINCREMENT, "
                             + "userName VARCHAR NOT NULL, "
                             + "firstName VARCHAR NOT NULL, "
