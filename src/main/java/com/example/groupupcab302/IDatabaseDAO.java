@@ -5,6 +5,7 @@ package com.example.groupupcab302;
 public interface IDatabaseDAO<T> {
 
     // Allow all the function to throw customised SQL exceptions when required for personalised error messages during database operations
+    // Interface does not extend functions like getRecordByID due to varying paramater requirements dependent on class
 
     public void createTable() throws CustomSQLException;
 
@@ -12,8 +13,4 @@ public interface IDatabaseDAO<T> {
 
     public void delete(int ID) throws CustomSQLException;
 
-    /*
-    // datatype of the function to be returned depends on the class extending the interface, as a result its defined "generic"
-    // return type can be either of an event or user type
-    public T getRecordByID(int ID) throws CustomSQLException; */
 }

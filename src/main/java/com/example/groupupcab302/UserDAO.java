@@ -10,10 +10,7 @@ import java.util.regex.Pattern;
 // Allows overriding of interface methods and for specific operations on the user objects and database
 public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     private Connection connectionToDatabase;
-    private final Integer PARSE_ERROR = -1;
-    private final Integer INVALID_AGE = -2;
 
-    private final Integer INVALID_PHONE_NUMBER = -3;
 
     private final String VALIDATION_TYPE_PHONE_NUMBER = "Phone Number";
     private final String VALIDATION_TYPE_AGE = "Age";
@@ -75,12 +72,10 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     }
 
 
-    /*
-    @Override
-    public GroupUpUser getRecordByID(Integer ID){
+    public GroupUpUser getRecordByID(String email) throws CustomSQLException{
         try {
-            PreparedStatement getAccount = connectionToDatabase.prepareStatement("SELECT * FROM GroupUpUsers WHERE id = ?");
-            getAccount.setInt(1, ID);
+            PreparedStatement getAccount = connectionToDatabase.prepareStatement("SELECT * FROM GroupUpUsers WHERE email = ?");
+            getAccount.setString(1, email);
             ResultSet resultSet = getAccount.executeQuery();
             if (resultSet.next()) {
                 return new GroupUpUser(
@@ -99,8 +94,6 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
 
         return null;
     }
-    */
-
 
 
     public void delete(int ID){
@@ -128,7 +121,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
 
         }
         catch (NumberFormatException e) {
-            return PARSE_ERROR;
+            return ErrorConstants.PARSE_ERROR.getErrorValue();
         }
     }
 
