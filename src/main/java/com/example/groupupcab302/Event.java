@@ -18,7 +18,7 @@ public class Event {
     public Event(GroupUpUser groupUpUser, String name, String date, String time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image){
         eventIDCounter += 1;
         this.eventID = eventIDCounter;
-        eventCreatorUserID = groupUpUser.getuserID();
+        eventCreatorUserID = groupUpUser.getUserID();
         this.name = name;
         this.date = date;
         this.time = time;

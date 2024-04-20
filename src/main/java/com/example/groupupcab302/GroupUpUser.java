@@ -25,7 +25,7 @@ public class GroupUpUser {
     }
 
 
-    public int getuserID() {
+    public int getUserID() {
         return userID;
     }
     public String getUserName(){
@@ -72,9 +72,7 @@ public class GroupUpUser {
         this.email = email;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public void setPhoneNumber(int phoneNumber) {this.phoneNumber = phoneNumber;}
 
     public void setAge(int age) {
         this.age = age;
@@ -82,6 +80,10 @@ public class GroupUpUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
 

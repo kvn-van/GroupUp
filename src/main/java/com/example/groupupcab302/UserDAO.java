@@ -30,7 +30,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
                             + "firstName VARCHAR NOT NULL, "
                             + "lastName VARCHAR NOT NULL, "
                             + "email VARCHAR NOT NULL UNIQUE, "
-                            + "phoneNumber INT(20) NOT NULL, "
+                            + "phoneNumber INT(10) NOT NULL, "
                             + "age INT NOT NULL, "
                             + "password VARCHAR NOT NULL"
                             + ")"
