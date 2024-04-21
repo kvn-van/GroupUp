@@ -70,7 +70,9 @@ public class Event {
     }
 
     // Setters
-
+    public void setEventID(int ID){
+        eventID = ID;
+    }
 
     public void setName(String name) {
         this.name = name;
