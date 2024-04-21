@@ -24,7 +24,6 @@ public class GroupUpUser {
         this.password = password;
     }
 
-
     public int getUserID() {
         return userID;
     }
@@ -88,8 +87,8 @@ public class GroupUpUser {
 
 
     public String getAllUserDetails(){
-        String userDetails = ("userName: " + userName + ", First Name: " + firstName +", LastName: "
-                + lastName + ", email: " + email  + ", phoneNumber: " + age + ", password: " +
+        String userDetails = ("userName: " + userName + ", First Name: " + firstName +", Last Name: "
+                + lastName + ", email: " + email  + ", phoneNumber: " + phoneNumber + ", age: " + age + ", password: " +
                 password);
 
         return userDetails;

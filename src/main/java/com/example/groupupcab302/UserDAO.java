@@ -126,6 +126,8 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         }
     }
 
+    //create a long class for phone number
+
 
     //Ensure data integrity before entry into database
     public Integer validateInteger(String valueToValidate, String conditionToCheck) {
