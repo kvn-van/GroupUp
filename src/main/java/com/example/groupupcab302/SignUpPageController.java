@@ -83,8 +83,6 @@ public class SignUpPageController {
                 Integer age = userDAO.validateInteger(intInputValues[1], VALIDATION_TYPE_AGE);
                 validatedIntInputValues = new Integer[] {phoneNumber, age};
 
-                System.out.println(phoneNumber.getClass());
-
                 // Check if phoneNumber is not equal to any of the error codes
                 if (validatePhoneNumberAndAge(phoneNumber, age)) {
                     if (validatePassword(textFieldValues[4],textFieldValues[5])){
