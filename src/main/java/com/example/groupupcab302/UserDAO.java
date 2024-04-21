@@ -122,11 +122,11 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
 
         }
         catch (NumberFormatException e) {
-            return ErrorConstants.PARSE_ERROR.getErrorValue();
+            return ErrorConstants.INT_PARSE_ERROR.getErrorValue();
         }
     }
 
-    //create a long class for phone number
+
 
 
     //Ensure data integrity before entry into database
@@ -139,7 +139,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
                 return ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue();
 
             case (VALIDATION_TYPE_AGE):
-                if (convertStringToInt(valueToValidate) != ErrorConstants.PARSE_ERROR.getErrorValue()) {
+                if (convertStringToInt(valueToValidate) != ErrorConstants.INT_PARSE_ERROR.getErrorValue()) {
                     //Safe to parse the string as an int as parsing was validated beforehand
                     Integer valueAsInt = convertStringToInt(valueToValidate);
                     if (valueAsInt >= 18) {
@@ -148,9 +148,9 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
                     return ErrorConstants.INVALID_AGE.getErrorValue();
 
                 }
-                return ErrorConstants.PARSE_ERROR.getErrorValue();
+                return ErrorConstants.INT_PARSE_ERROR.getErrorValue();
         }
-        return ErrorConstants.PARSE_ERROR.getErrorValue();
+        return ErrorConstants.INT_PARSE_ERROR.getErrorValue();
     }
 
     // Check if the password has atleast one capital letter, one lowercase, number and special character as per user story

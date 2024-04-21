@@ -119,8 +119,8 @@ public class SignUpPageController {
     }
 
     public boolean validatePhoneNumberAndAge(Integer phoneNumber, Integer age){
-        if ((phoneNumber != ErrorConstants.PARSE_ERROR.getErrorValue() && phoneNumber != ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())
-                && (age != ErrorConstants.PARSE_ERROR.getErrorValue() && age != ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())){
+        if ((phoneNumber != ErrorConstants.INT_PARSE_ERROR.getErrorValue() && phoneNumber != ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())
+                && (age != ErrorConstants.INT_PARSE_ERROR.getErrorValue() && age != ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())){
             return true;
         }
 
@@ -135,8 +135,8 @@ public class SignUpPageController {
             return false;
         }
 
-        else if (phoneNumber == ErrorConstants.PARSE_ERROR.getErrorValue() || age == ErrorConstants.PARSE_ERROR.getErrorValue()){
-            SigningInStatus.setText(ErrorConstants.PARSE_ERROR.getErrorDescription());
+        else if (phoneNumber == ErrorConstants.INT_PARSE_ERROR.getErrorValue() || age == ErrorConstants.INT_PARSE_ERROR.getErrorValue()){
+            SigningInStatus.setText(ErrorConstants.INT_PARSE_ERROR.getErrorDescription());
             return false;
         }
 

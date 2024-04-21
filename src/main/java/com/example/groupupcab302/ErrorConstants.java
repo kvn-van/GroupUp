@@ -4,7 +4,10 @@ public enum ErrorConstants {
 
     //Define constants to refer to errors
     //Note: Error constant values are negative to avoid confusion with user input
-    PARSE_ERROR(-1, "Please ensure entries for age and phone number are fulfilled with only integers"),
+
+    // As the phone number recieved is 10 integers long, having any integer greater than 2 at index 0 exceeds range of integer creating error
+    // Ensure error message now specifies this for user 
+    INT_PARSE_ERROR(-1, "Please ensure entries for age and phone number are fulfilled with only integers and that phone number starts with \"0\""),
     INVALID_AGE(-2, "You must be 18 years or older to use this site!"),
     INVALID_PHONE_NUMBER(-3, "Your phone number must be atleast 10 digits long! Do not include spaces, + or -"),
     INVALID_PASSWORD(-4, "The passwords you entered either do not match or your passwords do not" +
