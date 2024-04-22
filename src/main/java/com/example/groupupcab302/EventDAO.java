@@ -23,7 +23,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
             Statement createTable = connectionToDatabase.createStatement();
             createTable.execute(
                     "CREATE TABLE IF NOT EXISTS GroupUpEvents ("
-                            + "eventID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                            + "eventID INTEGER PRIMARY KEY, "
                             + "name VARCHAR NOT NULL, "
                             + "date DATETIME NOT NULL, "
                             + "location VARCHAR NOT NULL, "

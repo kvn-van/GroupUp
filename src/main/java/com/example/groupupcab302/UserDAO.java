@@ -33,7 +33,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
             Statement createTable = connectionToDatabase.createStatement();
             createTable.execute(
                     "CREATE TABLE IF NOT EXISTS GroupUpUsers("
-                            + "userID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                            + "userID INTEGER PRIMARY KEY, "
                             + "userName VARCHAR NOT NULL, "
                             + "firstName VARCHAR NOT NULL, "
                             + "lastName VARCHAR NOT NULL, "
@@ -52,16 +52,17 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     public void insert(GroupUpUser groupUpUser) throws CustomSQLException {
         try {
             PreparedStatement insertUser = connectionToDatabase.prepareStatement(
-                    "INSERT INTO GroupUpUsers (userName, firstName, lastName, email, phoneNumber, age, password) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO GroupUpUsers (userID, userName, firstName, lastName, email, phoneNumber, age, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
             );
 
-            insertUser.setString(1, groupUpUser.getUserName());
-            insertUser.setString(2, groupUpUser.getFirstName());
-            insertUser.setString(3, groupUpUser.getLastName());
-            insertUser.setString(4, groupUpUser.getEmail());
-            insertUser.setInt(5, groupUpUser.getPhoneNumber());
-            insertUser.setInt(6, groupUpUser.getAge());
-            insertUser.setString(7, groupUpUser.getPassword());
+            insertUser.setInt(1, groupUpUser.getUserID());
+            insertUser.setString(2, groupUpUser.getUserName());
+            insertUser.setString(3, groupUpUser.getFirstName());
+            insertUser.setString(4, groupUpUser.getLastName());
+            insertUser.setString(5, groupUpUser.getEmail());
+            insertUser.setInt(6, groupUpUser.getPhoneNumber());
+            insertUser.setInt(7, groupUpUser.getAge());
+            insertUser.setString(8, groupUpUser.getPassword());
             insertUser.execute();
 
         }
@@ -99,6 +100,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
                         resultSet.getString("password")
                 );
             }
+
         } catch (SQLException ex) {
             System.err.println(ex);
         }
@@ -118,7 +120,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
             deleteUserAccount.setInt(1, ID);
             deleteUserAccount.execute();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
     }
 
