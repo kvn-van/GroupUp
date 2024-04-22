@@ -107,6 +107,11 @@ public class Event {
     }
 
     // To do add the stuff for retrieving all the details
+    public String getAllEventDetails() {
 
+        return ("eventName: " + name + ", date: " + date + ", time: "
+                + time + ", location: " + location + ", genre: " + genre + ", numberOfRegistrationsAvailable: " + numberOfRegistrationsAvailable + ", description: " +
+                description);
+    }
 }
 
