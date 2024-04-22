@@ -6,18 +6,26 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// Refactored concrete solution to the MockUserDAO
+// As MockUserDAO methods passed unit test cases for a sample table, methods here are kept closely similiar
+
+
 // Implement the database interface with the datatype of the class group up user as the parameter
 // Allows overriding of interface methods and for specific operations on the user objects and database
 // Defines the generic for the interface to be group up user objects
 public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     private Connection connectionToDatabase;
-
-
     private final String VALIDATION_TYPE_PHONE_NUMBER = "Phone Number";
     private final String VALIDATION_TYPE_AGE = "Age";
 
     public UserDAO(){
         connectionToDatabase = DatabaseConnection.getInstance();
+    }
+
+
+    @Override
+    public void update(GroupUpUser groupUpUser, String attributeToUpdate, String valueToSetAttributeTo){
+        throw new UnsupportedOperationException("UserDAO does not support updating entries as there is no reset password functionality");
     }
 
     public void createTable() {
@@ -73,13 +81,15 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     }
 
 
-    public GroupUpUser getRecordByID(String email) throws CustomSQLException{
+    public GroupUpUser getUserRecordByEmail(String email) throws CustomSQLException, SQLException{
+        ResultSet resultSet = null;
         try {
             PreparedStatement getAccount = connectionToDatabase.prepareStatement("SELECT * FROM GroupUpUsers WHERE email = ?");
             getAccount.setString(1, email);
-            ResultSet resultSet = getAccount.executeQuery();
+            resultSet = getAccount.executeQuery();
             if (resultSet.next()) {
                 return new GroupUpUser(
+                        resultSet.getInt("userID"),
                         resultSet.getString("userName"),
                         resultSet.getString("firstName"),
                         resultSet.getString("lastName"),
@@ -93,16 +103,20 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
             System.err.println(ex);
         }
 
+        finally{
+            // Ensure data for result set is no longer fetched/opened in the database to prevent locking on future operations
+            resultSet.close();
+        }
+
         return null;
     }
 
 
     public void delete(int ID){
         try {
-            PreparedStatement deleteUserAccount = connectionToDatabase.prepareStatement("DELETE FROM GroupUpUsers WHERE id = ?");
+            PreparedStatement deleteUserAccount = connectionToDatabase.prepareStatement("DELETE FROM GroupUpUsers WHERE userID = ?");
             deleteUserAccount.setInt(1, ID);
             deleteUserAccount.execute();
-
         } catch (SQLException ex) {
 
         }

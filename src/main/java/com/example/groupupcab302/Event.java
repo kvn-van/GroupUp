@@ -2,6 +2,8 @@ package com.example.groupupcab302;
 
 public class Event {
 
+
+    //TODO: refine event to add a list for userts going to event
     private int eventID;
 
     private int eventIDCounter;

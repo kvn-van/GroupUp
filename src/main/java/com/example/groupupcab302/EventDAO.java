@@ -10,6 +10,8 @@ import java.sql.Statement;
 // Defines the generic for the interface to be event objects
 public class EventDAO implements IDatabaseDAO<Event>{
 
+    //TODO: database diagram to accomodate list of guests
+
     private Connection connectionToDatabase;
     public EventDAO(){
         connectionToDatabase = DatabaseConnection.getInstance();

@@ -13,4 +13,6 @@ public interface IDatabaseDAO<T> {
 
     public void delete(int ID) throws CustomSQLException;
 
+    public void update(T databaseModelobject, String attributeToUpdate, String valueToSetAttributeTo) throws CustomSQLException, UnsupportedOperationException;
+
 }

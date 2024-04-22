@@ -7,4 +7,5 @@ module com.example.groupupcab302 {
 
     opens com.example.groupupcab302 to javafx.fxml;
     exports com.example.groupupcab302;
+    exports com.example.groupupcab302.mockDAO;
 }

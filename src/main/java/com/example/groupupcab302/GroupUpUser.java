@@ -11,10 +11,22 @@ public class GroupUpUser {
     private int age;
     private String password;
 
-    // userID will be automatically generated for each user upon database entry. Not required for constructor
+    // userID not required for normal instantiation of object
     public GroupUpUser( String userName, String firstName, String lastName, String email, int phoneNumber, int age, String password){
         idCounter += 1;
         this.userID = idCounter;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.age = age;
+        this.password = password;
+    }
+
+    // Second constructor for instances where user is being created based on  results from query into database i.e getrecord
+    public GroupUpUser( int userID, String userName, String firstName, String lastName, String email, int phoneNumber, int age, String password){
+        this.userID = userID;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
