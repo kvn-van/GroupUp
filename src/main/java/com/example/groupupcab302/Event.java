@@ -2,10 +2,7 @@ package com.example.groupupcab302;
 
 public class Event {
 
-
-    //TODO: refine event to add a list for userts going to event
     private int eventID;
-
     private int eventIDCounter;
     private int eventCreatorUserID;
     private String name;
@@ -17,9 +14,26 @@ public class Event {
     private String description;
     private String image;
 
+    // Default constructor
+    // Should be called for instances where an event is created with values from controller
     public Event(GroupUpUser groupUpUser, String name, String date, String time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image){
         eventIDCounter += 1;
         this.eventID = eventIDCounter;
+        eventCreatorUserID = groupUpUser.getUserID();
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+        this.genre = genre;
+        this.numberOfRegistrationsAvailable = numberOfRegistrationsAvailable;
+        this.description = description;
+        this.image = image;
+    }
+
+    // Added constructor for special cases where event can be expiticly be created with an ID
+    // Should be used to create an event  when the data for an event is returned from the database
+    public Event(int eventID,GroupUpUser groupUpUser, String name, String date, String time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image){
+        this.eventID = eventID;
         eventCreatorUserID = groupUpUser.getUserID();
         this.name = name;
         this.date = date;

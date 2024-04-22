@@ -31,6 +31,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
                             + "numberOfRegistrationsAvailable INT NOT NULL, "
                             + "descriptionOfEvent VARCHAR NOT NULL, "
                             + "image VARBINARY NOT NULL, "
+                            + "listOfAttendees STRING UNIQUE NULL, "
                             + "customerEventCreationID INT NOT NULL UNIQUE, "
                             + "FOREIGN KEY (customerEventCreationID) REFERENCES GroupUpUsers(userID)"
                             + ")"
@@ -91,7 +92,4 @@ public class EventDAO implements IDatabaseDAO<Event>{
         }
 
     }
-
-
-
 }

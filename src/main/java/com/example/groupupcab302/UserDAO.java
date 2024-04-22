@@ -7,12 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 // Refactored concrete solution to the MockUserDAO
-// As MockUserDAO methods passed unit test cases for a sample table, methods here are kept closely similiar
+// As MockUserDAO methods passed unit test cases for a sample table, methods are kept slightly refactored
 
 
-// Implement the database interface with the datatype of the class group up user as the parameter
-// Allows overriding of interface methods and for specific operations on the user objects and database
-// Defines the generic for the interface to be group up user objects
+// Implement the database interface with the datatype of the class GroupUpUser as the parameter
+// Allows overriding of interface methods and for specific operations on the GroupUpUser objects and database
+
 public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     private Connection connectionToDatabase;
     private final String VALIDATION_TYPE_PHONE_NUMBER = "Phone Number";
@@ -141,8 +141,6 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     }
 
 
-
-
     //Ensure data integrity before entry into database
     public Integer validateInteger(String valueToValidate, String conditionToCheck) {
         switch (conditionToCheck) {
@@ -167,7 +165,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         return ErrorConstants.INT_PARSE_ERROR.getErrorValue();
     }
 
-    // Check if the password has atleast one capital letter, one lowercase, number and special character as per user story
+    // Check if the password supplied has atleast one capital and lowercase letter, number and special character
     public boolean isPasswordValid(String password){
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
 
