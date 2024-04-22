@@ -70,7 +70,6 @@ public class EventDAO implements IDatabaseDAO<Event>{
         catch(SQLException sqlException){
             throw new CustomSQLException("Please enter a reason/give a meaningful message to the user on the error for why the db couldnt be deleted");
         }
-
     }
 
     // update not defined in interface as not all child tables require
