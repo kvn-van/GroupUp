@@ -1,5 +1,7 @@
 package com.example.groupupcab302;
 
+import java.time.LocalDate;
+
 public class Event {
 
     private int eventID;
@@ -7,18 +9,18 @@ public class Event {
     private int eventIDCounter;
     private int eventCreatorUserID;
     private String name;
-    private String date;
-    private String time;
+    private LocalDate date;
+    private int time;
     private String location;
     private String genre;
     private int numberOfRegistrationsAvailable;
     private String description;
-    private String image;
+    private int image;
 
-    public Event(GroupUpUser groupUpUser, String name, String date, String time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image){
+    public Event(int groupUpUser, String name, LocalDate date, int time, String location, String genre, int numberOfRegistrationsAvailable, String description, int image){
         eventIDCounter += 1;
         this.eventID = eventIDCounter;
-        eventCreatorUserID = groupUpUser.getUserID();
+        eventCreatorUserID = groupUpUser;
         this.name = name;
         this.date = date;
         this.time = time;
@@ -41,11 +43,9 @@ public class Event {
         return name;
     }
 
-    public String getDate() {
-        return date;
-    }
+    public LocalDate getDate() {return date; }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
@@ -65,7 +65,7 @@ public class Event {
         return description;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
@@ -78,11 +78,9 @@ public class Event {
         this.name = name;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+    public void setDate(LocalDate date) {this.date = date; }
 
-    public void setTime(String time) {
+    public void setTime(int time) {
         this.time = time;
     }
 
@@ -102,7 +100,7 @@ public class Event {
         this.description = description;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

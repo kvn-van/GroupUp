@@ -1,9 +1,8 @@
 package com.example.groupupcab302;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
+
 
 // Implement the database interface with the datatype of the class event as the parameter
 // Allows overriding of interface methods and for specific operations on the user objects and database
@@ -45,12 +44,12 @@ public class EventDAO implements IDatabaseDAO<Event>{
                     "date, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             insertEvent.setInt(1, event.getEventCreatorUserID());
             insertEvent.setString(2, event.getName());
-            insertEvent.setString(3, event.getDate());
+            insertEvent.setDate(3, Date.valueOf(event.getDate()));
             insertEvent.setString(4, event.getLocation());
             insertEvent.setString(5, event.getGenre());
             insertEvent.setInt(6, event.getNumberOfRegistrationsAvailable());
             insertEvent.setString(7, event.getDescription());
-            insertEvent.setString(8, event.getImage());
+            insertEvent.setInt(8, event.getImage());
 
             insertEvent.execute();
         }
