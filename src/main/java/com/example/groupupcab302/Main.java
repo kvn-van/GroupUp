@@ -16,7 +16,7 @@ public class Main extends Application {
         EventDAO eventDAO = new EventDAO();
         userDAO.createTable();
         eventDAO.createTable();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Sign-Up-Page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("event-view-template.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
         stage.setTitle("Hello!");
         stage.setScene(scene);
