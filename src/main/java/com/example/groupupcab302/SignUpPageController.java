@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import org.w3c.dom.Text;
 
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,16 +17,15 @@ public class SignUpPageController {
     //Define a const to represent when there is a value for an integer
 
     private final String VALIDATION_TYPE_PHONE_NUMBER = "Phone Number";
-    private final String VALIDATION_TYPE_AGE = "Age";
 
     // Create data collection for basic text fields: username, first, last name, email, password and password confirmation
-    private String textFieldValues[];
+    private String[] textFieldValues;
 
-    // Create data collection for text fields that recieve integer values: phone number and age
-    private String intInputValues[];
+    // Create data collection for text fields that receive integer values: phone number and age
+    private String[] intInputValues;
 
     // Create data collection for phone number and age values after successful parsing from string to int
-    private Integer validatedIntInputValues[];
+    private Integer[] validatedIntInputValues;
 
 
 
@@ -80,6 +80,7 @@ public class SignUpPageController {
         if (areBasicTextFieldsValid()){
             if (isEmailValid(textFieldValues[3])){
                 Integer phoneNumber = userDAO.validateInteger(intInputValues[0], VALIDATION_TYPE_PHONE_NUMBER);
+                String VALIDATION_TYPE_AGE = "Age";
                 Integer age = userDAO.validateInteger(intInputValues[1], VALIDATION_TYPE_AGE);
                 validatedIntInputValues = new Integer[] {phoneNumber, age};
 
@@ -98,7 +99,7 @@ public class SignUpPageController {
         if(userDAO.isPasswordValid(password) && doPasswordsMatch(password, passwordConfirmation)){
             return true;
         }
-        // display error message if passwords dont match
+        // display error message if passwords don't match
         SigningInStatus.setText(ErrorConstants.INVALID_PASSWORD.getErrorDescription());
         return false;
     }
@@ -119,23 +120,23 @@ public class SignUpPageController {
     }
 
     public boolean validatePhoneNumberAndAge(Integer phoneNumber, Integer age){
-        if ((phoneNumber != ErrorConstants.INT_PARSE_ERROR.getErrorValue() && phoneNumber != ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())
-                && (age != ErrorConstants.INT_PARSE_ERROR.getErrorValue() && age != ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())){
+        if ((!Objects.equals(phoneNumber, ErrorConstants.INT_PARSE_ERROR.getErrorValue()) && !Objects.equals(phoneNumber, ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue()))
+                && (!Objects.equals(age, ErrorConstants.INT_PARSE_ERROR.getErrorValue()) && !Objects.equals(age, ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue()))){
             return true;
         }
 
-        // display error message if phone number or age dont satisfy validators
-        else if (age == ErrorConstants.INVALID_AGE.getErrorValue()){
+        // display error message if phone number or age don't satisfy validators
+        else if (Objects.equals(age, ErrorConstants.INVALID_AGE.getErrorValue())){
             SigningInStatus.setText(ErrorConstants.INVALID_AGE.getErrorDescription());
             return false;
         }
 
-        else if (phoneNumber == ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue()){
+        else if (Objects.equals(phoneNumber, ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())){
             SigningInStatus.setText(ErrorConstants.INVALID_PHONE_NUMBER.getErrorDescription());
             return false;
         }
 
-        else if (phoneNumber == ErrorConstants.INT_PARSE_ERROR.getErrorValue() || age == ErrorConstants.INT_PARSE_ERROR.getErrorValue()){
+        else if (Objects.equals(phoneNumber, ErrorConstants.INT_PARSE_ERROR.getErrorValue()) || Objects.equals(age, ErrorConstants.INT_PARSE_ERROR.getErrorValue())){
             SigningInStatus.setText(ErrorConstants.INT_PARSE_ERROR.getErrorDescription());
             return false;
         }
@@ -144,10 +145,10 @@ public class SignUpPageController {
     }
 
     public boolean areBasicTextFieldsValid() {
-        for (int counter = 0; counter < textFieldValues.length; counter++) {
+        for (String textFieldValue : textFieldValues) {
             // Ensure fields are not empty
-            if (textFieldValues[counter].length() == 0) {
-                //display error message if form isnt filled out properly
+            if (textFieldValue.isEmpty()) {
+                //display error message if form isn't filled out properly
                 SigningInStatus.setText(ErrorConstants.INVALID_USERINPUT.getErrorDescription());
                 return false; // Return false if any string is invalid
             }
@@ -157,11 +158,7 @@ public class SignUpPageController {
 
 
     public boolean doPasswordsMatch(String password, String passwordConfirmation){
-        if (password.equals(passwordConfirmation)){
-            return true;
-        }
-
-        return false;
+        return password.equals(passwordConfirmation);
     }
 
     public boolean isEmailValid(String email){

@@ -153,7 +153,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         return ErrorConstants.INT_PARSE_ERROR.getErrorValue();
     }
 
-    // Check if the password has atleast one capital letter, one lowercase, number and special character as per user story
+    // Check if the password has at least one capital letter, one lowercase, number and special character as per user story
     public boolean isPasswordValid(String password){
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
 

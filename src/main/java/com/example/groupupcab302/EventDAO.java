@@ -40,7 +40,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
     @Override
     public void insert(Event event) throws CustomSQLException{
         try {
-            PreparedStatement insertEvent = connectionToDatabase.prepareStatement("INSERT INTO GroupUpEvents (eventCreatoruserID, name, " +
+            PreparedStatement insertEvent = connectionToDatabase.prepareStatement("INSERT INTO GroupUpEvents (eventCreatorUserID, name, " +
                     "date, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             insertEvent.setInt(1, event.getEventCreatorUserID());
             insertEvent.setString(2, event.getName());
@@ -68,15 +68,15 @@ public class EventDAO implements IDatabaseDAO<Event>{
         }
 
         catch(SQLException sqlException){
-            throw new CustomSQLException("Please enter a reason/give a meaningful message to the user on the error for why the db couldnt be deleted");
+            throw new CustomSQLException("Please enter a reason/give a meaningful message to the user on the error for why the db couldn't be deleted");
         }
     }
 
     // update not defined in interface as not all child tables require
-    public void update(Event event, String attributeOfEventToUpate, String valueToSetAttributeTo) throws CustomSQLException{
+    public void update(Event event, String attributeOfEventToUpdate, String valueToSetAttributeTo) throws CustomSQLException{
         try{
             PreparedStatement updateToRowStatement = connectionToDatabase.prepareStatement("UPDATE GroupUpEvents SET ? = ? WHERE eventID = ?");
-            updateToRowStatement.setString(1, attributeOfEventToUpate);
+            updateToRowStatement.setString(1, attributeOfEventToUpdate);
             updateToRowStatement.setString(2, valueToSetAttributeTo);
             updateToRowStatement.setInt(3,event.getEventID());
 
@@ -85,9 +85,5 @@ public class EventDAO implements IDatabaseDAO<Event>{
         catch (SQLException sqlException){
             throw new CustomSQLException("Enter a detailed message here for reason of error and what user did wrong");
         }
-
     }
-
-
-
 }
