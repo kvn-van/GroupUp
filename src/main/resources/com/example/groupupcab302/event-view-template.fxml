@@ -7,30 +7,17 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.EventViewTemplate">
    <children>
-      <Label layoutX="90.0" layoutY="56.0" text="GroupUp!">
+      <Text fill="#030303" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
          <font>
-            <Font name="System Bold" size="16.0" />
-         </font></Label>
-      <Label layoutX="630.0" layoutY="49.0" text="+" textAlignment="CENTER">
-         <font>
-            <Font size="28.0" />
+            <Font name="Eras Demi ITC" size="26.0" />
          </font>
-      </Label>
-      <Label layoutX="535.0" layoutY="60.0" text="Event">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="708.0" layoutY="60.0" text="My Event">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="1195.0" layoutY="62.0" text="Profile">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
+      </Text>
+      <Button layoutX="842.0" layoutY="25.0" mnemonicParsing="false" text="Discover Events" />
+      <Button layoutX="1209.0" layoutY="25.0" mnemonicParsing="false" text="Login" />
+      <Button layoutX="1048.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
+      <Button layoutX="953.0" layoutY="25.0" mnemonicParsing="false" text="Create Event" />
+      <Button layoutX="1141.0" layoutY="25.0" mnemonicParsing="false" text="Sign Up" />
+
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="260.0" layoutX="39.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="252.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="260.0" layoutX="351.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="252.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="260.0" layoutX="670.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="252.0" />
