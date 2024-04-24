@@ -87,11 +87,10 @@ public class GroupUpUser {
 
 
     public String getAllUserDetails(){
-        String userDetails = ("userName: " + userName + ", First Name: " + firstName +", Last Name: "
+
+        return ("userName: " + userName + ", First Name: " + firstName +", Last Name: "
                 + lastName + ", email: " + email  + ", phoneNumber: " + phoneNumber + ", age: " + age + ", password: " +
                 password);
-
-        return userDetails;
 
     }
 }
