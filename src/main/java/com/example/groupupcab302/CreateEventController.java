@@ -6,14 +6,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-import java.sql.Connection;
-import java.sql.Date;
 import java.time.LocalDate;
 
 
 public class CreateEventController {
 
-    private EventDAO EventDao;
+    private EventDAO EventDAO;
+
     @FXML
     private TextField NameText;
     @FXML
@@ -25,8 +24,6 @@ public class CreateEventController {
     @FXML
     private TextField LocationField;
     @FXML
-    private Button RegisterButton;
-    @FXML
     private CheckBox TermsButton;
 
     int EventUserId = 9;
@@ -37,20 +34,29 @@ public class CreateEventController {
     String Summary;
     int GuestLimit;
 
-    public void createEvent() throws CustomSQLException {
-        Event Event = new Event(1,EventName, EventDate,  0, Location,"SAdasdasd",GuestLimit, Summary,0);
+    @FXML
+    public void createEvent(){
+        Event event = new Event(1,EventName, EventDate,  0, Location,"SAdasdasd",GuestLimit, Summary,0);
 
-        EventDao.insert(Event);
+
+            try{
+                eventDAO.insert(event);
+            }
+            catch (CustomSQLException e) {
+                throw new RuntimeException(e);
+            }
     }
     @FXML
     public void submit() throws CustomSQLException {
-        System.out.println("Working on Event...");
-        EventName = NameText.getText();
-        EventDate = DateField.getValue();
-        Location = LocationField.getText();
-        Summary = SummaryField.getText();
-        GuestLimit = Integer.parseInt(GuestField.getText());
+        if (TermsButton.isSelected()) {
+            System.out.println("Working on Event...");
+            EventName = NameText.getText();
+            EventDate = DateField.getValue();
+            Location = LocationField.getText();
+            Summary = SummaryField.getText();
+            GuestLimit = Integer.parseInt(GuestField.getText());
 
-        createEvent();
+            createEvent();
+        }
     }
 }
