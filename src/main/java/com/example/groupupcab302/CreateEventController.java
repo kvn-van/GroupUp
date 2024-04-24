@@ -40,7 +40,7 @@ public class CreateEventController {
 
 
             try{
-                eventDAO.insert(event);
+                EventDAO.insert(event);
             }
             catch (CustomSQLException e) {
                 throw new RuntimeException(e);
