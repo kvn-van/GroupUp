@@ -23,7 +23,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
             Statement createTable = connectionToDatabase.createStatement();
             createTable.execute(
                     "CREATE TABLE IF NOT EXISTS GroupUpEvents ("
-                            + "eventID INTEGER PRIMARY KEY, "
+                            + "eventID INTEGER PRIMARY KEY AUTOINCREMENT, "
                             + "name VARCHAR NOT NULL, "
                             + "date DATETIME NOT NULL, "
                             + "location VARCHAR NOT NULL, "
@@ -31,7 +31,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
                             + "numberOfRegistrationsAvailable INT NOT NULL, "
                             + "descriptionOfEvent VARCHAR NOT NULL, "
                             + "image VARBINARY NOT NULL, "
-                            + "listOfAttendees STRING UNIQUE NULL, "
+                            // need clarification + "listOfAttendees STRING UNIQUE NULL, "
                             + "customerEventCreationID INT NOT NULL UNIQUE, "
                             + "FOREIGN KEY (customerEventCreationID) REFERENCES GroupUpUsers(userID)"
                             + ")"

@@ -3,7 +3,6 @@ package com.example.groupupcab302;
 public class Event {
 
     private int eventID;
-    private int eventIDCounter;
     private int eventCreatorUserID;
     private String name;
     private String date;
@@ -14,11 +13,13 @@ public class Event {
     private String description;
     private String image;
 
+    // Datatype for attendees cant be a list because it isnt supported by SQL
+    // Adding to a list must involve retrieving current value and conctatenating a string
+    private String eventAttendees;
+
     // Default constructor
     // Should be called for instances where an event is created with values from controller
     public Event(GroupUpUser groupUpUser, String name, String date, String time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image){
-        eventIDCounter += 1;
-        this.eventID = eventIDCounter;
         eventCreatorUserID = groupUpUser.getUserID();
         this.name = name;
         this.date = date;
@@ -52,6 +53,15 @@ public class Event {
     public int getEventCreatorUserID() {
         return eventCreatorUserID;
     }
+
+    public String getEventAttendees(){
+        return eventAttendees;
+    }
+
+    /*
+    public void setEventAttendees(String ){
+
+    }*/
 
     public String getName() {
         return name;
@@ -125,4 +135,3 @@ public class Event {
     // To do add the stuff for retrieving all the details
 
 }
-
