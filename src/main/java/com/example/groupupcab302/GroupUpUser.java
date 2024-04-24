@@ -2,7 +2,6 @@ package com.example.groupupcab302;
 
 public class GroupUpUser {
     private int userID;
-    private static int idCounter = 0;
     private String userName;
     private String firstName;
     private String lastName;
@@ -13,8 +12,6 @@ public class GroupUpUser {
 
     // userID not required for normal instantiation of object
     public GroupUpUser( String userName, String firstName, String lastName, String email, int phoneNumber, int age, String password){
-        idCounter += 1;
-        this.userID = idCounter;
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
