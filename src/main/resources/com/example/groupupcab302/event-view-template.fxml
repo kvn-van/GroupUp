@@ -25,22 +25,22 @@
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="260.0" layoutX="351.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="252.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="260.0" layoutX="670.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="252.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="260.0" layoutX="990.0" layoutY="179.0" stroke="BLACK" strokeType="INSIDE" width="252.0" />
-   <Label layoutX="113.0" layoutY="190.0" text="Event Name">
+   <Label fx:id="eventLabel1" layoutX="113.0" layoutY="190.0" text="Event Name">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>
    </Label>
-   <Label layoutX="1064.0" layoutY="190.0" text="Event Name">
+   <Label fx:id="eventLabel4" layoutX="1064.0" layoutY="190.0" text="Event Name">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>
    </Label>
-   <Label layoutX="744.0" layoutY="190.0" text="Event Name">
+   <Label fx:id="eventLabel3" layoutX="744.0" layoutY="190.0" text="Event Name">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>
    </Label>
-   <Label layoutX="425.0" layoutY="190.0" text="Event Name">
+   <Label fx:id="eventLabel2" layoutX="425.0" layoutY="190.0" text="Event Name">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>
@@ -144,7 +144,7 @@
          <Font name="System Bold" size="18.0" />
       </font>
    </Button>
-   <ImageView fitHeight="200.0" fitWidth="215.0" layoutX="62.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" />
+   <ImageView fitHeight="200.0" fitWidth="215.0" layoutX="58.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" />
    <ImageView fitHeight="200.0" fitWidth="215.0" layoutX="370.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" />
    <ImageView fitHeight="200.0" fitWidth="215.0" layoutX="690.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" />
    <ImageView fitHeight="200.0" fitWidth="215.0" layoutX="1009.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" />

@@ -1,7 +1,6 @@
 package com.example.groupupcab302;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 
 // Implement the database interface with the datatype of the class event as the parameter
@@ -35,6 +34,20 @@ public class EventDAO implements IDatabaseDAO<Event>{
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx);
         }
+    }
+
+    public String getEventNameById(int eventID) throws SQLException {
+        String eventName = null;
+        String sql = "SELECT name FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventName = rs.getString("name");
+        }
+        rs.close();
+        stmt.close();
+        return eventName;
     }
 
     @Override
