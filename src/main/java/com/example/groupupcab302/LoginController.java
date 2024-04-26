@@ -18,7 +18,7 @@ public class LoginController {
     private UserDAO userDAO;
 
     // Create data collection to hold value of all fields
-    private String textFieldValues[];
+    private String[] textFieldValues;
 
     @FXML
     private Button signUpButton;
@@ -61,7 +61,7 @@ public class LoginController {
     @FXML
     protected void onLoginButton() {
         // Initialise data collection variable using form values
-        textFieldValues = new String[] {EmailTextField.getText(), PasswordTextField.getText()}
+        textFieldValues = new String[] {EmailTextField.getText(), PasswordTextField.getText()};
         handleUsersLogin();
     }
 
@@ -74,9 +74,9 @@ public class LoginController {
     }
 
     public boolean isUserLoginValid() {
-        return (areTextFieldsValid() &&
+        return areTextFieldsValid() &&
                 isEmailValid(textFieldValues[0]) &&
-                isPasswordValid(textFieldValues[1]) &&);
+                isPasswordValid(textFieldValues[1]);
     }
 
     public boolean isEmailValid(String email){
@@ -102,9 +102,9 @@ public class LoginController {
     }
 
     public boolean areTextFieldsValid() {
-        for (int i = 0; i < textFieldValues.length; i++) {
+        for (String textFieldValue : textFieldValues) {
             // Ensure fields are not empty
-            if (textFieldValues[i].length() == 0) {
+            if (textFieldValue.isEmpty()) {
                 //display error message if form is not filled out correctly
                 LoginStatus.setText(ErrorConstants.INVALID_USERINPUT.getErrorDescription());
                 return false; // Return false if any string is invalid
