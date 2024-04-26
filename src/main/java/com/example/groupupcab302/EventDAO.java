@@ -50,6 +50,47 @@ public class EventDAO implements IDatabaseDAO<Event>{
         return eventName;
     }
 
+    public String getLocationById(int eventID) throws SQLException {
+        String eventLocation = null;
+        String sql = "SELECT location FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventLocation = rs.getString("location");
+        }
+        rs.close();
+        stmt.close();
+        return eventLocation;
+    }
+
+    public String getDateById(int eventID) throws SQLException {
+        String eventDate= null;
+        String sql = "SELECT date FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventDate= rs.getString("date");
+        }
+        rs.close();
+        stmt.close();
+        return eventDate;
+    }
+
+    public String getGenreById(int eventID) throws SQLException {
+        String eventGenre= null;
+        String sql = "SELECT genre FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventGenre = rs.getString("genre");
+        }
+        rs.close();
+        stmt.close();
+        return eventGenre;
+    }
     @Override
     public void insert(Event event) throws CustomSQLException{
         try {
