@@ -65,7 +65,7 @@
       <Button layoutX="953.0" layoutY="25.0" mnemonicParsing="false" text="Create Event" />
       <Button layoutX="1141.0" layoutY="25.0" mnemonicParsing="false" text="Sign Up" />
       <Button layoutX="842.0" layoutY="25.0" mnemonicParsing="false" text="Discover Events" />
-      <Button id="SignInButton" layoutX="863.0" layoutY="593.0" mnemonicParsing="false" onAction="#onSignInButtonClick" prefHeight="25.0" prefWidth="366.0" text="Sign In" />
+      <Button id="SignInButton" layoutX="863.0" layoutY="593.0" mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="25.0" prefWidth="366.0" text="Sign In" />
       <Button layoutX="866.0" layoutY="651.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="366.0" text="Already Have An Account?" />
       <Line endX="75.0" layoutX="964.0" layoutY="635.0" startX="-100.0" />
       <Text fill="#5b5555" layoutX="1037.0" layoutY="639.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="23.51025390625">

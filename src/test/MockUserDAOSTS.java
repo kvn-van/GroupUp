@@ -17,7 +17,7 @@ public class MockUserDAOSTS {
     private Connection connectionToDatabase;
 
     // Construct group up user with fixed ID to prevent complications with ID changing due to varying test cases
-    final GroupUpUser groupUpUser  =  new GroupUpUser(1,"FREESHEFFG", "Sheff", "G", "FlowsPart2@gmail.com", 1234567891, 18, "freeSHEFFGAND8THBLOCK");
+    final GroupUpUser groupUpUser  =  new GroupUpUser(1,"FREESHEFFG", "Sheff", "G", "FlowsPart2@gmail.com", "1234567891", "18", "freeSHEFFGAND8THBLOCK");
     private MockUserDAO mockUserDAO;
     @BeforeEach
     void setUp(){
@@ -100,7 +100,7 @@ public class MockUserDAOSTS {
                 dbQueriedGroupUpUser = new GroupUpUser(resultSet.getInt("userID"),
                         resultSet.getString("userName"), resultSet.getString("firstName"),
                         resultSet.getString("lastName"), resultSet.getString("email"),
-                        resultSet.getInt("phoneNumber"), resultSet.getInt("age"),
+                        resultSet.getString("phoneNumber"), resultSet.getString("age"),
                         resultSet.getString("password"));
             }
 

@@ -6,12 +6,12 @@ public class GroupUpUser {
     private String firstName;
     private String lastName;
     private String email;
-    private int phoneNumber;
-    private int age;
+    private String phoneNumber;
+    private String age;
     private String password;
 
     // userID not required for normal instantiation of object
-    public GroupUpUser( String userName, String firstName, String lastName, String email, int phoneNumber, int age, String password){
+    public GroupUpUser( String userName, String firstName, String lastName, String email, String phoneNumber, String age, String password){
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,7 +22,7 @@ public class GroupUpUser {
     }
 
     // Second constructor for instances where user is being created based on  results from query into database i.e getrecord
-    public GroupUpUser( int userID, String userName, String firstName, String lastName, String email, int phoneNumber, int age, String password){
+    public GroupUpUser( int userID, String userName, String firstName, String lastName, String email, String phoneNumber, String age, String password){
         this.userID = userID;
         this.userName = userName;
         this.firstName = firstName;
@@ -51,11 +51,11 @@ public class GroupUpUser {
         return email;
     }
 
-    public int getPhoneNumber(){
+    public String getPhoneNumber(){
         return phoneNumber;
     }
 
-    public int getAge(){
+    public String getAge(){
         return age;
     }
 
@@ -80,9 +80,9 @@ public class GroupUpUser {
         this.email = email;
     }
 
-    public void setPhoneNumber(int phoneNumber) {this.phoneNumber = phoneNumber;}
+    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

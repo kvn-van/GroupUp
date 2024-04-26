@@ -44,7 +44,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
     @Override
     public void insert(Event event) throws CustomSQLException{
         try {
-            PreparedStatement insertEvent = connectionToDatabase.prepareStatement("INSERT INTO GroupUpEvents (eventCreatoruserID, name, " +
+            PreparedStatement insertEvent = connectionToDatabase.prepareStatement("INSERT INTO GroupUpEvents (customerEventCreationID, name, " +
                     "date, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             insertEvent.setInt(1, event.getEventCreatorUserID());
             insertEvent.setString(2, event.getName());

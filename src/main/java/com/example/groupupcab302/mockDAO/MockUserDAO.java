@@ -65,8 +65,8 @@ public class MockUserDAO {
             insertUser.setString(2, groupUpUser.getFirstName());
             insertUser.setString(3, groupUpUser.getLastName());
             insertUser.setString(4, groupUpUser.getEmail());
-            insertUser.setInt(5, groupUpUser.getPhoneNumber());
-            insertUser.setInt(6, groupUpUser.getAge());
+            insertUser.setString(5, groupUpUser.getPhoneNumber());
+            insertUser.setString(6, groupUpUser.getAge());
             insertUser.setString(7, groupUpUser.getPassword());
             insertUser.execute();
 
@@ -91,8 +91,8 @@ public class MockUserDAO {
                         resultSet.getString("firstName"),
                         resultSet.getString("lastName"),
                         resultSet.getString("email"),
-                        resultSet.getInt("phoneNumber"),
-                        resultSet.getInt("age"),
+                        resultSet.getString("phoneNumber"),
+                        resultSet.getString("age"),
                         resultSet.getString("password")
                 );
             }
@@ -120,6 +120,9 @@ public class MockUserDAO {
             System.out.println(sqlEx);
         }
     }
+    // TODO: implement the code to retrieve the last record to change the ID counter of the user via select *from getLastRecord ORDER BY id DESC LIMIT 1 or think about re-designing
+    // may just be better to add the auto increment and leave the ID honestly and just have the user be created automatically tbh
+
 
 
 }
