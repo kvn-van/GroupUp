@@ -13,21 +13,8 @@ import java.util.regex.Pattern;
 public class SignUpPageController {
     private UserDAO userDAO;
 
-    //Define a const to represent when there is a value for an integer
-
-    private final String VALIDATION_TYPE_PHONE_NUMBER = "Phone Number";
-    private final String VALIDATION_TYPE_AGE = "Age";
-
-    // Create data collection for basic text fields: username, first, last name, email, password and password confirmation
+    // Create data collection to hold value of all fields
     private String textFieldValues[];
-
-    // Create data collection for text fields that recieve integer values: phone number and age
-    private String intInputValues[];
-
-    // Create data collection for phone number and age values after successful parsing from string to int
-    private Integer validatedIntInputValues[];
-
-
 
     @FXML
     private Label welcomeText;

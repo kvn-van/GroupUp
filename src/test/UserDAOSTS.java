@@ -20,15 +20,13 @@ public class UserDAOSTS {
     void setUp(){
         userDAO = new UserDAO();
     }
-
     @Test
     public void testConvertStringToInt(){
         // Define a passing test case
-        String phoneNumber = "1234567891";
-        assertEquals(groupUpUser.getPhoneNumber(), userDAO.convertStringToInt(phoneNumber));
+        assertEquals(groupUpUser.getPhoneNumber(), userDAO.convertStringToInt(groupUpUser.getPhoneNumber()));
 
         // Define a test case where it clearly fails to make sure
-        phoneNumber = "123dawdwa4567891";
+        String phoneNumber = "123dawdwa4567891";
         // Expected for the error code -1 signifying a failed attempt at parsing INT
         assertEquals(ErrorConstants.INT_PARSE_ERROR.getErrorValue(), userDAO.convertStringToInt(phoneNumber));
     }
@@ -41,8 +39,6 @@ public class UserDAOSTS {
 
     @Test
     public void testValidatePhoneNumber(){
-        // Phone number will be recieved as string from the controller upon actual implementation
-        // Define a variable meant to represent value recieved from phone number field at presentation layer
         // Phone number must be 10 char long and parse to an int
         assertEquals(groupUpUser.getPhoneNumber(), userDAO.validatePhoneNumber(groupUpUser.getPhoneNumber()));
 
@@ -50,8 +46,6 @@ public class UserDAOSTS {
 
     @Test
     public void testValidateAge(){
-        // Phone number will be recieved as string from the controller upon actual implementation
-        // Define a variable meant to represent value recieved from phone number field at presentation layer
         // Phone number must be 10 char long and parse to an int
 
         String phoneNumber = "0407623446";

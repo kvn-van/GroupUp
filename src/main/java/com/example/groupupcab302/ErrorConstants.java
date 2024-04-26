@@ -5,8 +5,6 @@ public enum ErrorConstants {
     //Define constants to refer to errors
     //Note: Error constant values are negative to avoid confusion with user input
 
-    // As the phone number received is 10 integers long, having any integer greater than 2 at index 0 exceeds range of integer creating error
-    // Ensure error message now specifies this for user 
     INT_PARSE_ERROR("-1", "Please ensure entries for age and phone number are fulfilled with only integers and that phone number starts with a leading 0"),
     INVALID_AGE("-2", "You must be 18 years or older to use this site!"),
     INVALID_PHONE_NUMBER("-3", "Your phone number must be 10 digits long! Do not include spaces, + or -"),
@@ -37,7 +35,7 @@ public enum ErrorConstants {
     }
 
     // Dynamically retrieve the description of an error
-    // Different to getter, used in cases when this must be decided at runtime/runtime polymorphism
+    // Different to getter, used in cases when description of error must be decided at runtime/runtime polymorphism
     public static String retrieveErrorConstantDescription(String errorValue){
         for (ErrorConstants errorConstant : ErrorConstants.values()){
             if (errorConstant.getErrorValue() == errorValue){
