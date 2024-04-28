@@ -1,16 +1,21 @@
 package com.example.groupupcab302;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUpPageController {
+    @FXML
+    private Button loginButton;
+
     private UserDAO userDAO;
 
     // Create data collection to hold value of all fields
@@ -59,6 +64,12 @@ public class SignUpPageController {
         handleUserSignUp();
     }
 
+    @FXML
+    protected void onLoginButton() throws IOException {
+        LoginController.pageID = "Log-In-Page.fxml";
+        LoginController.changeScene(loginButton);
+    }
+
     public void handleUserSignUp(){
         if (areAllUserDetailsValid()) {
             createUser();
@@ -87,16 +98,12 @@ public class SignUpPageController {
             SigningInStatus.setText(sqlException.getMessage());
         }
 
-        catch (SQLException exception) {
-            throw new RuntimeException(exception);
-        }
-
     }
 
     public boolean areBasicTextFieldsValid() {
-        for (int counter = 0; counter < textFieldValues.length; counter++) {
+        for (String textFieldValue : textFieldValues) {
             // Ensure fields are not empty
-            if (textFieldValues[counter].length() == 0) {
+            if (textFieldValue.isEmpty()) {
                 //display error message if form isnt filled out properly
                 SigningInStatus.setText(ErrorConstants.INVALID_USERINPUT.getErrorDescription());
                 return false; // Return false if any string is invalid
@@ -107,10 +114,7 @@ public class SignUpPageController {
 
 
     public boolean doPasswordsMatch(String password, String passwordConfirmation){
-        if (password.equals(passwordConfirmation)){
-            return true;
-        }
-        return false;
+        return password.equals(passwordConfirmation);
     }
 
     public boolean isPhoneNumberValid(String phoneNumber){

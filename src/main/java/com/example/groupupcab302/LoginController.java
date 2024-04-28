@@ -1,115 +1,105 @@
 package com.example.groupupcab302;
 
-import com.example.groupupcab302.Main;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
-//import javafx.scene.control.*; // imports all scene control objects
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.sql.SQLException;
+import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
 public class LoginController {
 
-    private UserDAO userDAO;
+    public PasswordField passwordTextField;
+    public TextField emailTextField;
+    public TextArea loginStatus;
 
-    // Create data collection to hold value of all fields
+    private UserDAO userDAO;
     private String[] textFieldValues;
 
     @FXML
     private Button signUpButton;
-
     @FXML
     private Button noAccountButton;
-
     @FXML
     private Button loginButton;
-
     @FXML
-    private TextField EmailTextField;
+    public static String pageID;
 
-    @FXML
-    private TextField PasswordTextField;
-
-    @FXML
-    private TextArea LoginStatus;
-
-    public void LoginPageController() {
+    public LoginController() {
         userDAO = new UserDAO();
     }
 
     @FXML
     protected void onSignUpButton() throws IOException {
-        Stage stage = (Stage) signUpButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Sign-Up-Page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setScene(scene);
+        pageID = "Sign-Up-Page.fxml";
+        changeScene(signUpButton);
     }
 
     @FXML
     protected void onNoAccountButton() throws IOException {
-        Stage stage = (Stage) noAccountButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Sign-Up-Page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-        stage.setScene(scene);
+        changeScene(noAccountButton);
     }
 
     @FXML
-    protected void onLoginButton() {
-        // Initialise data collection variable using form values
-        textFieldValues = new String[] {EmailTextField.getText(), PasswordTextField.getText()};
+    protected void onLoginButton() throws IOException {
+        textFieldValues = new String[] {emailTextField.getText(), passwordTextField.getText()};
         handleUsersLogin();
+        changeScene(loginButton);
+    }
+
+    public static void changeScene(Button button) throws IOException {
+        Stage stage = (Stage) button.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(pageID));
+        Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
+        stage.setScene(scene);
     }
 
     public void handleUsersLogin() {
-        if (isUserLoginValid) {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Events-Page.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), Main.WIDTH, Main.HEIGHT);
-            stage.setScene(scene);
+        if (isUserLoginValid()) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Events-Page.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                stage.setScene(scene);
+            } catch (IOException e) {
+                loginStatus.setText("Failed to load the events page.");
+            }
         }
     }
 
     public boolean isUserLoginValid() {
-        return areTextFieldsValid() &&
-                isEmailValid(textFieldValues[0]) &&
-                isPasswordValid(textFieldValues[1]);
+        return areTextFieldsValid() && isEmailValid(emailTextField.getText()) && isPasswordValid(passwordTextField.getText());
     }
 
-    public boolean isEmailValid(String email){
-        if (email.contains("@") && email.length() > 1){
+    public boolean isEmailValid(String email) {
+        if (email.contains("@") && email.length() > 1) {
             return true;
         }
-        //display error message if email input is incorrect
-        LoginStatus.setText(ErrorConstants.INVALID_EMAIL.getErrorDescription());
+        loginStatus.setText("Invalid email format.");
         return false;
     }
 
     public boolean isPasswordValid(String password) {
-        try {
-            // Check password with password in db for provided email
-            LoginStatus.setText("Successful! Welcome Back To GroupUp!");
+        // Assuming UserDAO provides a method to check password validity
+        if (userDAO.isPasswordValid(password)) {
+            loginStatus.setText("Successful! Welcome back to GroupUp!");
             return true;
-        }
-
-        catch (CustomSQLException sqlException){
-            LoginStatus.setText(sqlException.getMessage());
+        } else {
+            loginStatus.setText("Invalid password.");
             return false;
         }
     }
 
     public boolean areTextFieldsValid() {
         for (String textFieldValue : textFieldValues) {
-            // Ensure fields are not empty
             if (textFieldValue.isEmpty()) {
-                //display error message if form is not filled out correctly
-                LoginStatus.setText(ErrorConstants.INVALID_USERINPUT.getErrorDescription());
-                return false; // Return false if any string is invalid
+                loginStatus.setText("Please fill out all fields.");
+                return false;
             }
         }
-        return true; // Return true if all strings are valid
+        return true;
     }
 }
