@@ -7,7 +7,7 @@ public class Event {
     private int eventID;
 
     private int eventIDCounter;
-    private int eventCreatorUserID;
+    private final int eventCreatorUserID;
     private String name;
     private LocalDate date;
     private int time;
@@ -38,6 +38,16 @@ public class Event {
     public int getEventCreatorUserID() {
         return eventCreatorUserID;
     }
+
+    public String getEventAttendees(){
+        String eventAttendees = "bob, peter, george";
+        return eventAttendees;
+    }
+
+    /*
+    public void setEventAttendees(String ){
+
+    }*/
 
     public String getName() {
         return name;

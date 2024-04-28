@@ -12,8 +12,9 @@ public class EventSTS {
     // Todo: After disucssing and figuring out how date,  time and image needs to work add STS cases
     @BeforeEach
     void setUp(){
-        groupUpUser = groupUpUser =  new GroupUpUser("FREESHEFFG", "Sheff", "G", "FlowsPart2@gmail.com", 1234567891, 18, "freeSHEFFGAND8THBLOCK");
-        event = new Event(groupUpUser, "10EleventConcert", "ToBeFinalized", "ToBeFinalized", "Uk Greensborough", "Concert", 1000, "FREE THE GUYS, FREE DIGGA AND FREE JSAV", "ToBeFinalized");
+        // Define a fixed userID for both user and event to prevent it from changing with varying test cases
+        groupUpUser = groupUpUser =  new GroupUpUser(1, "FREESHEFFG", "Sheff", "G", "FlowsPart2@gmail.com", 1234567891, 18, "freeSHEFFGAND8THBLOCK");
+        event = new Event(1, groupUpUser, "10EleventConcert", "ToBeFinalized", "ToBeFinalized", "Uk Greensborough", "Concert", 1000, "FREE THE GUYS, FREE DIGGA AND FREE JSAV", "ToBeFinalized");
     }
 
     @Test

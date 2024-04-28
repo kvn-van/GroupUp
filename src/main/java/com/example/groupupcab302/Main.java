@@ -7,10 +7,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class Main extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, SQLException {
         Connection databaseConnection = DatabaseConnection.getInstance();
         UserDAO userDAO = new UserDAO();
         EventDAO eventDAO = new EventDAO();

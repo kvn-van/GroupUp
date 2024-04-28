@@ -8,6 +8,8 @@ import java.sql.*;
 // Defines the generic for the interface to be event objects
 public class EventDAO implements IDatabaseDAO<Event>{
 
+    //TODO: database diagram to accomodate list of guests
+
     private Connection connectionToDatabase;
     public EventDAO(){
         connectionToDatabase = DatabaseConnection.getInstance();
@@ -27,6 +29,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
                             + "numberOfRegistrationsAvailable INT NOT NULL, "
                             + "descriptionOfEvent VARCHAR NOT NULL, "
                             + "image VARBINARY NOT NULL, "
+                            // need clarification + "listOfAttendees STRING UNIQUE NULL, "
                             + "customerEventCreationID INT NOT NULL UNIQUE, "
                             + "FOREIGN KEY (customerEventCreationID) REFERENCES GroupUpUsers(userID)"
                             + ")"
@@ -124,6 +127,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
         catch(SQLException sqlException){
             throw new CustomSQLException("Please enter a reason/give a meaningful message to the user on the error for why the db couldn't be deleted");
         }
+
     }
 
     // update not defined in interface as not all child tables require
