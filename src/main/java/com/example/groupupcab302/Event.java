@@ -15,9 +15,9 @@ public class Event {
     private String genre;
     private int numberOfRegistrationsAvailable;
     private String description;
-    private int image;
+    private String image;
 
-    public Event(int groupUpUser, String name, LocalDate date, int time, String location, String genre, int numberOfRegistrationsAvailable, String description, int image){
+    public Event(int groupUpUser, String name, LocalDate date, int time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image){
         eventIDCounter += 1;
         this.eventID = eventIDCounter;
         eventCreatorUserID = groupUpUser;
@@ -65,7 +65,7 @@ public class Event {
         return description;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -100,7 +100,7 @@ public class Event {
         this.description = description;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

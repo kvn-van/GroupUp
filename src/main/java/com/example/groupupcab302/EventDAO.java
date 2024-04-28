@@ -103,7 +103,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
             insertEvent.setString(5, event.getGenre());
             insertEvent.setInt(6, event.getNumberOfRegistrationsAvailable());
             insertEvent.setString(7, event.getDescription());
-            insertEvent.setInt(8, event.getImage());
+            insertEvent.setString(8, event.getImage());
 
             insertEvent.execute();
         }
