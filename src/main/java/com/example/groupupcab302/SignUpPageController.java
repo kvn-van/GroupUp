@@ -1,33 +1,27 @@
 package com.example.groupupcab302;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.example.groupupcab302.LoginController.pageID;
+
 public class SignUpPageController {
+    @FXML
+    private Button navToLoginButton;
+
     private UserDAO userDAO;
 
-    //Define a const to represent when there is a value for an integer
-
-    private final String VALIDATION_TYPE_PHONE_NUMBER = "Phone Number";
-
-    // Create data collection for basic text fields: username, first, last name, email, password and password confirmation
-    private String[] textFieldValues;
-
-    // Create data collection for text fields that receive integer values: phone number and age
-    private String[] intInputValues;
-
-    // Create data collection for phone number and age values after successful parsing from string to int
-    private Integer[] validatedIntInputValues;
-
-
+    // Create data collection to hold value of all fields
+    private String textFieldValues[];
 
     @FXML
     private Label welcomeText;
@@ -63,92 +57,56 @@ public class SignUpPageController {
         userDAO = new UserDAO();
     }
 
+    @FXML
+    protected void onSignUpButtonClick(){
+        //Initialize the data collections with values from form
+        textFieldValues = new String[] {UserNameTextField.getText(), FirstNameTextField.getText(),
+                LastNameTextField.getText(), EmailTextField.getText(), PhoneNumberTextField.getText(), AgeTextField.getText(),
+                PasswordTextField.getText(), ConfirmationPasswordTextField.getText()};
+        handleUserSignUp();
+    }
 
     @FXML
-    protected void onSignInButtonClick(){
-        //Initialize the data collections with values of basic user string input
-         textFieldValues = new String[] {UserNameTextField.getText(), FirstNameTextField.getText(),
-                LastNameTextField.getText(), EmailTextField.getText(), PasswordTextField.getText(), ConfirmationPasswordTextField.getText()};
-
-        //Initialize the data collections with integer values from user input
-         intInputValues = new String[] {PhoneNumberTextField.getText(), AgeTextField.getText()};
-
-         handleUserSignUp();
+    protected void onNavToLoginButton() throws IOException {
+        pageID = "Log-In-Page.fxml";
+        LoginController.changeScene(navToLoginButton, pageID);
     }
 
     public void handleUserSignUp(){
-        if (areBasicTextFieldsValid()){
-            if (isEmailValid(textFieldValues[3])){
-                Integer phoneNumber = userDAO.validateInteger(intInputValues[0], VALIDATION_TYPE_PHONE_NUMBER);
-                String VALIDATION_TYPE_AGE = "Age";
-                Integer age = userDAO.validateInteger(intInputValues[1], VALIDATION_TYPE_AGE);
-                validatedIntInputValues = new Integer[] {phoneNumber, age};
-
-                // Check if phoneNumber is not equal to any of the error codes
-                if (validatePhoneNumberAndAge(phoneNumber, age)) {
-                    if (validatePassword(textFieldValues[4],textFieldValues[5])){
-
-                        createUser();
-                    }
-                }
-            }
+        if (areAllUserDetailsValid()) {
+            createUser();
         }
     }
 
-    public boolean validatePassword(String password, String passwordConfirmation){
-        if(userDAO.isPasswordValid(password) && doPasswordsMatch(password, passwordConfirmation)){
-            return true;
-        }
-        // display error message if passwords don't match
-        SigningInStatus.setText(ErrorConstants.INVALID_PASSWORD.getErrorDescription());
-        return false;
+    public boolean areAllUserDetailsValid() {
+        return areBasicTextFieldsValid() &&
+                isEmailValid(textFieldValues[3]) &&
+                isPhoneNumberValid(textFieldValues[4]) &&
+                isAgeValid(textFieldValues[5]) &&
+                validatePassword(textFieldValues[6], textFieldValues[7]);
     }
+
 
     public void createUser(){
-            GroupUpUser groupUpUser = new GroupUpUser(textFieldValues[0], textFieldValues[1],
-                    textFieldValues[2], textFieldValues[3], validatedIntInputValues[0], validatedIntInputValues[1], textFieldValues[4]);
+        GroupUpUser groupUpUser = new GroupUpUser(textFieldValues[0], textFieldValues[1],
+                textFieldValues[2], textFieldValues[3], textFieldValues[4], textFieldValues[5], textFieldValues[6]);
 
-                try {
-                    userDAO.insert(groupUpUser);
-                    SigningInStatus.setText("Successful! Welcome To GroupUp!");
-                }
-
-                catch (CustomSQLException sqlException){
-                    SigningInStatus.setText(sqlException.getMessage());
-                }
-
-    }
-
-    public boolean validatePhoneNumberAndAge(Integer phoneNumber, Integer age){
-        if ((!Objects.equals(phoneNumber, ErrorConstants.INT_PARSE_ERROR.getErrorValue()) && !Objects.equals(phoneNumber, ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue()))
-                && (!Objects.equals(age, ErrorConstants.INT_PARSE_ERROR.getErrorValue()) && !Objects.equals(age, ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue()))){
-            return true;
+        try {
+            userDAO.insert(groupUpUser);
+            SigningInStatus.setText("Successful! Welcome To GroupUp!");
         }
 
-        // display error message if phone number or age don't satisfy validators
-        else if (Objects.equals(age, ErrorConstants.INVALID_AGE.getErrorValue())){
-            SigningInStatus.setText(ErrorConstants.INVALID_AGE.getErrorDescription());
-            return false;
+        catch (CustomSQLException sqlException){
+            SigningInStatus.setText(sqlException.getMessage());
         }
 
-        else if (Objects.equals(phoneNumber, ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue())){
-            SigningInStatus.setText(ErrorConstants.INVALID_PHONE_NUMBER.getErrorDescription());
-            return false;
-        }
-
-        else if (Objects.equals(phoneNumber, ErrorConstants.INT_PARSE_ERROR.getErrorValue()) || Objects.equals(age, ErrorConstants.INT_PARSE_ERROR.getErrorValue())){
-            SigningInStatus.setText(ErrorConstants.INT_PARSE_ERROR.getErrorDescription());
-            return false;
-        }
-
-        return false;
     }
 
     public boolean areBasicTextFieldsValid() {
         for (String textFieldValue : textFieldValues) {
             // Ensure fields are not empty
             if (textFieldValue.isEmpty()) {
-                //display error message if form isn't filled out properly
+                //display error message if form isnt filled out properly
                 SigningInStatus.setText(ErrorConstants.INVALID_USERINPUT.getErrorDescription());
                 return false; // Return false if any string is invalid
             }
@@ -159,6 +117,37 @@ public class SignUpPageController {
 
     public boolean doPasswordsMatch(String password, String passwordConfirmation){
         return password.equals(passwordConfirmation);
+    }
+
+    public boolean isPhoneNumberValid(String phoneNumber){
+        //Check if an error is returned when validating phone number
+        if (userDAO.validatePhoneNumber(phoneNumber) == ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue() ||
+                userDAO.validatePhoneNumber(phoneNumber) == ErrorConstants.INT_PARSE_ERROR.getErrorValue()){
+            // Display the error code produced when validating phone number
+            SigningInStatus.setText(ErrorConstants.retrieveErrorConstantDescription(userDAO.validatePhoneNumber(phoneNumber)));
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validatePassword(String password, String passwordConfirmation){
+        if(userDAO.isPasswordValid(password) && doPasswordsMatch(password, passwordConfirmation)){
+            return true;
+        }
+        // display error message if passwords dont match
+        SigningInStatus.setText(ErrorConstants.INVALID_PASSWORD.getErrorDescription());
+        return false;
+    }
+
+    public boolean isAgeValid(String age){
+        //Check if an error is returned when validating phone number
+        if (userDAO.validateAge(age) == ErrorConstants.INVALID_AGE.getErrorValue() ||
+                userDAO.validateAge(age) == ErrorConstants.INT_PARSE_ERROR.getErrorValue()){
+            // Display the error code produced when validating age
+            SigningInStatus.setText(ErrorConstants.retrieveErrorConstantDescription(userDAO.validateAge(age)));
+            return false;
+        }
+        return true;
     }
 
     public boolean isEmailValid(String email){

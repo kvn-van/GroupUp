@@ -1,106 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.groupupcab302.SignUpPageController">
-   <children>
-      <ImageView fitHeight="608.0" fitWidth="804.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Images/Social_events.jpg" />
-         </image>
-      </ImageView>
-      <Text fill="#030303" layoutX="854.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" wrappingWidth="288.51025390625">
-         <font>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.SignUpPageController">
+    <ImageView fitHeight="608.0" fitWidth="804.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@Images/Social_events.jpg" />
+    </ImageView>
+    <Text fill="#030303" layoutX="854.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="42.0" />
-         </font>
-      </Text>
-      <Text fill="#5b5555" layoutX="853.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="288.51025390625">
-         <font>
+        </font>
+    </Text>
+    <Text fill="#5b5555" layoutX="853.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-       <TextField fx:id="UserNameTextField" layoutX="855.0" layoutY="144.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter UserName" />
-      <TextField fx:id="FirstNameTextField" layoutX="853.0" layoutY="204.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter First Name..." />
-      <TextField fx:id="LastNameTextField" layoutX="1057.0" layoutY="204.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter Last Name.." />
-      <Text fill="#5b5555" layoutX="1055.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" wrappingWidth="288.51025390625">
-         <font>
+        </font>
+    </Text>
+    <TextField fx:id="UserNameTextField" layoutX="855.0" layoutY="144.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter UserName" />
+    <TextField fx:id="FirstNameTextField" layoutX="853.0" layoutY="204.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter First Name..." />
+    <TextField fx:id="LastNameTextField" layoutX="1057.0" layoutY="204.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter Last Name.." />
+    <Text fill="#5b5555" layoutX="1055.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <TextField fx:id="AgeTextField" layoutX="1062.0" layoutY="327.0" prefHeight="25.0" prefWidth="176.0" promptText="Enter Age.. i.e 21" />
-      <Text fill="#5b5555" layoutX="1065.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" wrappingWidth="288.51025390625">
-         <font>
+        </font>
+    </Text>
+    <TextField fx:id="AgeTextField" layoutX="1062.0" layoutY="327.0" prefHeight="25.0" prefWidth="176.0" promptText="Enter Age.. i.e 21" />
+    <Text fill="#5b5555" layoutX="1065.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <Text fill="#5b5555" layoutX="853.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="288.51025390625">
-         <font>
+        </font>
+    </Text>
+    <Text fill="#5b5555" layoutX="853.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <Text fill="#5b5555" layoutX="853.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Confirmation" wrappingWidth="288.51025390625">
-         <font>
+        </font>
+    </Text>
+    <Text fill="#5b5555" layoutX="853.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Confirmation" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <PasswordField fx:id="PasswordTextField" layoutX="853.0" layoutY="391.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter Password..." />
-      <PasswordField fx:id="ConfirmationPasswordTextField" layoutX="853.0" layoutY="456.0" prefHeight="25.0" prefWidth="389.0" promptText="Confirm Password..." />
-      <Text fill="#030303" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
-         <font>
+        </font>
+    </Text>
+    <PasswordField fx:id="PasswordTextField" layoutX="853.0" layoutY="391.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter Password..." />
+    <PasswordField fx:id="ConfirmationPasswordTextField" layoutX="853.0" layoutY="456.0" prefHeight="25.0" prefWidth="389.0" promptText="Confirm Password..." />
+    <Text fill="#030303" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="26.0" />
-         </font>
-      </Text>
-    <Button layoutX="1209.0" layoutY="25.0" mnemonicParsing="false" text="Login" />
-      <Button layoutX="1048.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
-      <Button layoutX="953.0" layoutY="25.0" mnemonicParsing="false" text="Create Event" />
-      <Button layoutX="1141.0" layoutY="25.0" mnemonicParsing="false" text="Sign Up" />
-      <Button layoutX="842.0" layoutY="25.0" mnemonicParsing="false" text="Discover Events" />
-      <Button id="SignInButton" layoutX="863.0" layoutY="593.0" mnemonicParsing="false" onAction="#onSignInButtonClick" prefHeight="25.0" prefWidth="366.0" text="Sign In" />
-      <Button layoutX="866.0" layoutY="651.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="366.0" text="Already Have An Account?" />
-      <Line endX="75.0" layoutX="964.0" layoutY="635.0" startX="-100.0" />
-      <Text fill="#5b5555" layoutX="1037.0" layoutY="639.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="23.51025390625">
-         <font>
+        </font>
+    </Text>
+    <Button fx:id="navToLoginButton" layoutX="1209.0" layoutY="25.0" mnemonicParsing="false" onAction="#onNavToLoginButton" text="Login" />
+    <Button layoutX="1048.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
+    <Button layoutX="953.0" layoutY="25.0" mnemonicParsing="false" text="Create Event" />
+    <Button fx:id="signUpButton" layoutX="1141.0" layoutY="25.0" mnemonicParsing="false" text="Sign Up" />
+    <Button layoutX="842.0" layoutY="25.0" mnemonicParsing="false" text="Discover Events" />
+    <Button id="SignInButton" layoutX="863.0" layoutY="593.0" mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="25.0" prefWidth="366.0" text="Sign In" />
+    <Button layoutX="866.0" layoutY="651.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="366.0" text="Already Have An Account?" />
+    <Line endX="75.0" layoutX="964.0" layoutY="635.0" startX="-100.0" />
+    <Text fill="#5b5555" layoutX="1037.0" layoutY="639.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="23.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="15.0" />
-         </font>
-      </Text>
-      <Line endX="75.0" layoutX="1155.0" layoutY="635.0" startX="-98.01025390625" />
-      <Text fill="#5b5555" layoutX="855.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserName" wrappingWidth="288.51025390625">
-         <font>
+        </font>
+    </Text>
+    <Line endX="75.0" layoutX="1155.0" layoutY="635.0" startX="-98.01025390625" />
+    <Text fill="#5b5555" layoutX="855.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserName" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <TextField fx:id="EmailTextField" layoutX="853.0" layoutY="268.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter Email..." />
-      <Text fill="#5b5555" layoutX="853.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="288.51025390625">
-         <font>
+        </font>
+    </Text>
+    <TextField fx:id="EmailTextField" layoutX="853.0" layoutY="268.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter Email..." />
+    <Text fill="#5b5555" layoutX="853.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <TextField fx:id="PhoneNumberTextField" layoutX="856.0" layoutY="327.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter Phone Number..." />
-      <Text fill="#5b5555" layoutX="853.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" wrappingWidth="176.0">
-         <font>
+        </font>
+    </Text>
+    <TextField fx:id="PhoneNumberTextField" layoutX="856.0" layoutY="327.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter Phone Number..." />
+    <Text fill="#5b5555" layoutX="853.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" wrappingWidth="176.0">
+        <font>
             <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="608.0" fitWidth="804.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Images/Social_events.jpg" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="SigningInStatus" editable="false" layoutX="854.0" layoutY="524.0" prefHeight="58.0" prefWidth="389.0" promptText="Any Errors With User Details Are Displawyed Here" wrapText="true" />
-      <Text fill="#5b5555" layoutX="853.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signing In Status" wrappingWidth="288.51025390625">
-         <font>
+        </font>
+    </Text>
+    <TextArea fx:id="SigningInStatus" editable="false" layoutX="854.0" layoutY="524.0" prefHeight="58.0" prefWidth="389.0" promptText="Any Errors With User Details Are Displawyed Here" wrapText="true" />
+    <Text fill="#5b5555" layoutX="853.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signing In Status" wrappingWidth="288.51025390625">
+        <font>
             <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-   </children>
+        </font>
+    </Text>
 </AnchorPane>

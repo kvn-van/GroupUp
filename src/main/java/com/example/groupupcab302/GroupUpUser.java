@@ -33,6 +33,9 @@ public class GroupUpUser {
         this.password = password;
     }
 
+    public GroupUpUser(String textFieldValue, String textFieldValue1, String textFieldValue2, String textFieldValue3, String textFieldValue4, String textFieldValue5, String textFieldValue6) {
+    }
+
     public int getUserID() {
         return userID;
     }
