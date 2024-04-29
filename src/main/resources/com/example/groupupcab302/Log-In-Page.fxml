@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.LoginController">
+    <ImageView fitHeight="608.0" fitWidth="804.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@Images/Social_events.jpg" />
+    </ImageView>
+    <Text fill="#030303" layoutX="855.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" wrappingWidth="288.51025390625">
+        <font>
+            <Font name="Eras Demi ITC" size="42.0" />
+        </font>
+    </Text>
+    <Text fill="#5b5555" layoutX="855.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="288.51025390625">
+        <font>
+            <Font name="Eras Demi ITC" size="21.0" />
+        </font>
+    </Text>
+    <PasswordField fx:id="passwordTextField" layoutX="855.0" layoutY="315.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter Password..." />
+    <Text fill="#030303" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
+        <font>
+            <Font name="Eras Demi ITC" size="26.0" />
+        </font>
+    </Text>
+    <Button fx:id="loginButton" layoutX="1209.0" layoutY="25.0" mnemonicParsing="false" onAction="#onLoginButton" text="Login" />
+    <Button layoutX="1048.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
+    <Button layoutX="953.0" layoutY="25.0" mnemonicParsing="false" text="Create Event" />
+    <Button fx:id="signUpNav" layoutX="1141.0" layoutY="25.0" mnemonicParsing="false" onAction="#onSignUpNavClick" text="Sign Up" />
+    <Button layoutX="842.0" layoutY="25.0" mnemonicParsing="false" text="Discover Events" />
+    <Button fx:id="loginButton" layoutX="867.0" layoutY="531.0" mnemonicParsing="false" onAction="#onLoginButton" prefHeight="25.0" prefWidth="366.0" text="Login" />
+    <Button fx:id="noAccountButton" layoutX="870.0" layoutY="589.0" mnemonicParsing="false" onAction="#onNoAccountButton" prefHeight="25.0" prefWidth="366.0" text="Don't Have An Account?" />
+    <Line endX="75.0" layoutX="968.0" layoutY="573.0" startX="-100.0" />
+    <Text fill="#5b5555" layoutX="1041.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="23.51025390625">
+        <font>
+            <Font name="Eras Demi ITC" size="15.0" />
+        </font>
+    </Text>
+    <Line endX="75.0" layoutX="1159.0" layoutY="573.0" startX="-98.01025390625" />
+    <TextField fx:id="emailTextField" layoutX="855.0" layoutY="245.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter Email..." />
+    <Text fill="#5b5555" layoutX="855.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="288.51025390625">
+        <font>
+            <Font name="Eras Demi ITC" size="21.0" />
+        </font>
+    </Text>
+    <Hyperlink layoutX="855.0" layoutY="345.0" text="Forgot Password?" />
+    <TextArea fx:id="loginStatus" editable="false" layoutX="855.0" layoutY="425.0" prefHeight="58.0" prefWidth="389.0" promptText="Any Errors With User Details Are Displayed Here" wrapText="true" />
+    <Text fill="#5b5555" layoutX="855.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Status" wrappingWidth="288.51025390625">
+        <font>
+            <Font name="Eras Demi ITC" size="21.0" />
+        </font>
+    </Text>
+</AnchorPane>

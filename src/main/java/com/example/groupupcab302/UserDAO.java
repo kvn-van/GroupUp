@@ -6,18 +6,24 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// Implement the database interface with the datatype of the class group up user as the parameter
-// Allows overriding of interface methods and for specific operations on the user objects and database
-// Defines the generic for the interface to be group up user objects
+// Refactored concrete solution to the MockUserDAO
+// As MockUserDAO methods passed unit test cases for a sample table, methods are kept slightly refactored
+
+
+// Implement the database interface with the datatype of the class GroupUpUser as the parameter
+// Allows overriding of interface methods and for specific operations on the GroupUpUser objects and database
+
 public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     private Connection connectionToDatabase;
 
-
-    private final String VALIDATION_TYPE_PHONE_NUMBER = "Phone Number";
-    private final String VALIDATION_TYPE_AGE = "Age";
-
     public UserDAO(){
         connectionToDatabase = DatabaseConnection.getInstance();
+    }
+
+
+    @Override
+    public void update(GroupUpUser groupUpUser, String attributeToUpdate, String valueToSetAttributeTo){
+        throw new UnsupportedOperationException("UserDAO does not support updating entries as there is no reset password functionality");
     }
 
     public void createTable() {
@@ -30,8 +36,8 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
                             + "firstName VARCHAR NOT NULL, "
                             + "lastName VARCHAR NOT NULL, "
                             + "email VARCHAR NOT NULL UNIQUE, "
-                            + "phoneNumber INT(10) NOT NULL, "
-                            + "age INT NOT NULL, "
+                            + "phoneNumber STRING(10) NOT NULL, "
+                            + "age STRING NOT NULL, "
                             + "password VARCHAR NOT NULL"
                             + ")"
             );
@@ -73,13 +79,15 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     }
 
 
-    public GroupUpUser getRecordByID(String email) throws CustomSQLException{
+    public GroupUpUser getUserRecordByEmail(String email) throws CustomSQLException, SQLException{
+        ResultSet resultSet = null;
         try {
             PreparedStatement getAccount = connectionToDatabase.prepareStatement("SELECT * FROM GroupUpUsers WHERE email = ?");
             getAccount.setString(1, email);
-            ResultSet resultSet = getAccount.executeQuery();
+            resultSet = getAccount.executeQuery();
             if (resultSet.next()) {
                 return new GroupUpUser(
+                        resultSet.getInt("userID"),
                         resultSet.getString("userName"),
                         resultSet.getString("firstName"),
                         resultSet.getString("lastName"),
@@ -89,8 +97,14 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
                         resultSet.getString("password")
                 );
             }
+
         } catch (SQLException ex) {
             System.err.println(ex);
+        }
+
+        finally{
+            // Ensure data for result set is no longer fetched/opened in the database to prevent locking on future operations
+            resultSet.close();
         }
 
         return null;
@@ -99,12 +113,11 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
 
     public void delete(int ID){
         try {
-            PreparedStatement deleteUserAccount = connectionToDatabase.prepareStatement("DELETE FROM GroupUpUsers WHERE id = ?");
+            PreparedStatement deleteUserAccount = connectionToDatabase.prepareStatement("DELETE FROM GroupUpUsers WHERE userID = ?");
             deleteUserAccount.setInt(1, ID);
             deleteUserAccount.execute();
-
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
     }
 
@@ -116,44 +129,18 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
     }
 
 
-    public int convertStringToInt(String valuesToConvert){
+    public String convertStringToInt(String valueToConvert){
         try{
-            return Integer.parseInt(valuesToConvert);
+            Integer.parseInt(valueToConvert);
+            return valueToConvert;
 
         }
-        catch (NumberFormatException e) {
+        catch (NumberFormatException error) {
             return ErrorConstants.INT_PARSE_ERROR.getErrorValue();
         }
     }
 
-
-
-
-    //Ensure data integrity before entry into database
-    public Integer validateInteger(String valueToValidate, String conditionToCheck) {
-        switch (conditionToCheck) {
-            case (VALIDATION_TYPE_PHONE_NUMBER):
-                if (valueToValidate.length() == 10) {
-                    return convertStringToInt(valueToValidate);
-                }
-                return ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue();
-
-            case (VALIDATION_TYPE_AGE):
-                if (convertStringToInt(valueToValidate) != ErrorConstants.INT_PARSE_ERROR.getErrorValue()) {
-                    //Safe to parse the string as an int as parsing was validated beforehand
-                    Integer valueAsInt = convertStringToInt(valueToValidate);
-                    if (valueAsInt >= 18) {
-                        return valueAsInt;
-                    }
-                    return ErrorConstants.INVALID_AGE.getErrorValue();
-
-                }
-                return ErrorConstants.INT_PARSE_ERROR.getErrorValue();
-        }
-        return ErrorConstants.INT_PARSE_ERROR.getErrorValue();
-    }
-
-    // Check if the password has at least one capital letter, one lowercase, number and special character as per user story
+    // Check if the password supplied has atleast one capital and lowercase letter, number and special character
     public boolean isPasswordValid(String password){
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
 
@@ -167,5 +154,25 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         return matcher.matches();
     }
 
+    //Ensure data integrity of phone number before entry into database
+    public String validatePhoneNumber(String phoneNumber) {
+        if (phoneNumber.length() == 10) {
+            return convertStringToInt(phoneNumber);
+        }
+        return ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue();
+    }
 
+    //Ensure data integrity of age before entry into database
+    public String validateAge(String Age) {
+        if (convertStringToInt(Age) != ErrorConstants.INT_PARSE_ERROR.getErrorValue()) {
+            //Already validated that age is safe to parse as int
+            if (Integer.parseInt(Age) >= 18){
+                return Age;
+            }
+            else{
+                return ErrorConstants.INVALID_AGE.getErrorValue();
+            }
+        }
+        return convertStringToInt(Age);
+    }
 }
