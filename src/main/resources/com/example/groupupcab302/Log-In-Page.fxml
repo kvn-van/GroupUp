@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.LoginController">
     <ImageView fitHeight="608.0" fitWidth="804.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Images/Social_events.jpg" />
     </ImageView>
@@ -26,7 +32,7 @@
             <Font name="Eras Demi ITC" size="26.0" />
         </font>
     </Text>
-    <Button fx:id="loginButton" layoutX="1209.0" layoutY="25.0" mnemonicParsing="false" onAction="#onLoginButton" text="Login" />
+    <Button fx:id="loginNavButton" layoutX="1209.0" layoutY="25.0" mnemonicParsing="false" onAction="#onLoginNavButton" text="Login" />
     <Button layoutX="1048.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
     <Button layoutX="953.0" layoutY="25.0" mnemonicParsing="false" text="Create Event" />
     <Button fx:id="signUpButton" layoutX="1141.0" layoutY="25.0" mnemonicParsing="false" onAction="#onSignUpButton" text="Sign Up" />

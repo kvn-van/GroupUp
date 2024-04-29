@@ -1,5 +1,6 @@
 package com.example.groupupcab302;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,7 +25,7 @@ public class LoginController {
     @FXML
     private Button noAccountButton;
     @FXML
-    private Button loginButton;
+    private Button loginNavButton;
     @FXML
     public static String pageID;
 
@@ -44,10 +45,10 @@ public class LoginController {
     }
 
     @FXML
-    protected void onLoginButton() throws IOException {
+    protected void onLoginNavButton() throws IOException {
         textFieldValues = new String[] {emailTextField.getText(), passwordTextField.getText()};
         handleUsersLogin();
-        changeScene(loginButton);
+        changeScene(loginNavButton);
     }
 
     public static void changeScene(Button button) throws IOException {
@@ -62,8 +63,9 @@ public class LoginController {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Events-Page.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
-                Stage stage = (Stage) loginButton.getScene().getWindow();
+                Stage stage = (Stage) loginNavButton.getScene().getWindow();
                 stage.setScene(scene);
+                loginStatus.setText("You have successfully logged in!");
             } catch (IOException e) {
                 loginStatus.setText("Failed to load the events page.");
             }
@@ -101,5 +103,9 @@ public class LoginController {
             }
         }
         return true;
+    }
+
+    public void onLoginButton(ActionEvent actionEvent) {
+        System.out.println("Logging in");
     }
 }
