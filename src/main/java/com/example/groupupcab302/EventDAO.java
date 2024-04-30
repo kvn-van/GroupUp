@@ -1,9 +1,6 @@
 package com.example.groupupcab302;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 // Implement the database interface with the datatype of the class event as the parameter
 // Allows overriding of interface methods and for specific operations on the user objects and database
@@ -91,5 +88,61 @@ public class EventDAO implements IDatabaseDAO<Event>{
             throw new CustomSQLException("Enter a detailed message here for reason of error and what user did wrong");
         }
 
+    }
+
+    public String getEventNameById(int eventID) throws SQLException {
+        String eventName = null;
+        String sql = "SELECT name FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventName = rs.getString("name");
+        }
+        rs.close();
+        stmt.close();
+        return eventName;
+    }
+
+    public String getLocationById(int eventID) throws SQLException {
+        String eventLocation = null;
+        String sql = "SELECT location FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventLocation = rs.getString("location");
+        }
+        rs.close();
+        stmt.close();
+        return eventLocation;
+    }
+
+    public String getDateById(int eventID) throws SQLException {
+        String eventDate= null;
+        String sql = "SELECT date FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventDate= rs.getString("date");
+        }
+        rs.close();
+        stmt.close();
+        return eventDate;
+    }
+
+    public String getGenreById(int eventID) throws SQLException {
+        String eventGenre= null;
+        String sql = "SELECT genre FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventGenre = rs.getString("genre");
+        }
+        rs.close();
+        stmt.close();
+        return eventGenre;
     }
 }

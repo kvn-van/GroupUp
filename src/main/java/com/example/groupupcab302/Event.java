@@ -133,6 +133,18 @@ public class Event {
         this.image = image;
     }
 
-    // To do add the stuff for retrieving all the details
+
+    public String getAllEventDetails() {
+        return "Event ID: " + eventID +
+                ", Event Creator UserID: " + eventCreatorUserID +
+                ", Name: " + name +
+                ", Date: " + date +
+                ", Time: " + time +
+                ", Location: " + location +
+                ", Genre: " + genre +
+                ", Number of Registrations Available: " + numberOfRegistrationsAvailable +
+                ", Description: " + description;
+    }
+
 
 }

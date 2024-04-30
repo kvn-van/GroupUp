@@ -15,6 +15,4 @@ public interface IDatabaseDAO<T> {
 
     public void update(T databaseModelobject, String attributeToUpdate, String valueToSetAttributeTo) throws CustomSQLException, UnsupportedOperationException;
 
-    public void update(T databaseModelobject, String attributeToUpdate, String valueToSetAttributeTo) throws CustomSQLException, UnsupportedOperationException;
-
 }

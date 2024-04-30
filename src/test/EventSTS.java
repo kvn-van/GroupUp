@@ -9,7 +9,7 @@ public class EventSTS {
 
     private Event event;
     private GroupUpUser groupUpUser;
-    // Todo: After disucssing and figuring out how date,  time and image needs to work add STS cases
+
     @BeforeEach
     void setUp(){
         // Define a fixed userID for both user and event to prevent it from changing with varying test cases
@@ -112,6 +112,18 @@ public class EventSTS {
     public void testSetImage() {
         event.setImage("New Image");
         assertEquals("New Image", event.getImage());
+    }
+
+    @Test
+    public void testGetAllEventDetails() {
+        // Define the expected result
+        String expectedDetails = "Event ID: 1, Event Creator UserID: 1, Name: 10EleventConcert, Date: ToBeFinalized, Time: ToBeFinalized, Location: Uk Greensborough, Genre: Concert, Number of Registrations Available: 1000, Description: FREE THE GUYS, FREE DIGGA AND FREE JSAV";
+
+        // Call the getAllEventDetails() method
+        String actualDetails = event.getAllEventDetails();
+
+        // Check if the actual details match the expected details
+        assertEquals(expectedDetails, actualDetails);
     }
 
 

@@ -43,7 +43,8 @@ public class CreateEventController {
     int EventUserId = 9;
     String EventName;
 
-    LocalDate EventDate;
+    String EventDate;
+    String EventTime;
     String Location;
     String Summary;
     String Genre;
@@ -56,8 +57,10 @@ public class CreateEventController {
     }
     @FXML
     public void createEvent(){
-        Event event = new Event(1,EventName, EventDate,  0, Location,Genre,GuestLimit, Summary,Image);
+        System.out.println("DO NOTHIBNG FOR NOW");
 
+        /*
+        Event event = new Event(1,EventName, EventDate,  EventTime, Location,Genre,GuestLimit, Summary,Image);
 
             try{
                 EventDA.insert(event);
@@ -65,10 +68,14 @@ public class CreateEventController {
             catch (CustomSQLException e) {
                 throw new RuntimeException(e);
             }
+
+         */
     }
 
     @FXML
     public void submit() throws CustomSQLException {
+        System.out.println("do nothing for now");
+        /*
         if (TERMSBUTTON.isSelected()) {
             System.out.println("Working on Event...");
             EventName = NAMETEXT.getText();
@@ -101,6 +108,8 @@ public class CreateEventController {
 
             createEvent();
         }
+
+         */
     }
 
     @FXML
