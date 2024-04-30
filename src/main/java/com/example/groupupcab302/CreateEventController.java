@@ -20,7 +20,7 @@ import java.time.LocalDate;
 
 public class CreateEventController {
 
-    private EventDAO EventDA;
+    public EventDAO EventDA;
     private Stage stage;
     private File selectedFile;
     @FXML
