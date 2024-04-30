@@ -16,7 +16,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
         try {
             Statement createTable = connectionToDatabase.createStatement();
             createTable.execute(
-                    "CREATE TABLE IF NOT EXISTS MockGroupUpEvents ("
+                    "CREATE TABLE IF NOT EXISTS GroupUpEvents ("
                             + "eventID INTEGER PRIMARY KEY AUTOINCREMENT, "
                             + "name VARCHAR NOT NULL, "
                             + "date VARCHAR NOT NULL, "
@@ -40,7 +40,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
         Event event = null;
         try{
             PreparedStatement selectEventStatement = connectionToDatabase.prepareStatement(
-                    "SELECT * FROM MockGroupUpEvents WHERE eventID = ?"
+                    "SELECT * FROM GroupUpEvents WHERE eventID = ?"
             );
 
             selectEventStatement.setInt(1,eventID);
@@ -76,7 +76,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
     public void insert(Event event) throws CustomSQLException{
         try {
             PreparedStatement insertEvent = connectionToDatabase.prepareStatement(
-                    "INSERT INTO MockGroupUpEvents (name, date, time, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image, eventAttendees, customerEventCreationID) " +
+                    "INSERT INTO GroupUpEvents (name, date, time, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image, eventAttendees, customerEventCreationID) " +
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
             insertEvent.setString(1, event.getName());

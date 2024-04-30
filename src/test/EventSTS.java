@@ -1,19 +1,22 @@
 import com.example.groupupcab302.Event;
 import com.example.groupupcab302.GroupUpUser;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // Database must be empty for STS to work
 public class EventSTS {
 
     private Event event;
     private GroupUpUser groupUpUser;
+
     @BeforeEach
     void setUp(){
         // Define a fixed userID for both user and event to prevent it from changing with varying test cases
-        groupUpUser = groupUpUser =  new GroupUpUser(1, "FREESHEFFG", "Sheff", "G", "FlowsPart2@gmail.com", "1234567891", "18", "freeSHEFFGAND8THBLOCK");
-        event = new Event(1, groupUpUser.getUserID(), "10EleventConcert", "ToBeFinalized", "ToBeFinalized", "Uk Greensborough", "Concert", 1000, "FREE THE GUYS, FREE DIGGA AND FREE JSAV", "ToBeFinalized", "");
+        groupUpUser = new GroupUpUser(1, "FREESHEFFG", "Sheff", "G", "FlowsPart2@gmail.com", "1234567891", "18", "freeSHEFFGAND8THBLOCK");
+        event = new Event(1, groupUpUser.getUserID(), "10EleventConcert", "2024-05-01", "12:00 PM", "Uk Greensborough", "Concert", 1000, "FREE THE GUYS, FREE DIGGA AND FREE JSAV", "image.jpg", "JSAV, FISH");
     }
 
     @Test
@@ -21,6 +24,14 @@ public class EventSTS {
         assertEquals(1, event.getEventID());
     }
 
+
+    @Test
+    public void testGetEventAttendees() {
+        assertTrue(event.getEventAttendees().contains("JSAV"));
+        assertTrue(event.getEventAttendees().contains("FISH"));
+    }
+
+    @Test
     public void testGetEventCreatorUserID() {
         assertEquals(groupUpUser.getUserID(), event.getEventCreatorUserID());
     }
@@ -32,12 +43,12 @@ public class EventSTS {
 
     @Test
     public void testGetDate() {
-        assertEquals("ToBeFinalized", event.getDate());
+        assertEquals("2024-05-01", event.getDate());
     }
 
     @Test
     public void testGetTime() {
-        assertEquals("ToBeFinalized", event.getTime());
+        assertEquals("12:00 PM", event.getTime());
     }
 
     @Test
@@ -62,7 +73,7 @@ public class EventSTS {
 
     @Test
     public void testGetImage() {
-        assertEquals("ToBeFinalized", event.getImage());
+        assertEquals("image.jpg", event.getImage());
     }
 
     @Test
@@ -113,7 +124,10 @@ public class EventSTS {
         assertEquals("New Image", event.getImage());
     }
 
-
-
-
+    @Test
+    public void testSetEventAttendees() {
+        event.setEventAttendees("NEWATTENDEE, ANOTHERNEWATTENDEE");
+        assertTrue(event.getEventAttendees().contains("NEWATTENDEE"));
+        assertTrue(event.getEventAttendees().contains("ANOTHERNEWATTENDEE"));
+    }
 }
