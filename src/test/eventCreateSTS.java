@@ -1,23 +1,35 @@
 import com.example.groupupcab302.CreateEventController;
-import com.example.groupupcab302.MockEventDAO;
+import com.example.groupupcab302.CustomSQLException;
+import com.example.groupupcab302.DatabaseConnection;
+import com.example.groupupcab302.mockDAO.MockEventDAO;
 import com.example.groupupcab302.Event;
 import org.junit.jupiter.api.BeforeEach;
-import javafx.scene.control.DatePicker;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.File;
 import java.sql.*;
 
 import java.time.LocalDate;
 
-public class CreateEventControllerText{
+import static javafx.beans.binding.Bindings.when;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class eventCreateSTS{
     private CreateEventController createEventController;
 
-    private MockEventDAO mockEventDAO
+    private Connection connectionToDatabase;
+
+    private MockEventDAO mockEventDAO;
+
+    public eventCreateSTS(){
+        connectionToDatabase = DatabaseConnection.getInstance();
+        mockEventDAO = new MockEventDAO();
+    }
 
     @BeforeEach
     public void setUp() {
-        createEventController = new CreatEventController();
-        createEventController.EventDA = mockEventDAO;
+        createEventController = new CreateEventController();
+        createEventController.MockEventDA= mockEventDAO;
     }
 
     @Test
@@ -26,8 +38,8 @@ public class CreateEventControllerText{
             mockEventDAO.createTable();
         }, "Table creation should not throw an exception");
         try{
-            DatabaseMetaData dbm = connectionToDatabase.getMetaData;
-            ResultSet tables = dm.getTables(null, null, "MockGrouUpEvents", null);
+            DatabaseMetaData dbm = connectionToDatabase.getMetaData();
+            ResultSet tables = dbm.getTables(null, null, "MockGrouUpEvents", null);
             if(tables.next()){
 
                 tables.close();
@@ -38,7 +50,7 @@ public class CreateEventControllerText{
         }
 
         catch (SQLException sqlException){
-            fail("SQL Error")
+            fail("SQL Error");
         }
 
         finally{
@@ -47,7 +59,7 @@ public class CreateEventControllerText{
     }
 
     @Test
-    public void testCreateEvent() throws CustomSQLException {
+    public void testCreateEvent() throws CustomSQLException, SQLException {
         //Test Data
         String eventName = "Test Event";
         LocalDate eventDate = LocalDate.now();
@@ -63,20 +75,16 @@ public class CreateEventControllerText{
         createEventController.LOCATIONTEXT.setText(location);
         createEventController.EVENTTEXT.setText(summary);
         createEventController.GENRETEXT.setText(genre);
-        createEventController.GUESTLIMIT.setText(String.ValueOf(guestLimit));
+        createEventController.GUESTLIMIT.setText(String.valueOf(guestLimit));
         createEventController.selectedFile = new File(image);
 
         Event testEvent = new Event(1, eventName, eventDate, 0, location, genre, guestLimit, summary, image);
-        when(mockEventDAO.insert(expectedEvent)).thenReturn(1);
+        when(mockEventDAO.insert(testEvent)).then(1);
 
         createEventController.createEvent();
 
         Event actualEvent = mockEventDAO.getEventById(1);
         assertEquals(testEvent, actualEvent);
 
-    }
-
-    finally{
-        mockEventDAO.deleteTable();
     }
 }

@@ -1,5 +1,7 @@
 package com.example.groupupcab302;
 
+import com.example.groupupcab302.mockDAO.MockEventDAO;
+import com.example.groupupcab302.mockDAO.MockUserDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -21,24 +23,26 @@ import java.time.LocalDate;
 public class CreateEventController {
 
     public EventDAO EventDA;
+
+    public MockEventDAO MockEventDA;
     private Stage stage;
-    private File selectedFile;
+    public File selectedFile;
     @FXML
-    private TextField NAMETEXT;
+    public TextField NAMETEXT;
     @FXML
-    private TextField EVENTTEXT;
+    public  TextField EVENTTEXT;
     @FXML
-    private DatePicker DATETEXT;
+    public  DatePicker DATETEXT;
     @FXML
-    private TextField GUESTLIMIT;
+    public  TextField GUESTLIMIT;
     @FXML
-    private TextField LOCATIONTEXT;
+    public  TextField LOCATIONTEXT;
     @FXML
-    private CheckBox TERMSBUTTON;
+    public  CheckBox TERMSBUTTON;
     @FXML
-    private TextField GENRETEXT;
+    public TextField GENRETEXT;
     @FXML
-    private ImageView IMAGEVIEW;
+    public  ImageView IMAGEVIEW;
 
     int EventUserId = 9;
     String EventName;
