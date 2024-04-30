@@ -50,6 +50,7 @@ public class Event {
         return eventID;
     }
 
+
     public int getEventCreatorUserID() {
         return eventCreatorUserID;
     }
@@ -58,10 +59,10 @@ public class Event {
         return eventAttendees;
     }
 
-    /*
-    public void setEventAttendees(String ){
+    public void setEventAttendees(String userEmailToAdd){
+        eventAttendees += eventAttendees + "," + userEmailToAdd;
 
-    }*/
+    }
 
     public String getName() {
         return name;

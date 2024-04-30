@@ -2,6 +2,7 @@ package com.example.groupupcab302;
 
 public class GroupUpUser {
     private int userID;
+    private boolean isLoggedIn;
     private String userName;
     private String firstName;
     private String lastName;
@@ -61,6 +62,14 @@ public class GroupUpUser {
 
     public String getPassword(){
         return password;
+    }
+
+    public boolean getIsLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public boolean setIsLoggedIn(boolean value) {
+        return isLoggedIn = value;
     }
 
 

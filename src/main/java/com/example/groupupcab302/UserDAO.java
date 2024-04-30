@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 // Refactored concrete solution to the MockUserDAO
 // As MockUserDAO methods passed unit test cases for a sample table, methods are kept slightly refactored
 
-
 // Implement the database interface with the datatype of the class GroupUpUser as the parameter
 // Allows overriding of interface methods and for specific operations on the GroupUpUser objects and database
 
@@ -77,7 +76,6 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         }
 
     }
-
 
     public GroupUpUser getUserRecordByEmail(String email) throws CustomSQLException, SQLException{
         ResultSet resultSet = null;
