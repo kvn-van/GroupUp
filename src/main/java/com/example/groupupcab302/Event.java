@@ -33,9 +33,9 @@ public class Event {
 
     // Added constructor for special cases where event can be expiticly be created with an ID
     // Should be used to create an event  when the data for an event is returned from the database
-    public Event(int eventID,GroupUpUser groupUpUser, String name, String date, String time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image){
+    public Event(int eventID, int customerEventCreationID, String name, String date, String time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image, String listOfAttendees){
         this.eventID = eventID;
-        eventCreatorUserID = groupUpUser.getUserID();
+        eventCreatorUserID = customerEventCreationID;
         this.name = name;
         this.date = date;
         this.time = time;
@@ -44,6 +44,7 @@ public class Event {
         this.numberOfRegistrationsAvailable = numberOfRegistrationsAvailable;
         this.description = description;
         this.image = image;
+        this.eventAttendees = listOfAttendees;
     }
 
     public int getEventID() {
