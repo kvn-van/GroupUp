@@ -19,6 +19,32 @@ public class CreateEventControllerText{
     }
 
     @Test
+    public void testCreateTable(){
+        assertDoesNotThrow(() -> {
+            mockEventDAO.createTable();
+        }, "Table creation should not throw an exception");
+        try{
+            DatabaseMetaData dbm = connectionToDatabase.getMetaData;
+            ResultSet tables = dm.getTables(null, null, "MockGrouUpEvents", null);
+            if(tables.next()){
+
+                tables.close();
+            }
+            else {
+                fail("MockGroupUpEvents was not created successfully");
+            }
+        }
+
+        catch (SQLException sqlException){
+            fail("SQL Error")
+        }
+
+        finally{
+            mockEventDAO.deleteTable();
+        }
+    }
+
+    @Test
     public void testCreateEvent() throws CustomSQLException {
         //Test Data
         String eventName = "Test Event";
@@ -46,5 +72,9 @@ public class CreateEventControllerText{
         Event actualEvent = mockEventDAO.getEventById(1);
         assertEquals(testEvent, actualEvent);
 
+    }
+
+    finally{
+        mockEventDAO.deleteTable();
     }
 }

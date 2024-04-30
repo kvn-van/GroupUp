@@ -13,10 +13,11 @@ public class MockEventDAO {
     public void deleteTable(){
         try {
             PreparedStatement deleteTableStatement = connectionToDatabase.prepareStatement("DROP TABLE IF EXISTS MockGroupUpEvents");
+            deleteTableStatement.execute();
         }
 
-        catch (SQLException sqlEx) {
-            System.out.println(sqlEx);
+        catch (SQLException sqlException) {
+            System.out.println(sqlException);
         }
     }
 
@@ -67,9 +68,12 @@ public class MockEventDAO {
                         resultSet.getString("image")
                 );
             }
-        } catch (SQLException sqlEX) {
+        }
+
+        catch (SQLException sqlEX) {
             System.out.println(sqlEX);
         }
+
         return event;
     }
     public void insert (Event event){
