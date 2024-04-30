@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EventDAOSTS {
-
     private EventDAO eventDAO;
     private GroupUpUser user;
 
@@ -21,6 +20,23 @@ public class EventDAOSTS {
     void setUp() throws SQLException {
         eventDAO = new EventDAO();
         user = new GroupUpUser(1, "username", "firstName", "lastName", "email@example.com", "123456789", "25", "password");
+    }
+
+    // Due to the nature of the tests, if delete is run work it will fail testUpdateEvent
+    // This is because delete removes a row, then test update event creates another event with the key of the event that was just deleted
+    // Upon insertion into DB, DB auto increments key by +1
+    // This means the event objects ID doesnt align with its entry in the db which is eventID + 1
+    // Run individually for testing purposes!
+    @Test
+    void testUpdateEvent() throws SQLException {
+        // Insert an event first to have something to update
+        event = new Event(user, "Test Event", "2024-05-01", "12:00 PM", "Location", "Genre", 100, "Description", "image.jpg");
+        eventDAO.insert(event);
+
+        eventDAO.update(event, "genre", "Clubbing");
+        Event queriedEvent = eventDAO.getEventById(event.getEventID());
+        assertEquals("Clubbing", queriedEvent.getGenre());
+
     }
 
     @Test
@@ -44,18 +60,5 @@ public class EventDAOSTS {
         }
     }
 
-    @Test
-    void testUpdateEvent() throws SQLException {
-        // Insert an event first to have something to update
-        event = new Event(user, "Test Event", "2024-05-01", "12:00 PM", "Location", "Genre", 100, "Description", "image.jpg");
-        eventDAO.insert(event);
-
-        eventDAO.update(event, "genre", "Clubbing");
-        Event queriedEvent = eventDAO.getEventById(event.getEventID());
-        assertEquals("Clubbing", queriedEvent.getGenre());
-
-        // Check if the event name has been updated
-        //assertTrue(updatedEvent != null && updatedEvent.getName().equals(newEventName));
-
-    }
+    //Some methods are missing/not tested because they were temporarily used to devise a solution but will be replaced appropriately!
 }
