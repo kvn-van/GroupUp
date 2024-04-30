@@ -3,6 +3,9 @@ import com.example.groupupcab302.GroupUpUser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -129,5 +132,13 @@ public class EventSTS {
         event.setEventAttendees("NEWATTENDEE, ANOTHERNEWATTENDEE");
         assertTrue(event.getEventAttendees().contains("NEWATTENDEE"));
         assertTrue(event.getEventAttendees().contains("ANOTHERNEWATTENDEE"));
+    }
+
+    // To test this you must ensure DB is manually opened and compare the printed value. if printed value is +1 to that of last events ID in db table then it works
+    @Test
+    public void testingAutoIncrementingOfEventID() throws SQLException {
+        GroupUpUser user = new GroupUpUser("user1", "John", "Doe", "john@example.com", "123456789", "25", "password1");
+        Event event = new Event(user, "Sample Event", "2024-05-01", "10:00 AM", "Sample Location", "Sample Genre", 100, "Sample Description", "sample.jpg");
+
     }
 }

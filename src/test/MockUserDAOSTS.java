@@ -76,7 +76,6 @@ public class MockUserDAOSTS {
                 //Delete table in preparation for next unit case
                 mockUserDAO.deleteTable();
         }
-
     }
 
     @Test

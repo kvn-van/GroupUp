@@ -39,8 +39,8 @@ public class MockEventDAO {
                             + "descriptionOfEvent VARCHAR NOT NULL, "
                             + "image STRING NOT NULL, "
                             + "eventAttendees STRING NULL, "
-                            + "customerEventCreationID INT NOT NULL UNIQUE, "
-                            + "FOREIGN KEY (customerEventCreationID) REFERENCES GroupUpUsers(userID)"
+                            + "userIDOfEventCreator INT NOT NULL, "
+                            + "FOREIGN KEY (userIDOfEventCreator) REFERENCES GroupUpUsers(userID)"
                             + ")"
             );
         } catch (SQLException sqlEx) {
@@ -61,7 +61,7 @@ public class MockEventDAO {
             if (resultSet.next()) {
                 event = new Event(
                         resultSet.getInt("eventID"),
-                        resultSet.getInt("customerEventCreationID"),
+                        resultSet.getInt("userIDOfEventCreator"),
                         resultSet.getString("name"),
                         resultSet.getString("date"),
                         resultSet.getString("time"),
@@ -86,7 +86,7 @@ public class MockEventDAO {
     public void insert (Event event){
         try {
             PreparedStatement insertEvent = connectionToDatabase.prepareStatement(
-                    "INSERT INTO MockGroupUpEvents (name, date, time, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image, eventAttendees, customerEventCreationID) " +
+                    "INSERT INTO MockGroupUpEvents (name, date, time, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image, eventAttendees, userIDOfEventCreator) " +
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
             insertEvent.setString(1, event.getName());
