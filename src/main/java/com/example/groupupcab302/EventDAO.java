@@ -6,9 +6,6 @@ import java.sql.*;
 // Allows overriding of interface methods and for specific operations on the user objects and database
 // Defines the generic for the interface to be event objects
 public class EventDAO implements IDatabaseDAO<Event>{
-
-    //TODO: database diagram to accomodate list of guests
-
     private Connection connectionToDatabase;
     public EventDAO(){
         connectionToDatabase = DatabaseConnection.getInstance();
@@ -22,15 +19,16 @@ public class EventDAO implements IDatabaseDAO<Event>{
                     "CREATE TABLE IF NOT EXISTS GroupUpEvents ("
                             + "eventID INTEGER PRIMARY KEY AUTOINCREMENT, "
                             + "name VARCHAR NOT NULL, "
-                            + "date DATETIME NOT NULL, "
+                            + "date VARCHAR NOT NULL, "
+                            + "time VARCHAR NOT NULL, "
                             + "location VARCHAR NOT NULL, "
                             + "genre VARCHAR NOT NULL, "
                             + "numberOfRegistrationsAvailable INT NOT NULL, "
                             + "descriptionOfEvent VARCHAR NOT NULL, "
-                            + "image VARBINARY NOT NULL, "
-                            // need clarification + "listOfAttendees STRING UNIQUE NULL, "
-                            + "customerEventCreationID INT NOT NULL UNIQUE, "
-                            + "FOREIGN KEY (customerEventCreationID) REFERENCES GroupUpUsers(userID)"
+                            + "image STRING NOT NULL, "
+                            + "eventAttendees STRING NULL, "
+                            + "userIDOfEventCreator INT NOT NULL, "
+                            + "FOREIGN KEY (userIDOfEventCreator) REFERENCES GroupUpUsers(userID)"
                             + ")"
             );
         } catch (SQLException sqlEx) {
@@ -38,22 +36,63 @@ public class EventDAO implements IDatabaseDAO<Event>{
         }
     }
 
+    public Event getEventById(int eventID) throws SQLException {
+        Event event = null;
+        try{
+            PreparedStatement selectEventStatement = connectionToDatabase.prepareStatement(
+                    "SELECT * FROM GroupUpEvents WHERE eventID = ?"
+            );
+
+            selectEventStatement.setInt(1,eventID);
+            ResultSet resultSet = selectEventStatement.executeQuery();
+
+            if (resultSet.next()) {
+                event = new Event(
+                        resultSet.getInt("eventID"),
+                        resultSet.getInt("userIDOfEventCreator"),
+                        resultSet.getString("name"),
+                        resultSet.getString("date"),
+                        resultSet.getString("time"),
+                        resultSet.getString("location"),
+                        resultSet.getString("genre"),
+                        resultSet.getInt("numberOfRegistrationsAvailable"),
+                        resultSet.getString("descriptionOfEvent"),
+                        resultSet.getString("image"),
+                        resultSet.getString("eventAttendees")
+                );
+            }
+            // Close result set to prevent database locking
+            resultSet.close();
+        }
+
+        catch (SQLException sqlEX) {
+            System.out.println(sqlEX);
+        }
+
+        return event;
+    }
+
     @Override
     public void insert(Event event) throws CustomSQLException{
         try {
-            PreparedStatement insertEvent = connectionToDatabase.prepareStatement("INSERT INTO GroupUpEvents (customerEventCreationID, name, " +
-                    "date, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            insertEvent.setInt(1, event.getEventCreatorUserID());
-            insertEvent.setString(2, event.getName());
-            insertEvent.setString(3, event.getDate());
+            PreparedStatement insertEvent = connectionToDatabase.prepareStatement(
+                    "INSERT INTO GroupUpEvents (name, date, time, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image, eventAttendees, userIDOfEventCreator) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
+            insertEvent.setString(1, event.getName());
+            insertEvent.setString(2, event.getDate());
+            insertEvent.setString(3, event.getTime());
             insertEvent.setString(4, event.getLocation());
             insertEvent.setString(5, event.getGenre());
             insertEvent.setInt(6, event.getNumberOfRegistrationsAvailable());
             insertEvent.setString(7, event.getDescription());
             insertEvent.setString(8, event.getImage());
+            insertEvent.setString(9, null);
+            insertEvent.setInt(10, event.getEventCreatorUserID());
 
             insertEvent.execute();
         }
+
         catch(SQLException sqlException){
             System.out.println(sqlException);
             System.out.println("Error found please see above ^");
@@ -61,11 +100,13 @@ public class EventDAO implements IDatabaseDAO<Event>{
         }
     }
 
+    // Should only be used in cases where the id of an event is known
     @Override
     public void delete(int eventID) throws CustomSQLException{
         try{
-            PreparedStatement deleteEvent = connectionToDatabase.prepareStatement("DELETE * FROM GroupUpEvents WHERE eventID = ?");
+            PreparedStatement deleteEvent = connectionToDatabase.prepareStatement("DELETE FROM GroupUpEvents WHERE eventID = ?");
             deleteEvent.setInt(1, eventID);
+            deleteEvent.execute();
         }
 
         catch(SQLException sqlException){
@@ -75,16 +116,15 @@ public class EventDAO implements IDatabaseDAO<Event>{
     }
 
     // update not defined in interface as not all child tables require
-    public void update(Event event, String attributeOfEventToUpate, String valueToSetAttributeTo) throws CustomSQLException{
-        try{
-            PreparedStatement updateToRowStatement = connectionToDatabase.prepareStatement("UPDATE GroupUpEvents SET ? = ? WHERE eventID = ?");
-            updateToRowStatement.setString(1, attributeOfEventToUpate);
-            updateToRowStatement.setString(2, valueToSetAttributeTo);
-            updateToRowStatement.setInt(3,event.getEventID());
-
-        }
-
-        catch (SQLException sqlException){
+    public void update(Event event, String attributeOfEventToUpdate, String valueToSetAttributeTo) throws CustomSQLException{
+        try {
+            String query = "UPDATE GroupUpEvents SET " + attributeOfEventToUpdate + " = ? WHERE eventID = ?";
+            PreparedStatement updateToRowStatement = connectionToDatabase.prepareStatement(query);
+            updateToRowStatement.setString(1, valueToSetAttributeTo);
+            updateToRowStatement.setInt(2, event.getEventID());
+            updateToRowStatement.execute();
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException);
             throw new CustomSQLException("Enter a detailed message here for reason of error and what user did wrong");
         }
 

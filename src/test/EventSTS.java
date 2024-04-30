@@ -1,20 +1,25 @@
 import com.example.groupupcab302.Event;
 import com.example.groupupcab302.GroupUpUser;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.sql.SQLException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // Database must be empty for STS to work
 public class EventSTS {
 
     private Event event;
     private GroupUpUser groupUpUser;
-
+    // Todo: After disucssing and figuring out how date,  time and image needs to work add STS cases
     @BeforeEach
     void setUp(){
         // Define a fixed userID for both user and event to prevent it from changing with varying test cases
-        groupUpUser = groupUpUser =  new GroupUpUser(1, "FREESHEFFG", "Sheff", "G", "FlowsPart2@gmail.com", "1234567891", "18", "freeSHEFFGAND8THBLOCK");
-        event = new Event(1, groupUpUser, "10EleventConcert", "ToBeFinalized", "ToBeFinalized", "Uk Greensborough", "Concert", 1000, "FREE THE GUYS, FREE DIGGA AND FREE JSAV", "ToBeFinalized");
+        groupUpUser = new GroupUpUser(1, "FREESHEFFG", "Sheff", "G", "FlowsPart2@gmail.com", "1234567891", "18", "freeSHEFFGAND8THBLOCK");
+        event = new Event(1, groupUpUser.getUserID(), "10EleventConcert", "2024-05-01", "12:00 PM", "Uk Greensborough", "Concert", 1000, "FREE THE GUYS, FREE DIGGA AND FREE JSAV", "image.jpg", "JSAV, FISH");
     }
 
     @Test
@@ -22,6 +27,14 @@ public class EventSTS {
         assertEquals(1, event.getEventID());
     }
 
+
+    @Test
+    public void testGetEventAttendees() {
+        assertTrue(event.getEventAttendees().contains("JSAV"));
+        assertTrue(event.getEventAttendees().contains("FISH"));
+    }
+
+    @Test
     public void testGetEventCreatorUserID() {
         assertEquals(groupUpUser.getUserID(), event.getEventCreatorUserID());
     }
@@ -33,12 +46,12 @@ public class EventSTS {
 
     @Test
     public void testGetDate() {
-        assertEquals("ToBeFinalized", event.getDate());
+        assertEquals("2024-05-01", event.getDate());
     }
 
     @Test
     public void testGetTime() {
-        assertEquals("ToBeFinalized", event.getTime());
+        assertEquals("12:00 PM", event.getTime());
     }
 
     @Test
@@ -63,7 +76,7 @@ public class EventSTS {
 
     @Test
     public void testGetImage() {
-        assertEquals("ToBeFinalized", event.getImage());
+        assertEquals("image.jpg", event.getImage());
     }
 
     @Test
@@ -126,7 +139,18 @@ public class EventSTS {
         assertEquals(expectedDetails, actualDetails);
     }
 
+    @Test
+    public void testSetEventAttendees() {
+        event.setEventAttendees("NEWATTENDEE, ANOTHERNEWATTENDEE");
+        assertTrue(event.getEventAttendees().contains("NEWATTENDEE"));
+        assertTrue(event.getEventAttendees().contains("ANOTHERNEWATTENDEE"));
+    }
 
+    // To test this you must ensure DB is manually opened and compare the printed value. if printed value is +1 to that of last events ID in db table then it works
+    @Test
+    public void testingAutoIncrementingOfEventID() throws SQLException {
+        GroupUpUser user = new GroupUpUser("user1", "John", "Doe", "john@example.com", "123456789", "25", "password1");
+        Event event = new Event(user, "Sample Event", "2024-05-01", "10:00 AM", "Sample Location", "Sample Genre", 100, "Sample Description", "sample.jpg");
 
-
+    }
 }
