@@ -1,7 +1,15 @@
 package com.example.groupupcab302;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -17,6 +25,10 @@ public class EventViewController {
 
     @FXML
     public Label eventGenre1, eventGenre2, eventGenre3, eventGenre4;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
      private EventDAO eventDAO = new EventDAO();
      @FXML
@@ -40,6 +52,19 @@ public class EventViewController {
         displayGenre(2, eventGenre2);
         displayGenre(3, eventGenre3);
         displayGenre(4, eventGenre4);
+    }
+
+
+
+
+    @FXML
+    protected void onNavEventCreateClick(ActionEvent event) throws IOException {
+        //Basic code to switch the scene to an appropriate scene
+        Parent root = FXMLLoader.load(getClass().getResource("event-create-template.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

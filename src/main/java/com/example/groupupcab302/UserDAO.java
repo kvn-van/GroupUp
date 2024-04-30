@@ -119,13 +119,6 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         }
     }
 
-    public List<GroupUpUser> getAll() {
-        List<GroupUpUser> accounts = new ArrayList<>();
-        // Todo Later: Create a Statement to run the SELECT * query
-        // and populate the accounts list above
-        return accounts;
-    }
-
 
     public String convertStringToInt(String valueToConvert){
         try{

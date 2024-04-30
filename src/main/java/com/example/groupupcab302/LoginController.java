@@ -1,6 +1,8 @@
 package com.example.groupupcab302;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -29,8 +31,23 @@ public class LoginController {
     @FXML
     public static String pageID;
 
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+
     public LoginController() {
         userDAO = new UserDAO();
+    }
+
+    @FXML
+    protected void onNoAccountClick(ActionEvent event) throws IOException {
+        //Basic code to switch the scene to an appropriate scene
+        Parent root = FXMLLoader.load(getClass().getResource("Sign-Up-Page.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -60,14 +77,6 @@ public class LoginController {
 
     public void handleUsersLogin() throws SQLException{
         getUserDetails();
-        /*
-        if (isUserLoginValid()) {
-            try {
-                changeScene(loginButton, "event-view-template.fxml");
-            } catch (IOException e) {
-                loginStatus.setText("Failed to load the events page.");
-            }
-        }*/
     }
 
     public void getUserDetails() throws SQLException {
@@ -78,6 +87,7 @@ public class LoginController {
                 if (areDetailsFoundInDB(inputtedEmail,inputtedPassword)){
                     signedInUser = userDAO.getUserRecordByEmail(inputtedEmail);
                     signedInUser.setIsLoggedIn(true);
+                    changeScene(loginButton, "event-view-template.fxml");
                 }
             }
 
@@ -85,6 +95,9 @@ public class LoginController {
 
         catch (SQLException exception){
             loginStatus.setText(exception.getMessage());
+        }
+        catch (IOException e) {
+            loginStatus.setText("Failed to load the events page.");
         }
     }
 

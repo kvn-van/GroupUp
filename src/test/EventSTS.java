@@ -130,7 +130,7 @@ public class EventSTS {
     @Test
     public void testGetAllEventDetails() {
         // Define the expected result
-        String expectedDetails = "Event ID: 1, Event Creator UserID: 1, Name: 10EleventConcert, Date: ToBeFinalized, Time: ToBeFinalized, Location: Uk Greensborough, Genre: Concert, Number of Registrations Available: 1000, Description: FREE THE GUYS, FREE DIGGA AND FREE JSAV";
+        String expectedDetails = "Event ID: 1, Event Creator UserID: 1, Name: 10EleventConcert, Date: 2024-05-01, Time: 12:00 PM, Location: Uk Greensborough, Genre: Concert, Number of Registrations Available: 1000, Description: FREE THE GUYS, FREE DIGGA AND FREE JSAV";
 
         // Call the getAllEventDetails() method
         String actualDetails = event.getAllEventDetails();

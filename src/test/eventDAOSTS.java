@@ -1,74 +1,65 @@
+import com.example.groupupcab302.Event;
 import com.example.groupupcab302.EventDAO;
+import com.example.groupupcab302.GroupUpUser;
+import com.example.groupupcab302.CustomSQLException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.sql.*;
-public class eventDAOSTS {
+
+import java.sql.SQLException;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class EventDAOSTS {
     private EventDAO eventDAO;
+    private GroupUpUser user;
+
+    private Event event;
+
 
     @BeforeEach
-    public void setUp() {
+    void setUp() throws SQLException {
         eventDAO = new EventDAO();
-        eventDAO.createTable();
+        user = new GroupUpUser(1, "username", "firstName", "lastName", "email@example.com", "123456789", "25", "password");
+    }
+
+    // Due to the nature of the tests, if delete is run work it will fail testUpdateEvent
+    // This is because delete removes a row, then test update event creates another event with the key of the event that was just deleted
+    // Upon insertion into DB, DB auto increments key by +1
+    // This means the event objects ID doesnt align with its entry in the db which is eventID + 1
+    // Run individually for testing purposes!
+    @Test
+    void testUpdateEvent() throws SQLException {
+        // Insert an event first to have something to update
+        event = new Event(user, "Test Event", "2024-05-01", "12:00 PM", "Location", "Genre", 100, "Description", "image.jpg");
+        eventDAO.insert(event);
+
+        eventDAO.update(event, "genre", "Clubbing");
+        System.out.println(event.getEventID());
+        Event queriedEvent = eventDAO.getEventById(event.getEventID());
+        assertEquals("Clubbing", queriedEvent.getGenre());
+
     }
 
     @Test
-    public void testDisplayEventName() throws SQLException {
-        String eventName = eventDAO.getEventNameById(1);
-        assertEquals("Birthday Party", eventName);
+    void testDeleteEvent() throws SQLException {
+        // Insert an event first to ensure there's something to delete
+        // Call the constuctor for the event where "listofattendees" isnt required.
+        // This is because when an event is created users cant pre-signup to an event so it must always be null
 
-        String eventName2 = eventDAO.getEventNameById(2);
-        assertEquals("Study Group", eventName2);
+        // Note that when a record is deleted and another is readded, autoincrement does not set the key to the key of the deleted row
+        // i.e if eventID 30 is removed then the next insertion takes 31
+        // Delete is functional however its not expected for events to be deleted in this manner i.e after you insert you then constantly delete
+        Event eventToDelete = new Event(user, "Test Event", "2024-05-01", "12:00 PM", "Location", "Genre", 100, "Description", "image.jpg");
+        eventDAO.insert(eventToDelete);
+        assertDoesNotThrow(() -> {
+            eventDAO.delete(eventToDelete.getEventID());
+        });
 
-        String eventName3 = eventDAO.getEventNameById(3);
-        assertEquals("Group Fitness", eventName3);
-
-        String eventName4 = eventDAO.getEventNameById(4);
-        assertEquals("BBQ Party", eventName4);
+        Event event = eventDAO.getEventById(eventToDelete.getEventID());
+        if (event != null){
+            fail("Event with the corresponding eventID was returned from the database instead of being deleted");
+        }
     }
 
-    @Test
-    public void testDisplayDate() throws SQLException {
-        String eventDate = eventDAO.getDateById(1);
-        assertEquals("28/05/2024", eventDate);
-
-        String eventDate2 = eventDAO.getDateById(2);
-        assertEquals("30/04/2024", eventDate2);
-
-        String eventDate3 = eventDAO.getDateById(3);
-        assertEquals("10/05/2024", eventDate3);
-
-        String eventDate4 = eventDAO.getDateById(4);
-        assertEquals("01/06/2024", eventDate4);
-    }
-
-    @Test
-    public void testDisplayLocation() throws SQLException {
-        String eventLocation = eventDAO.getLocationById(1);
-        assertEquals("Brisbane", eventLocation);
-
-        String eventLocation2 = eventDAO.getLocationById(2);
-        assertEquals("QUT", eventLocation2);
-
-        String eventLocation3 = eventDAO.getLocationById(3);
-        assertEquals("Fortitude Valley", eventLocation3);
-
-        String eventLocation4 = eventDAO.getLocationById(4);
-        assertEquals("Maru Grillhouse", eventLocation4);
-    }
-
-    @Test
-    public void testDisplayGenre() throws SQLException {
-        String eventGenre = eventDAO.getGenreById(1);
-        assertEquals("Party", eventGenre);
-
-        String eventGenre2 = eventDAO.getGenreById(2);
-        assertEquals("productivity", eventGenre2);
-
-        String eventGenre3 = eventDAO.getGenreById(3);
-        assertEquals("health", eventGenre3);
-
-        String eventGenre4 = eventDAO.getGenreById(4);
-        assertEquals("dine", eventGenre4);
-    }
+    //Some methods are missing/not tested because they were temporarily used to devise a solution but will be replaced appropriately!
 }
