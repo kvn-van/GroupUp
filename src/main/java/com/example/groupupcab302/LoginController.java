@@ -61,7 +61,7 @@ public class LoginController {
     public void handleUsersLogin() {
         if (isUserLoginValid()) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Events-Page.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Sign-Up-Page.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
                 Stage stage = (Stage) loginNavButton.getScene().getWindow();
                 stage.setScene(scene);
