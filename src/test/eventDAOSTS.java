@@ -63,12 +63,12 @@ public class eventDAOSTS {
         assertEquals("Party", eventGenre);
 
         String eventGenre2 = eventDAO.getGenreById(2);
-        assertEquals("productivity", eventGenre2);
+        assertEquals("Productivity", eventGenre2);
 
         String eventGenre3 = eventDAO.getGenreById(3);
-        assertEquals("health", eventGenre3);
+        assertEquals("Health", eventGenre3);
 
         String eventGenre4 = eventDAO.getGenreById(4);
-        assertEquals("dine", eventGenre4);
+        assertEquals("Dine", eventGenre4);
     }
 }
