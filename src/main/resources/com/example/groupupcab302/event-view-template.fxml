@@ -53,7 +53,7 @@
          <Font name="System Bold" size="14.0" />
       </font>
    </Label>
-   <Button layoutX="39.0" layoutY="566.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
+   <Button fx:id="viewEvent" onAction="#setViewEvent1" layoutX="39.0" layoutY="566.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>
@@ -70,7 +70,7 @@
       </font>
    </Label>
 
-   <Button layoutX="351.0" layoutY="566.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
+   <Button onAction="#setViewEvent2" layoutX="351.0" layoutY="566.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>
@@ -92,7 +92,7 @@
       </font>
    </Label>
 
-   <Button layoutX="671.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
+   <Button onAction="#setViewEvent3" layoutX="671.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>
@@ -109,7 +109,7 @@
       </font>
    </Label>
 
-   <Button layoutX="991.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
+   <Button onAction="#setViewEvent4" layoutX="991.0" layoutY="567.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="252.0" text="View Event">
       <font>
          <Font name="System Bold" size="18.0" />
       </font>

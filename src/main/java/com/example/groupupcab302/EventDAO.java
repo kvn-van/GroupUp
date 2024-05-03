@@ -94,6 +94,34 @@ public class EventDAO implements IDatabaseDAO<Event>{
         stmt.close();
         return eventGenre;
     }
+
+    public String getRegNumberById(int eventID) throws SQLException {
+        String eventRegNum= null;
+        String sql = "SELECT numberOfRegistrationsAvailable FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventRegNum = rs.getString("numberOfRegistrationsAvailable");
+        }
+        rs.close();
+        stmt.close();
+        return eventRegNum;
+    }
+
+    public String getDescriptionById(int eventID) throws SQLException {
+        String eventDescription= null;
+        String sql = "SELECT descriptionOfEvent FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1, eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventDescription = rs.getString("descriptionOfEvent");
+        }
+        rs.close();
+        stmt.close();
+        return eventDescription;
+    }
     @Override
     public void insert(Event event) throws CustomSQLException{
         try {
