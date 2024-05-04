@@ -26,10 +26,35 @@
     -fx-font-weight: bold;
 }
 
+#eventDescription {
+    -fx-max-width: 400px;
+    -fx-wrap-text: true;
+    -fx-font-size: 16px;
+}
+
+#eventLocation, #eventDate {
+    -fx-font-weight: bold;
+}
+
 #title {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-font-family: "Poppins";
     -fx-text-fill: green;
+}
+
+#joinEvent{
+    -fx-font-size: 14px;
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+#joinEvent:hover {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+#eventLabel {
+    -fx-font-weight: bold;
 }
 

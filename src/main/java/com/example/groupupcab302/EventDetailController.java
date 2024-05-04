@@ -3,6 +3,8 @@ package com.example.groupupcab302;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
+import javafx.scene.control.TextArea;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,7 +18,10 @@ public class EventDetailController {
     public Button goBack;
 
     @FXML
-    public Label eventName, eventLocation, eventDate, eventGenre, eventDescription, eventRegNumber;
+    public Label eventName, eventLocation, eventDate, eventGenre, eventRegNumber;
+
+    @FXML
+    public TextArea eventDescription;
 
     private final EventDAO eventDAO = new EventDAO();
 
@@ -42,7 +47,7 @@ public class EventDetailController {
         }
     }
 
-    public void displayDescription(int eventID, Label eventDescription) {
+    public void displayDescription(int eventID, TextArea eventDescription) {
         try {
             String eventDescriptionString  = eventDAO.getDescriptionById(eventID);
             eventDescription.setText(Objects.requireNonNullElse(eventDescriptionString, "Event not found"));
