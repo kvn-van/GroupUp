@@ -2,16 +2,19 @@ package com.example.groupupcab302;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
+
+import static com.example.groupupcab302.LoginController.pageID;
 
 public class EventViewController {
 
@@ -25,12 +28,15 @@ public class EventViewController {
 
     @FXML
     public Label eventGenre1, eventGenre2, eventGenre3, eventGenre4;
+    public Button viewEvent;
 
+    public static int viewEventNumber;
+
+    private final EventDAO eventDAO = new EventDAO();
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-     private EventDAO eventDAO = new EventDAO();
      @FXML
     private void initialize() {
         displayEventName(1, eventName1);
@@ -68,7 +74,7 @@ public class EventViewController {
     }
 
     @FXML
-    private void displayEventName(int eventID, Label eventName) {
+    public void displayEventName(int eventID, Label eventName) {
         try {
             String eventNameString = eventDAO.getEventNameById(eventID);
             eventName.setText(Objects.requireNonNullElse(eventNameString, "Event not found"));
@@ -78,7 +84,7 @@ public class EventViewController {
         }
     }
 
-    private void displayDate(int eventID, Label eventDate) {
+    public void displayDate(int eventID, Label eventDate) {
         try {
             String eventDateString= eventDAO.getDateById(eventID);
             eventDate.setText(Objects.requireNonNullElse(eventDateString, "Event not found"));
@@ -88,7 +94,7 @@ public class EventViewController {
         }
     }
 
-    private void displayLocation(int eventID, Label eventLocation) {
+    public void displayLocation(int eventID, Label eventLocation) {
         try {
             String eventLocationString  = eventDAO.getLocationById(eventID);
             eventLocation.setText(Objects.requireNonNullElse(eventLocationString, "Event not found"));
@@ -98,7 +104,7 @@ public class EventViewController {
         }
     }
 
-    private void displayGenre(int eventID, Label eventGenre) {
+    public void displayGenre(int eventID, Label eventGenre) {
         try {
             String eventGenreString = eventDAO.getGenreById(eventID);
             eventGenre.setText(Objects.requireNonNullElse(eventGenreString, "Event not found"));
@@ -106,5 +112,35 @@ public class EventViewController {
             eventGenre.setText("Error retrieving event");
             System.out.println(e.getMessage());
         }
+    }
+
+    @FXML
+    public void setViewEvent1() throws IOException {
+         viewEventNumber = 1;
+         setViewEventDetail(viewEventNumber);
+    }
+
+    @FXML
+    public void setViewEvent2() throws IOException {
+         viewEventNumber = 2;
+         setViewEventDetail(viewEventNumber);
+    }
+
+    @FXML
+    public void setViewEvent3() throws IOException {
+         viewEventNumber = 3;
+         setViewEventDetail(viewEventNumber);
+    }
+
+    @FXML
+    public void setViewEvent4() throws IOException {
+         viewEventNumber = 4;
+         setViewEventDetail(viewEventNumber);
+    }
+
+    @FXML
+    protected void setViewEventDetail(int viewEventNumber) throws IOException {
+        pageID = "event-detail-page.fxml";
+        LoginController.changeScene(viewEvent, pageID);
     }
 }
