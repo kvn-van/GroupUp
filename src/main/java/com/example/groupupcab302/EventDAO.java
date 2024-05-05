@@ -213,3 +213,4 @@ public class EventDAO implements IDatabaseDAO<Event>{
         stmt.close();
         return eventDescription;
     }
+}
