@@ -1,16 +1,15 @@
 package com.example.groupupcab302;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
-import static com.example.groupupcab302.LoginController.changeScene;
 import static com.example.groupupcab302.LoginController.pageID;
 
 public class EventDetailController {
@@ -24,6 +23,7 @@ public class EventDetailController {
     public TextArea eventDescription;
 
     private final EventDAO eventDAO = new EventDAO();
+    private final UserDAO userDAO = new UserDAO();
 
     private final EventViewController eventViewController = new EventViewController();
 
@@ -57,9 +57,55 @@ public class EventDetailController {
         }
     }
 
+    public void JoinEvent (int eventID){
+        try{
+            String userID = "1";
+            String GuestList = eventDAO.getGuestListByID(eventID);
+
+            if (GuestList.isEmpty()) {
+                GuestList = userID;
+            }else{
+                GuestList += "," + userID;
+            }
+
+            eventDAO.update(eventDAO.getEventById(eventID), "ListOfAttendees", GuestList);
+        } catch (SQLException e){
+            System.out.println("Could Not Update");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @FXML
     public void goBackBtn() throws IOException {
         pageID = "event-view-template.fxml";
         LoginController.changeScene(goBack, pageID);
+    }
+
+    public void JoinEvent() throws CustomSQLException {
+        JoinEvent(1);
     }
 }

@@ -62,7 +62,7 @@ public class eventCreateSTS{
     public void testCreateEvent() throws CustomSQLException, SQLException {
         //Test Data
         String eventName = "Test Event";
-        LocalDate eventDate = LocalDate.now();
+        String eventDate = "12/12/2023";
         String location = "Test Location";
         String summary = "Test Summary";
         String genre = "Test Genre";
@@ -71,7 +71,7 @@ public class eventCreateSTS{
 
         //Set details
         createEventController.NAMETEXT.setText(eventName);
-        createEventController.DATETEXT.setValue(eventDate);
+        createEventController.DATETEXT.setText(eventDate);
         createEventController.LOCATIONTEXT.setText(location);
         createEventController.EVENTTEXT.setText(summary);
         createEventController.GENRETEXT.setText(genre);

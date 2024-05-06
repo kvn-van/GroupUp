@@ -67,7 +67,7 @@
             <Font name="System Bold" size="14.0" />
         </font>
     </Button>
-    <Button fx:id="joinEvent" layoutX="585.0" layoutY="634.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="110.0" styleClass="button" text="Join Event">
+    <Button fx:id="joinEvent" layoutX="585.0" layoutY="634.0" onAction="#JoinEvent" mnemonicParsing="false" prefHeight="20.0" prefWidth="110.0" styleClass="button" text="Join Event">
         <font>
             <Font name="System Bold" size="14.0" />
         </font>

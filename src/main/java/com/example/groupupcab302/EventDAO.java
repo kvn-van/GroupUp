@@ -213,4 +213,18 @@ public class EventDAO implements IDatabaseDAO<Event>{
         stmt.close();
         return eventDescription;
     }
+
+    public String getGuestListByID(int eventID) throws SQLException {
+        String eventAttendees = null;
+        String sql = "SELECT ListOfAttendees FROM GroupUpEvents WHERE eventID = ?";
+        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
+        stmt.setInt(1,eventID);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            eventAttendees = rs.getString("ListOfAttendees");
+        }
+        rs.close();
+        stmt.close();
+        return eventAttendees;
+    }
 }
