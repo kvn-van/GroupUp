@@ -5,7 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -22,7 +22,9 @@ public class StartController implements Initializable {
     @FXML
     private Parent fxml;
     @FXML
-    private AnchorPane rootPane;
+    private Button signUpNavButton;
+    @FXML
+    private Button loginNavButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -32,13 +34,12 @@ public class StartController implements Initializable {
         t.play();
         t.setOnFinished((e) -> {
             try { //problem is line 44: fxml = FXMLLoader... due to NullPointerException
-                System.out.println("Stage 1");
+                //System.out.println("Stage 1");
                 fxml = FXMLLoader.load(getClass().getClassLoader().getResource("New-Log-In-Page.fxml"));
-                System.out.println("Stage 2");
+                //System.out.println("Stage 2");
                 vbox.getChildren().removeAll();
-                System.out.println("Stage 3");
                 vbox.getChildren().setAll(fxml);
-                System.out.println("Loaded vbox!");
+                //System.out.println("Loaded vbox!");
             } catch(IOException ex) {
 
             }
