@@ -2,7 +2,12 @@ package com.example.groupupcab302;
 
 import com.example.groupupcab302.mockDAO.MockEventDAO;
 import com.example.groupupcab302.mockDAO.MockUserDAO;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -54,6 +59,8 @@ public class CreateEventController {
     String Genre;
     int GuestLimit;
     String Image;
+    private Scene scene;
+    private Parent root;
 
     public CreateEventController(){
         EventDA = new EventDAO();
@@ -129,5 +136,35 @@ public class CreateEventController {
         }else{
             System.out.println("No file has been selected");
         }
+    }
+
+    @FXML
+    protected void onNavEventPage(ActionEvent event) throws IOException {
+        //Basic code to switch the scene to an appropriate scene
+        Parent root = FXMLLoader.load(getClass().getResource("event-view-template.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    protected void onNavCreatePage(ActionEvent event) throws IOException {
+        //Basic code to switch the scene to an appropriate scene
+        Parent root = FXMLLoader.load(getClass().getResource("event-create-template.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    protected void onNavRegisterPage(ActionEvent event) throws IOException {
+        //Basic code to switch the scene to an appropriate scene
+        Parent root = FXMLLoader.load(getClass().getResource("Sign-Up-Page.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
