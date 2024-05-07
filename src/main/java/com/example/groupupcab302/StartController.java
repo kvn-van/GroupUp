@@ -5,14 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,17 +21,24 @@ public class StartController implements Initializable {
     private VBox vbox;
     @FXML
     private Parent fxml;
+    @FXML
+    private AnchorPane rootPane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("Load vbox...");
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToX(vbox.getLayoutX() * 20);
         t.play();
         t.setOnFinished((e) -> {
-            try {
-                fxml = FXMLLoader.load(getClass().getResource("Log-In-Page2.fxml"));
+            try { //problem is line 44: fxml = FXMLLoader... due to NullPointerException
+                System.out.println("Stage 1");
+                fxml = FXMLLoader.load(getClass().getClassLoader().getResource("New-Log-In-Page.fxml"));
+                System.out.println("Stage 2");
                 vbox.getChildren().removeAll();
+                System.out.println("Stage 3");
                 vbox.getChildren().setAll(fxml);
+                System.out.println("Loaded vbox!");
             } catch(IOException ex) {
 
             }
@@ -50,7 +51,7 @@ public class StartController implements Initializable {
         t.play();
         t.setOnFinished((e) -> {
             try {
-                fxml = FXMLLoader.load(getClass().getResource("Log-In-Page2.fxml"));
+                fxml = FXMLLoader.load(getClass().getResource("New-Log-In-Page.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
             } catch(IOException ex) {
@@ -65,7 +66,7 @@ public class StartController implements Initializable {
         t.play();
         t.setOnFinished((e) -> {
             try {
-                fxml = FXMLLoader.load(getClass().getResource("Sign-Up-Page2.fxml"));
+                fxml = FXMLLoader.load(getClass().getResource("New-Sign-Up-Page.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
             } catch(IOException ex) {
