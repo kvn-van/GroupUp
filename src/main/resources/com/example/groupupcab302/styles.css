@@ -13,11 +13,7 @@
     -fx-text-fill: white;
 }
 
-#navButton {
-
-}
-
-.text {
+.text, .root {
     -fx-font-family: "Poppins";
 }
 
@@ -58,3 +54,14 @@
     -fx-font-weight: bold;
 }
 
+#NAMETEXT, #EVENTTEXT, #LOCATIONTEXT, #DATETEXT, #GUESTLIMIT, #GENRETEXT {
+    -fx-font-size: 18px;
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-radius: 5px;
+}
+
+#createTitle {
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
