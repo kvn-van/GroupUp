@@ -49,7 +49,9 @@ public class CreateEventController extends ParentViewController {
     private TextField eventTime;
 
     private String urlOfImageInMavenResourceFolder;
-    private int eventRegistrationQuantityParsed;
+
+
+    private String eventRegistrationQuantityParsed;
 
     private Scene scene;
 

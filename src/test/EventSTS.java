@@ -19,7 +19,7 @@ public class EventSTS {
     void setUp(){
         // Define a fixed userID for both user and event to prevent it from changing with varying test cases
         groupUpUser = new GroupUpUser(1, "FREESHEFFG", "Sheff", "G", "FlowsPart2@gmail.com", "1234567891", "18", "freeSHEFFGAND8THBLOCK");
-        event = new Event(1, groupUpUser.getUserID(), "10EleventConcert", "2024-05-01", "12:00 PM", "Uk Greensborough", "Concert", 1000, "FREE THE GUYS, FREE DIGGA AND FREE JSAV", "image.jpg", "JSAV, FISH");
+        event = new Event(1, groupUpUser.getUserID(), "10EleventConcert", "2024-05-01", "12:00 PM", "Uk Greensborough", "Concert", "1000", "FREE THE GUYS, FREE DIGGA AND FREE JSAV", "image.jpg", "JSAV, FISH");
     }
 
     @Test
@@ -66,7 +66,7 @@ public class EventSTS {
 
     @Test
     public void testGetNumberOfRegistrationsAvailable() {
-        assertEquals(1000, event.getNumberOfRegistrationsAvailable());
+        assertEquals("1000", event.getNumberOfRegistrationsAvailable());
     }
 
     @Test
@@ -111,8 +111,8 @@ public class EventSTS {
 
     @Test
     public void testSetNumberOfRegistrationsAvailable() {
-        event.setNumberOfRegistrationsAvailable(500);
-        assertEquals(500, event.getNumberOfRegistrationsAvailable());
+        event.setNumberOfRegistrationsAvailable("500");
+        assertEquals("500", event.getNumberOfRegistrationsAvailable());
     }
 
     @Test
@@ -150,7 +150,7 @@ public class EventSTS {
     @Test
     public void testingAutoIncrementingOfEventID() throws SQLException {
         GroupUpUser user = new GroupUpUser("user1", "John", "Doe", "john@example.com", "123456789", "25", "password1");
-        Event event = new Event(user, "Sample Event", "2024-05-01", "10:00 AM", "Sample Location", "Sample Genre", 100, "Sample Description", "sample.jpg");
+        Event event = new Event(user, "Sample Event", "2024-05-01", "10:00 AM", "Sample Location", "Sample Genre", "100", "Sample Description", "sample.jpg");
 
     }
 }

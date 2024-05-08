@@ -67,7 +67,7 @@ public class MockEventDAO {
                         resultSet.getString("time"),
                         resultSet.getString("location"),
                         resultSet.getString("genre"),
-                        resultSet.getInt("numberOfRegistrationsAvailable"),
+                        resultSet.getString("numberOfRegistrationsAvailable"),
                         resultSet.getString("descriptionOfEvent"),
                         resultSet.getString("image"),
                         resultSet.getString("eventAttendees")
@@ -94,7 +94,7 @@ public class MockEventDAO {
             insertEvent.setString(3, event.getTime());
             insertEvent.setString(4, event.getLocation());
             insertEvent.setString(5, event.getGenre());
-            insertEvent.setInt(6, event.getNumberOfRegistrationsAvailable());
+            insertEvent.setString(6, event.getNumberOfRegistrationsAvailable());
             insertEvent.setString(7, event.getDescription());
             insertEvent.setString(8, event.getImage());
             insertEvent.setString(9, event.getEventAttendees());

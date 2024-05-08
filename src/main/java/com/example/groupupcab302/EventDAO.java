@@ -25,7 +25,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
                             + "time VARCHAR NOT NULL, "
                             + "location VARCHAR NOT NULL, "
                             + "genre VARCHAR NOT NULL, "
-                            + "numberOfRegistrationsAvailable INT NOT NULL, "
+                            + "numberOfRegistrationsAvailable VARCHAR NOT NULL, "
                             + "descriptionOfEvent VARCHAR NOT NULL, "
                             + "image STRING NOT NULL, "
                             + "eventAttendees STRING NULL, "
@@ -57,7 +57,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
                         resultSet.getString("time"),
                         resultSet.getString("location"),
                         resultSet.getString("genre"),
-                        resultSet.getInt("numberOfRegistrationsAvailable"),
+                        resultSet.getString("numberOfRegistrationsAvailable"),
                         resultSet.getString("descriptionOfEvent"),
                         resultSet.getString("image"),
                         resultSet.getString("eventAttendees")
@@ -86,7 +86,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
             insertEvent.setString(3, event.getTime());
             insertEvent.setString(4, event.getLocation());
             insertEvent.setString(5, event.getGenre());
-            insertEvent.setInt(6, event.getNumberOfRegistrationsAvailable());
+            insertEvent.setString(6, event.getNumberOfRegistrationsAvailable());
             insertEvent.setString(7, event.getDescription());
             insertEvent.setString(8, event.getImage());
             insertEvent.setString(9, null);
@@ -144,7 +144,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
             eventFromDB =  new Event(resultSet.getInt("eventID"), resultSet.getInt("userIDofEventCreator"),
                     resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
                     resultSet.getString("location"), resultSet.getString("genre"),
-                    resultSet.getInt("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
+                    resultSet.getString("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
                     resultSet.getString("image"), resultSet.getString("eventAttendees"));
 
             eventsList.add(eventFromDB);

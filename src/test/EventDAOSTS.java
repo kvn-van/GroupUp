@@ -31,7 +31,7 @@ public class EventDAOSTS {
     @Test
     void testUpdateEvent() throws SQLException {
         // Insert an event first to have something to update
-        event = new Event(user, "Test Event", "2024-05-01", "12:00 PM", "Location", "Genre", 100, "Description", "image.jpg");
+        event = new Event(user, "Test Event", "2024-05-01", "12:00 PM", "Location", "Genre", "100", "Description", "image.jpg");
         eventDAO.insert(event);
 
         eventDAO.update(event, "genre", "Clubbing");
@@ -49,7 +49,7 @@ public class EventDAOSTS {
         // Note that when a record is deleted and another is readded, autoincrement does not set the key to the key of the deleted row
         // i.e if eventID 30 is removed then the next insertion takes 31
         // Delete is functional however its not expected for events to be deleted in this manner i.e after you insert you then constantly delete
-        Event eventToDelete = new Event(user, "Test Event", "2024-05-01", "12:00 PM", "Location", "Genre", 100, "Description", "image.jpg");
+        Event eventToDelete = new Event(user, "Test Event", "2024-05-01", "12:00 PM", "Location", "Genre", "100", "Description", "image.jpg");
         eventDAO.insert(eventToDelete);
         assertDoesNotThrow(() -> {
             eventDAO.delete(eventToDelete.getEventID());
@@ -70,9 +70,9 @@ public class EventDAOSTS {
             GroupUpUser user3 = new GroupUpUser(3, "username3", "Alice", "Johnson", "alice@example.com", "555555555", "22", "password3");
 
             // Creating multiple instances of Event
-            Event event1 = new Event(user1, "Event 1", "2024-05-10", "3:00 PM", "Park", "Outdoor", 50, "Family picnic", "picnic.jpg");
-            Event event2 = new Event(user2, "Event 2", "2024-06-15", "7:00 PM", "Concert Hall", "Music", 200, "Live concert", "concert.jpg");
-            Event event3 = new Event(user3, "Event 3", "2024-07-20", "6:30 PM", "Museum", "Art", 80, "Art exhibition", "art.jpg");
+            Event event1 = new Event(user1, "Event 1", "2024-05-10", "3:00 PM", "Park", "Outdoor", "50", "Family picnic", "picnic.jpg");
+            Event event2 = new Event(user2, "Event 2", "2024-06-15", "7:00 PM", "Concert Hall", "Music", "200", "Live concert", "concert.jpg");
+            Event event3 = new Event(user3, "Event 3", "2024-07-20", "6:30 PM", "Museum", "Art", "80", "Art exhibition", "art.jpg");
 
             eventDAO.insert(event1);
             eventDAO.insert(event2);

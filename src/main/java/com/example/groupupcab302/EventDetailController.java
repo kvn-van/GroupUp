@@ -93,6 +93,16 @@ public class EventDetailController extends ParentViewController {
 
     }
 
+    private void reduceRegistrationsAvailable() throws SQLException {
+        //Retrieve the event from the DB
+        Event eventFromDB = eventDAO.getEventById(eventChosenByUser.getEventID());
+        // Get the current number of registrations avaialble
+        // registration number already parsed/validated as only containg numeric characters before insertion
+        // Parsing is safe
+        int numOfRegistrationsAvailable = Integer.parseInt(eventFromDB.getNumberOfRegistrationsAvailable());
+        numOfRegistrationsAvailable -= 1;
+        eventDAO.update(eventChosenByUser, "numberOfRegistrationsAvailable",Integer.toString(numOfRegistrationsAvailable));
+    }
     @FXML
     public void goBackBtn() throws IOException {
         pageID = "event-view-template.fxml";
@@ -106,20 +116,41 @@ public class EventDetailController extends ParentViewController {
             Event eventFromDB = eventDAO.getEventById(eventChosenByUser.getEventID());
             // Get the current list of attendees
             String listOfAttendees = eventFromDB.getEventAttendees();
+            if (checkIfRegistrationSpotAvailable()){
+                registerUserToEvent(listOfAttendees);
+            }
+            else{
+                System.out.println("Unfortunately there isnt enough available spots to register you. This should be displayed to a status text area");
+            }
 
-            registerUserToEvent(listOfAttendees);
-
-        } catch (SQLException e){
-            System.out.println("Could Not Update and add user to the list of attendees!");
+        } catch (SQLException exception){
+            System.out.println("There was an issue when trying to add the user to the " +
+                    "list of attendees or reducing the available registrations!" + exception);
         }
     }
 
+    private boolean checkIfRegistrationSpotAvailable() throws SQLException {
+        //Retrieve the event from the DB
+        Event eventFromDB = eventDAO.getEventById(eventChosenByUser.getEventID());
+        // Get the current number of registrations avaialble
+        // registration number already parsed/validated as only containg numeric characters before insertion
+        // Parsing is safe
+        int numOfRegistrationsAvailable = Integer.parseInt(eventFromDB.getNumberOfRegistrationsAvailable());
 
-    private void registerUserToEvent(String listOfEventAttendees) throws CustomSQLException {
+        if (numOfRegistrationsAvailable > 0){
+            return true;
+        }
+
+        return false;
+
+    }
+    private void registerUserToEvent(String listOfEventAttendees) throws SQLException {
         if (isListOfAttendeesEmpty(listOfEventAttendees) || !isUserAlreadyRegisteredToEvent(listOfEventAttendees)){
             // String doesnt need to be nicely formatted since .contain will be used to check if user is or isnt attending later on
             listOfEventAttendees += "," + userInformation.getLoggedInUserInformation().getEmail();
             eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
+            //Reduce the number of available registrations by 1
+            reduceRegistrationsAvailable();
         }
 
         else{
