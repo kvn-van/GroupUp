@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javafx.scene.paint.Color;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
     @Override
@@ -17,12 +19,13 @@ public class Main extends Application {
         EventDAO eventDAO = new EventDAO();
         userDAO.createTable();
         eventDAO.createTable();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Start.fxml")); //"Log-In-Page.fxml"
         Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
         stage.setTitle("GroupUp");
         stage.setScene(scene);
         stage.show();
     }
+
 
     public static void main(String[] args) {
         launch();
