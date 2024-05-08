@@ -99,7 +99,5 @@ public class EventDAOSTS {
             fail("The test case failed due to the sql error" + sqlException);
         }
 
-
-        //Some methods are missing/not tested because they were temporarily used to devise a solution but will be replaced appropriately!
     }
 }

@@ -35,6 +35,9 @@ public class LoginController {
     private Scene scene;
     private Parent root;
 
+    // Identify the user who successfully logged in
+    private GroupUpUser loggedInUser;
+
 
     public LoginController() {
         userDAO = new UserDAO();
@@ -65,6 +68,7 @@ public class LoginController {
     protected void onLoginButton() throws IOException, SQLException {
         textFieldValues = new String[] {emailTextField.getText(), passwordTextField.getText()};
         handleUsersLogin();
+        //add code to retrieve and create the details of the user
         //changeScene(loginButton, pageID);
     }
 
@@ -87,7 +91,7 @@ public class LoginController {
                 if (areDetailsFoundInDB(inputtedEmail,inputtedPassword)){
                     signedInUser = userDAO.getUserRecordByEmail(inputtedEmail);
                     signedInUser.setIsLoggedIn(true);
-                    changeScene(loginButton, "event-view-template.fxml");
+                    changeScene(loginButton, "event-view.fxml");
                 }
             }
 

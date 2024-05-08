@@ -20,103 +20,109 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 
 public class CreateEventController extends ParentViewController {
 
-    private EventDAO EventDA;
+    private EventDAO eventDAO;
     private Stage stage;
     private File selectedFile;
     @FXML
-    private TextField NAMETEXT;
+    private TextField eventName;
     @FXML
-    private TextField EVENTTEXT;
+    private TextField eventDescription;
     @FXML
-    private DatePicker DATETEXT;
+    private DatePicker eventDate;
     @FXML
-    private TextField GUESTLIMIT;
+    private TextField eventRegistrationQuantity;
     @FXML
-    private TextField LOCATIONTEXT;
+    private TextField eventLocation;
     @FXML
-    private CheckBox TERMSBUTTON;
+    private CheckBox termsAndConditions;
     @FXML
-    private TextField GENRETEXT;
+    private TextField eventGenre;
     @FXML
-    private ImageView IMAGEVIEW;
+    private ImageView eventImage;
+    @FXML
+    private TextField eventTime;
 
-    int EventUserId = 9;
-    String EventName;
+    private String urlOfImageInMavenResourceFolder;
+    private int eventRegistrationQuantityParsed;
 
-    String EventDate;
-    String EventTime;
-    String Location;
-    String Summary;
-    String Genre;
-    int GuestLimit;
-    String Image;
+    GroupUpUser eventCreator = new GroupUpUser(1, "username1", "John", "Doe", "john@example.com", "123456789", "25", "password1");
 
     private Scene scene;
 
     public CreateEventController(){
-        EventDA = new EventDAO();
-        stage = new Stage();
+        eventDAO = new EventDAO();
     }
     @FXML
-    public void createEvent(){
-        System.out.println("DO NOTHIBNG FOR NOW");
-
-        /*
-        Event event = new Event(1,EventName, EventDate,  EventTime, Location,Genre,GuestLimit, Summary,Image);
-
+    public void createEvent() throws SQLException {
             try{
-                EventDA.insert(event);
+                System.out.println(urlOfImageInMavenResourceFolder);
+                Event eventToBeCreated = new Event(eventCreator, eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
+                        eventLocation.getText(), eventGenre.getText(), eventRegistrationQuantityParsed, eventDescription.getText(), urlOfImageInMavenResourceFolder);
+
+                eventDAO.insert(eventToBeCreated);
             }
             catch (CustomSQLException e) {
                 throw new RuntimeException(e);
             }
 
-         */
     }
+
 
     @FXML
     public void submit() throws CustomSQLException {
-        System.out.println("do nothing for now");
-        /*
-        if (TERMSBUTTON.isSelected()) {
-            System.out.println("Working on Event...");
-            EventName = NAMETEXT.getText();
-            EventDate = DATETEXT.getValue();
-            Location = LOCATIONTEXT.getText();
-            Summary = EVENTTEXT.getText();
-            Genre = GENRETEXT.getText();
-            GuestLimit = Integer.parseInt(GUESTLIMIT.getText());
+        try {
+            if (termsAndConditions.isSelected()) {
+                // Change the text below to show in status field
+                System.out.println("Working on Event...");
 
+                // Define the local directory where the image will be stored
+                File localDirectory = new File("src\\main\\resources\\com\\example\\groupupcab302\\Images");
 
-            //For the Image
-            File localDirectory = new File("EventImages");
+                // Check if the local directory does not exist
+                if (!localDirectory.exists()) {
+                    // If the directory doesn't exist, handle the situation (e.g., communicate to the user)
+                    // and return from the method
+                    // (Note: This is commented out, so it won't be executed)
+                    // create a status text area box
+                    return;
+                }
 
-            if (!localDirectory.exists()){
-                localDirectory.mkdirs();
-            }
+                // Check if a file is selected
+                if (selectedFile != null) {
+                    try {
+                        // Get the path of the selected file
+                        Path sourcePath = selectedFile.toPath();
 
-            if (selectedFile != null) {
-                try {
-                    Path sourcePath = selectedFile.toPath();
-                    Path destinationPath = new File(localDirectory, selectedFile.getName()).toPath();
-                    Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+                        // Create a destination path for the file by combining the local directory and the filename
+                        Path destinationPath = new File(localDirectory, selectedFile.getName()).toPath();
 
-                    Image = destinationPath.toAbsolutePath().toString();
-                    System.out.println("Image copied successfully to: " + destinationPath);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                        // Copy the selected file from its source path to the destination path,
+                        // replacing the file if it already exists
+                        // Replacing is not an issue, other events which use the same image will still point to the same image
+                        // However, images which are different but with the same name will need to be looked into...
+                        Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+                        // Construct the URL for the image within the Maven resource folder
+                        // by combining the folder path with the filename
+                        urlOfImageInMavenResourceFolder = "/com/example/groupupcab302/Images/" + selectedFile.getName();
+                        createEvent();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-
-            createEvent();
         }
 
-         */
+        catch (SQLException sqlException){
+            System.out.println("There was an issue" + sqlException);
+        }
     }
 
     @FXML
@@ -128,7 +134,7 @@ public class CreateEventController extends ParentViewController {
         selectedFile = fileChooser.showOpenDialog(stage);
         if(selectedFile != null){
             Image image = new Image(selectedFile.toURI().toString());
-            IMAGEVIEW.setImage(image);
+            eventImage.setImage(image);
         }else{
             System.out.println("No file has been selected");
         }

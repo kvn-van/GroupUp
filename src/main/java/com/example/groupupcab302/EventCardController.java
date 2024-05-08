@@ -29,9 +29,6 @@ public class EventCardController extends ParentViewController{
     private Label eventRegistrationSpots;
 
     @FXML
-    private Button eventViewButton;
-
-    @FXML
     private ImageView eventImage;
     private Stage stage;
     private Scene scene;
@@ -45,10 +42,12 @@ public class EventCardController extends ParentViewController{
     public void setData(Event event){
         // Store event details first
         this.event = event;
-        // Get the relativel url path for the events image and load it
+
+        // Get the relative url path for the events image and load it
         // Since project is maven dependency and resource folder is marked as resources root no need to ../ from current directory
         // Always use the path from source root i.e from the resources folder
-        String imageURL = "/com/example/groupupcab302/Images/study.jpg";
+        // All events store their images in resources /Images
+        String imageURL = event.getImage();
 
         // Get the image as a stream of bytes
         Image image = new Image(getClass().getResourceAsStream(imageURL));
@@ -66,7 +65,7 @@ public class EventCardController extends ParentViewController{
     @FXML
     public void onEventCardClick(ActionEvent event) throws IOException {
         //Basic code to switch the scene to an appropriate scene
-        Parent root = FXMLLoader.load(getClass().getResource("event-create-template.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("event-create.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
