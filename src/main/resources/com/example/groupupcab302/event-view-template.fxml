@@ -18,7 +18,7 @@
    </Text>
    <Button layoutX="952.0" layoutY="24.0" mnemonicParsing="false" text="Discover Events" />
    <Button layoutX="1158.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
-   <Button layoutX="1063.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavEventCreateClick" text="Create Event" />
+   <Button layoutX="1063.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavCreateEventClick" text="Create Event" />
    <VBox layoutX="47.0" layoutY="93.0" prefHeight="593.0" prefWidth="1169.0" style="-fx-background-color: white;">
       <children>
          <ScrollPane prefHeight="402.0" prefWidth="1169.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">

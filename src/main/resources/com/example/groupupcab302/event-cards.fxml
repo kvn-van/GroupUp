@@ -9,15 +9,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox id="eventContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.EventCardController">
+<VBox id="eventContainer" fx:id="eventCardContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;" stylesheets="@styling/event-card.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.EventCardController">
    <children>
-      <ImageView fx:id="eventImage" fitHeight="259.0" fitWidth="411.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="eventImage" fitHeight="259.0" fitWidth="412.0" pickOnBounds="true">
          <image>
-            <Image url="@Images/birthday.jpg" />
+            <Image url="@Images/study.jpg" />
          </image>
       </ImageView>
-      <Pane prefHeight="185.0" prefWidth="416.0">
+      <Pane prefHeight="182.0" prefWidth="412.0">
          <children>
             <Label id="eventName" fx:id="eventName" layoutX="15.0" prefHeight="50.0" prefWidth="387.0" text="Name Of The Event" wrapText="true">
                <font>
@@ -43,7 +42,6 @@
                   <Blend />
                </effect>
             </Label>
-            <Button id="eventViewButton" fx:id="eventViewButton" layoutX="87.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="223.0" text="View Event" />
             <Label id="eventLocation" fx:id="eventLocation" layoutX="15.0" layoutY="44.0" prefHeight="29.0" prefWidth="262.0" text="Location" wrapText="true">
                <font>
                   <Font size="20.0" />
@@ -52,6 +50,7 @@
                   <Blend />
                </effect>
             </Label>
+            <Button id="viewEventButtonForCard" fx:id="viewEventButtonForCard" onAction="#onNavCreateEventClick" layoutY="-262.0" mnemonicParsing="false" opacity="0.0" prefHeight="406.0" prefWidth="412.0" text="Button" />
          </children>
       </Pane>
    </children>

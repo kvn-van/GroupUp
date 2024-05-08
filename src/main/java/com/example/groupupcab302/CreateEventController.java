@@ -1,6 +1,11 @@
 package com.example.groupupcab302;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -18,7 +23,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
 
-public class CreateEventController {
+public class CreateEventController extends ParentViewController {
 
     private EventDAO EventDA;
     private Stage stage;
@@ -50,6 +55,8 @@ public class CreateEventController {
     String Genre;
     int GuestLimit;
     String Image;
+
+    private Scene scene;
 
     public CreateEventController(){
         EventDA = new EventDAO();
@@ -126,4 +133,5 @@ public class CreateEventController {
             System.out.println("No file has been selected");
         }
     }
+
 }

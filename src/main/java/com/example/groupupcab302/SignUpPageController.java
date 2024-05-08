@@ -111,9 +111,6 @@ public class SignUpPageController {
             SigningInStatus.setText(sqlException.getMessage());
         }
 
-        catch (SQLException exception) {
-            throw new RuntimeException(exception);
-        }
 
     }
 

@@ -17,7 +17,7 @@
                 <Font name="Eras Demi ITC" size="26.0" />
             </font>
         </Text>
-        <Button layoutX="947.0" layoutY="24.0" mnemonicParsing="false" text="Discover Events" />
+        <Button layoutX="947.0" layoutY="24.0" mnemonicParsing="false" text="Discover Events" onAction="#onNavDiscoverEventClick" />
         <Button layoutX="1153.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
         <Button layoutX="1058.0" layoutY="24.0" mnemonicParsing="false" text="Create Event" />
 
