@@ -18,7 +18,7 @@ public class Main extends Application {
         userDAO.createTable();
         eventDAO.createTable();
         eventDAO.getAllEvents();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Sign-Up-Page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("event-view-template.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
         stage.setTitle("GroupUp");
         stage.setScene(scene);

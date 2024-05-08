@@ -3,22 +3,33 @@ package com.example.groupupcab302;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class EventViewController {
+public class EventViewController implements Initializable {
+    @FXML
+    private GridPane eventGrid;
+    private EventDAO eventDAO = new EventDAO();
+    private List<Event> eventList;
 
-    @FXML
-    public Label eventName1, eventName2, eventName3, eventName4;
-    @FXML
-    public Label eventLocation1, eventLocation2, eventLocation3, eventLocation4;
+    private void initializeEventList() throws SQLException{
+            eventList = eventDAO.getAllEvents();
+    }
+
 
     @FXML
     public Label eventDate1, eventDate2, eventDate3, eventDate4;
@@ -30,29 +41,44 @@ public class EventViewController {
     private Scene scene;
     private Parent root;
 
-     private EventDAO eventDAO = new EventDAO();
-     @FXML
-    private void initialize() {
-        displayEventName(1, eventName1);
-        displayEventName(2, eventName2);
-        displayEventName(3, eventName3);
-        displayEventName(4, eventName4);
+    @FXML
+    public Label eventName1, eventName2, eventName3, eventName4;
+    @FXML
+    public Label eventLocation1, eventLocation2, eventLocation3, eventLocation4;
 
-        displayLocation(1, eventLocation1);
-        displayLocation(2, eventLocation2);
-        displayLocation(3, eventLocation3);
-        displayLocation(4, eventLocation4);
+     @Override
+    public void initialize(URL location, ResourceBundle resources) {
+         try {
+             int columns = 0;
+             int rows = 1;
 
-        displayDate(1, eventDate1);
-        displayDate(2, eventDate2);
-        displayDate(3, eventDate3);
-        displayDate(4, eventDate4);
+             initializeEventList();
 
-        displayGenre(1, eventGenre1);
-        displayGenre(2, eventGenre2);
-        displayGenre(3, eventGenre3);
-        displayGenre(4, eventGenre4);
-    }
+             for (int counter = 0; counter<eventList.size() ; counter++){
+                 FXMLLoader fxmlLoader = new FXMLLoader();
+                 fxmlLoader.setLocation(getClass().getResource("event-cards.fxml"));
+
+                 VBox eventCardPlacementBox = fxmlLoader.load();
+
+                 EventCardController eventCardController = fxmlLoader.getController();
+                 eventCardController.setData(eventList.get(counter));
+
+                 if (columns == 3){
+                     columns = 0;
+                     ++rows;
+                 }
+
+                 eventGrid.add(eventCardPlacementBox, columns++, rows);
+                 GridPane.setMargin(eventCardPlacementBox, new Insets(10));
+             }
+
+         } catch (SQLException sqlException) {
+             System.out.println("There was an issue when trying to get all events." + sqlException);
+
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
 
 
 

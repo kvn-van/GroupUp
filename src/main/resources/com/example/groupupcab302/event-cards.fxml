@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox id="eventContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="416.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="eventContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.EventCardController">
    <children>
-      <ImageView fitHeight="280.0" fitWidth="427.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="eventImage" fitHeight="259.0" fitWidth="411.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/birthday.jpg" />
          </image>
@@ -27,15 +27,7 @@
                   <Blend />
                </effect>
             </Label>
-            <Label id="eventDate" fx:id="eventDate" layoutX="15.0" layoutY="44.0" prefHeight="30.0" prefWidth="404.0" text="Date" wrapText="true">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <effect>
-                  <Blend />
-               </effect>
-            </Label>
-            <Label id="eventLocation" fx:id="eventLocation" layoutX="15.0" layoutY="74.0" prefHeight="29.0" prefWidth="262.0" text="Location" wrapText="true">
+            <Label id="eventDate" fx:id="eventDate" layoutX="15.0" layoutY="74.0" prefHeight="30.0" prefWidth="404.0" text="Date" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>
@@ -52,6 +44,14 @@
                </effect>
             </Label>
             <Button id="eventViewButton" fx:id="eventViewButton" layoutX="87.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="223.0" text="View Event" />
+            <Label id="eventLocation" fx:id="eventLocation" layoutX="15.0" layoutY="44.0" prefHeight="29.0" prefWidth="262.0" text="Location" wrapText="true">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+            </Label>
          </children>
       </Pane>
    </children>
