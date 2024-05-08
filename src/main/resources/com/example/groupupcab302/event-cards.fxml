@@ -50,7 +50,7 @@
                   <Blend />
                </effect>
             </Label>
-            <Button id="viewEventButtonForCard" fx:id="viewEventButtonForCard" onAction="#onNavCreateEventClick" layoutY="-262.0" mnemonicParsing="false" opacity="0.0" prefHeight="406.0" prefWidth="412.0" text="Button" />
+            <Button id="viewEventButtonForCard" fx:id="viewEventButtonForCard" onAction="#onEventCardClick" layoutY="-262.0" mnemonicParsing="false" opacity="0.0" prefHeight="406.0" prefWidth="412.0" text="Button" />
          </children>
       </Pane>
    </children>

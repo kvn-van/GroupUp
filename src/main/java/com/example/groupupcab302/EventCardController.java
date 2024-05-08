@@ -70,8 +70,7 @@ public class EventCardController extends ParentViewController{
     //Rename the paramater to differentiate from the event object
     public void onEventCardClick(ActionEvent actionableEvent) throws IOException {
 
-
-        System.out.println(event.getAllEventDetails());
+        userInformation.setEventSelectedByUser(this.event);
         //Basic code to switch the scene to an appropriate scene
         Parent root = FXMLLoader.load(getClass().getResource("event-create.fxml"));
         stage = (Stage)((Node)actionableEvent.getSource()).getScene().getWindow();
