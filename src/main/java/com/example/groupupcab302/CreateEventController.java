@@ -67,7 +67,6 @@ public class CreateEventController extends ParentViewController {
     @FXML
     public void createEvent() throws SQLException {
             try{
-                GroupUpUser user1 = new GroupUpUser(1, "username1", "John", "Doe", "john@example.com", "123456789", "25", "password1");
                 // Retrieve the user who is currently logged in to use their ID and associate it with event being created
                 Event eventToBeCreated = new Event(userInformation.getLoggedInUserInformation(), eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
                         eventLocation.getText(), eventGenre.getText(), eventRegistrationQuantityParsed, eventDescription.getText(), urlOfImageInMavenResourceFolder);
