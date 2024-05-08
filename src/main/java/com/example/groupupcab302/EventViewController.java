@@ -51,7 +51,6 @@ public class EventViewController extends ParentViewController implements Initial
      @Override
     public void initialize(URL location, ResourceBundle resources) {
          try {
-
              initializeEventList();
              int columns = 0;
              int rows = 1;
