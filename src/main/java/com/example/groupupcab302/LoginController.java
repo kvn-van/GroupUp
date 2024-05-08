@@ -15,6 +15,7 @@ import java.sql.SQLException;
 
 public class LoginController {
 
+    private UserInformation userInformation = new UserInformation();
     public PasswordField passwordTextField;
     public TextField emailTextField;
     public TextArea loginStatus;
@@ -66,10 +67,14 @@ public class LoginController {
 
     @FXML
     protected void onLoginButton() throws IOException, SQLException {
-        textFieldValues = new String[] {emailTextField.getText(), passwordTextField.getText()};
-        handleUsersLogin();
-        //add code to retrieve and create the details of the user
-        //changeScene(loginButton, pageID);
+        try{
+            textFieldValues = new String[] {emailTextField.getText(), passwordTextField.getText()};
+            handleUsersLogin();
+
+        }
+        catch (SQLException exception){
+            loginStatus.setText(exception.getMessage());
+        }
     }
 
     public static void changeScene(Button button, String pageID) throws IOException {
@@ -91,20 +96,28 @@ public class LoginController {
                 if (areDetailsFoundInDB(inputtedEmail,inputtedPassword)){
                     signedInUser = userDAO.getUserRecordByEmail(inputtedEmail);
                     signedInUser.setIsLoggedIn(true);
+                    updateInformationOfLoggedInUser(inputtedEmail);
                     changeScene(loginButton, "event-view.fxml");
                 }
             }
 
         }
 
-        catch (SQLException exception){
-            loginStatus.setText(exception.getMessage());
-        }
         catch (IOException e) {
             loginStatus.setText("Failed to load the events page.");
         }
     }
 
+    private void updateInformationOfLoggedInUser(String userEmail) throws SQLException {
+        try{
+            GroupUpUser loggedInUser = userDAO.getUserRecordByEmail(userEmail);
+            userInformation.setLoggedInUserInformation(loggedInUser);
+        }
+
+        catch (SQLException sqlException){
+            loginStatus.setText("When trying to access your information in the database the following exception was produced!" + sqlException);
+        }
+    }
     public boolean areDetailsFoundInDB(String inputtedEmail, String inputtedPassword) throws SQLException {
         // User is found if not null
         if (userDAO.getUserRecordByEmail(inputtedEmail) != null){

@@ -23,6 +23,8 @@ import java.util.ResourceBundle;
 public class EventViewController extends ParentViewController implements Initializable{
     @FXML
     private GridPane eventGrid;
+
+    private UserInformation userInformation = new UserInformation();
     private EventDAO eventDAO = new EventDAO();
     private List<Event> eventList;
 

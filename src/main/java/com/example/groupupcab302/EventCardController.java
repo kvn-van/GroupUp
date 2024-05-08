@@ -33,8 +33,11 @@ public class EventCardController extends ParentViewController{
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private EventDAO eventDAO = new EventDAO();
+    private UserInformation userInformation = new UserInformation();
 
-    // Store the event and its details so that the details can be passed to other screens
+
+    // Store the event retrieved from the DB and its details so that the details can be passed to other screens
     private Event event;
 
     // Using the layout of the card, allow an event to be supplied as a parameter
@@ -42,6 +45,7 @@ public class EventCardController extends ParentViewController{
     public void setData(Event event){
         // Store event details first
         this.event = event;
+        System.out.println(event);
 
         // Get the relative url path for the events image and load it
         // Since project is maven dependency and resource folder is marked as resources root no need to ../ from current directory
@@ -63,10 +67,14 @@ public class EventCardController extends ParentViewController{
     }
 
     @FXML
-    public void onEventCardClick(ActionEvent event) throws IOException {
+    //Rename the paramater to differentiate from the event object
+    public void onEventCardClick(ActionEvent actionableEvent) throws IOException {
+
+
+        System.out.println(event.getAllEventDetails());
         //Basic code to switch the scene to an appropriate scene
         Parent root = FXMLLoader.load(getClass().getResource("event-create.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage)((Node)actionableEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

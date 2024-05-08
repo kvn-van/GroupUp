@@ -25,7 +25,7 @@ import java.time.LocalDate;
 
 
 public class CreateEventController extends ParentViewController {
-
+    private UserInformation userInformation = new UserInformation();
     private EventDAO eventDAO;
     private Stage stage;
     private File selectedFile;
@@ -51,18 +51,22 @@ public class CreateEventController extends ParentViewController {
     private String urlOfImageInMavenResourceFolder;
     private int eventRegistrationQuantityParsed;
 
-    GroupUpUser eventCreator = new GroupUpUser(1, "username1", "John", "Doe", "john@example.com", "123456789", "25", "password1");
-
     private Scene scene;
 
     public CreateEventController(){
+
         eventDAO = new EventDAO();
+        // test that the event selecteds details are printed out
+
+            Event eventSelectedByUser = userInformation.getEventSelectedByUser();
+            System.out.println(eventSelectedByUser.getAllEventDetails());
+
     }
     @FXML
     public void createEvent() throws SQLException {
             try{
-                System.out.println(urlOfImageInMavenResourceFolder);
-                Event eventToBeCreated = new Event(eventCreator, eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
+                // Retrieve the user who is currently logged in to use their ID and associate it with event being created
+                Event eventToBeCreated = new Event(userInformation.getLoggedInUserInformation(), eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
                         eventLocation.getText(), eventGenre.getText(), eventRegistrationQuantityParsed, eventDescription.getText(), urlOfImageInMavenResourceFolder);
 
                 eventDAO.insert(eventToBeCreated);
