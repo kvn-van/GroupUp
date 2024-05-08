@@ -1,6 +1,8 @@
 package com.example.groupupcab302;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 // Implement the database interface with the datatype of the class event as the parameter
 // Allows overriding of interface methods and for specific operations on the user objects and database
@@ -142,6 +144,27 @@ public class EventDAO implements IDatabaseDAO<Event>{
         rs.close();
         stmt.close();
         return eventName;
+    }
+
+    public List<Event> getAllEvents() throws SQLException{
+        String sqlQuery = "SELECT * FROM GroupUpEvents";
+        PreparedStatement preparedStatement = connectionToDatabase.prepareStatement(sqlQuery);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Event eventFromDB;
+
+        List<Event> eventsList =  new ArrayList<Event>();
+
+        while (resultSet.next()){
+            eventFromDB =  new Event(resultSet.getInt("eventID"), resultSet.getInt("userIDofEventCreator"),
+                    resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
+                    resultSet.getString("location"), resultSet.getString("genre"),
+                    resultSet.getInt("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
+                    resultSet.getString("image"), resultSet.getString("eventAttendees"));
+
+            eventsList.add(eventFromDB);
+        }
+
+        return eventsList;
     }
 
     public String getLocationById(int eventID) throws SQLException {
