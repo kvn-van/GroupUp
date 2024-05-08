@@ -3,19 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Blend?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="eventContainer" fx:id="eventCardContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;" stylesheets="@styling/event-card.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.EventCardController">
+<VBox id="eventContainer" fx:id="eventCardContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;" stylesheets="@styling/event-card.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.groupupcab302.EventCardController">
    <children>
-      <ImageView fx:id="eventImage" fitHeight="259.0" fitWidth="412.0" pickOnBounds="true">
-         <image>
-            <Image url="@Images/study.jpg" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="eventImage" fitHeight="259.0" fitWidth="412.0" pickOnBounds="true" />
       <Pane prefHeight="182.0" prefWidth="412.0">
          <children>
             <Label id="eventName" fx:id="eventName" layoutX="15.0" prefHeight="50.0" prefWidth="387.0" text="Name Of The Event" wrapText="true">
@@ -50,7 +45,7 @@
                   <Blend />
                </effect>
             </Label>
-            <Button id="viewEventButtonForCard" fx:id="viewEventButtonForCard" onAction="#onEventCardClick" layoutY="-262.0" mnemonicParsing="false" opacity="0.0" prefHeight="406.0" prefWidth="412.0" text="Button" />
+            <Button id="viewEventButtonForCard" fx:id="viewEventButtonForCard" layoutY="-262.0" mnemonicParsing="false" onAction="#onEventCardClick" opacity="0.0" prefHeight="406.0" prefWidth="412.0" text="Button" />
          </children>
       </Pane>
    </children>

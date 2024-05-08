@@ -53,18 +53,21 @@ public class CreateEventController extends ParentViewController {
 
     private Scene scene;
 
+
     public CreateEventController(){
 
         eventDAO = new EventDAO();
-        // test that the event selecteds details are printed out
-
+        // test that the event selected details are printed out, this is only temporary we need to design a page to view event details
+        if (userInformation.getEventSelectedByUser() != null){
             Event eventSelectedByUser = userInformation.getEventSelectedByUser();
             System.out.println(eventSelectedByUser.getAllEventDetails());
+        }
 
     }
     @FXML
     public void createEvent() throws SQLException {
             try{
+                GroupUpUser user1 = new GroupUpUser(1, "username1", "John", "Doe", "john@example.com", "123456789", "25", "password1");
                 // Retrieve the user who is currently logged in to use their ID and associate it with event being created
                 Event eventToBeCreated = new Event(userInformation.getLoggedInUserInformation(), eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
                         eventLocation.getText(), eventGenre.getText(), eventRegistrationQuantityParsed, eventDescription.getText(), urlOfImageInMavenResourceFolder);

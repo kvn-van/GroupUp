@@ -51,10 +51,10 @@ public class EventViewController extends ParentViewController implements Initial
      @Override
     public void initialize(URL location, ResourceBundle resources) {
          try {
-             int columns = 0;
-             int rows = 1;
 
              initializeEventList();
+             int columns = 0;
+             int rows = 1;
 
              for (int counter = 0; counter<eventList.size() ; counter++){
                  // Create an fxml loader object

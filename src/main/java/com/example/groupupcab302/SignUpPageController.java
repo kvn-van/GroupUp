@@ -67,7 +67,7 @@ public class SignUpPageController {
     @FXML
     protected void onAlreadyHaveAnAccountClick(ActionEvent event) throws IOException {
         //Basic code to switch the scene to an appropriate scene
-        Parent root = FXMLLoader.load(getClass().getResource("Log-In-Page.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login-Page.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

@@ -103,8 +103,8 @@ public class LoginController {
 
         }
 
-        catch (IOException e) {
-            loginStatus.setText("Failed to load the events page.");
+        catch (IOException ioException) {
+            loginStatus.setText("Failed to load the events page." + ioException);
         }
     }
 
