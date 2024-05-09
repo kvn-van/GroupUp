@@ -27,6 +27,8 @@ public class MyRegisteredEventsController extends ParentViewController implement
     private Parent root;
 
     public void initialize(){
+        //Users only viewing events without intention to edit, ensure cards when clicked have one behaviour
+        userInformation.setDoesUserWantToEditTheirEvents(false);
         showEventsFromDB();
     }
 

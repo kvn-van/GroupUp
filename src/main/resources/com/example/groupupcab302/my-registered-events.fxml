@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.groupupcab302.MyRegisteredEventsController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.MyRegisteredEventsController">
    <children>
       <Text fill="#030303" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
          <font>
@@ -21,7 +22,7 @@
       <Button layoutX="1028.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavRegistrationClick" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
       <Button layoutX="933.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavCreateEventClick" text="Create Event" />
       <Button layoutX="1125.0" onAction="#onNavYourEventsClick" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Your Events" />
-      <VBox layoutX="47.0" layoutY="93.0" prefHeight="593.0" prefWidth="1169.0" style="-fx-background-color: white;">
+      <VBox layoutX="47.0" layoutY="159.0" prefHeight="527.0" prefWidth="1169.0" style="-fx-background-color: white;">
          <children>
             <ScrollPane prefHeight="402.0" prefWidth="1169.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                <VBox.margin>
@@ -37,5 +38,10 @@
             </ScrollPane>
          </children>
       </VBox>
+      <Label layoutX="194.0" layoutY="64.0" text="Events Which You're Registered For!">
+         <font>
+            <Font size="56.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

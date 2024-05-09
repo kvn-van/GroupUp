@@ -37,7 +37,7 @@
                   <Blend />
                </effect>
             </Label>
-            <Label id="eventLocation" fx:id="eventLocation" layoutX="15.0" layoutY="44.0" prefHeight="29.0" prefWidth="262.0" text="Location" wrapText="true">
+            <Label id="eventLocation" fx:id="eventLocation" layoutX="15.0" layoutY="44.0" prefHeight="29.0" prefWidth="262.0" text="LocationOfEvent" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>

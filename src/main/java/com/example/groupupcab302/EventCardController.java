@@ -84,6 +84,33 @@ public class EventCardController extends ParentViewController{
     //Rename the paramater to differentiate from the event object
     public void onEventCardClick(ActionEvent actionableEvent) throws IOException {
         userInformation.setEventSelectedByUser(this.event);
+        //try{
+            //Retrieve the intended behaviour of the user
+            // If user does want to edit a card then redirect to appropriate page, else display the events details
+            if (userInformation.getDoesUserWantToEditTheirEvents()){
+                redirectToEventEditing(actionableEvent);
+            }
+
+            else{
+                redirectToEventPage(actionableEvent);
+            }
+        //}
+
+        /*catch (IOException ioException){
+            System.out.println("There was an issue when trying to redirect you to the appropriate page upon the event being clicked!" + ioException.getStackTrace());
+        }*/
+
+    }
+
+    private void redirectToEventEditing(ActionEvent actionableEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("editing-event.fxml"));
+        stage = (Stage)((Node)actionableEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void redirectToEventPage(ActionEvent actionableEvent) throws IOException {
         //Basic code to switch the scene to an appropriate scene
         Parent root = FXMLLoader.load(getClass().getResource("event-detail-page.fxml"));
         stage = (Stage)((Node)actionableEvent.getSource()).getScene().getWindow();

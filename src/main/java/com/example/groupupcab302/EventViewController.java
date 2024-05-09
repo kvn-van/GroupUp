@@ -24,9 +24,13 @@ public class EventViewController extends ParentViewController{
     private Scene scene;
     private Parent root;
 
+
     public void initialize(){
+        //Users only viewing events without intention to edit, ensure cards when clicked have one behaviour
+        userInformation.setDoesUserWantToEditTheirEvents(false);
         showEventsFromDB();
     }
+
     /* Summary of how events are dynamically rendered /TLDR
         For Each Event:
         Load the event card layout from the FXML file.
