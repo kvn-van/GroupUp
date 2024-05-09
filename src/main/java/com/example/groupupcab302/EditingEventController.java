@@ -67,9 +67,9 @@ public class EditingEventController extends ParentViewController {
     }
 
     @FXML
-    public void onSubmit(){
-        System.out.println("working");
+    public void onSubmit(ActionEvent event){
         update();
+        redirectToYourEventsPage(event);
     }
 
     private void update() {

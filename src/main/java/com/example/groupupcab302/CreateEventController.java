@@ -1,5 +1,6 @@
 package com.example.groupupcab302;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -72,7 +73,7 @@ public class CreateEventController extends ParentViewController {
 
 
     @FXML
-    public void submit() throws CustomSQLException {
+    public void submit(ActionEvent event ) throws CustomSQLException {
         try {
             if (termsAndConditions.isSelected()) {
                 // Change the text below to show in status field
@@ -109,6 +110,7 @@ public class CreateEventController extends ParentViewController {
                         // by combining the folder path with the filename
                         urlOfImageInMavenResourceFolder = "/com/example/groupupcab302/Images/" + selectedFile.getName();
                         createEvent();
+                        redirectToEventDiscoveryPage(event);
 
                     } catch (IOException e) {
                         e.printStackTrace();
