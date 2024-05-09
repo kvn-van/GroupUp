@@ -1,146 +1,92 @@
 package com.example.groupupcab302;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Objects;
+import java.util.List;
 
-import static com.example.groupupcab302.LoginController.pageID;
-
-public class EventViewController {
-
+public class EventViewController extends ParentViewController{
     @FXML
-    public Label eventName1, eventName2, eventName3, eventName4;
-    @FXML
-    public Label eventLocation1, eventLocation2, eventLocation3, eventLocation4;
+    private GridPane eventGrid;
 
-    @FXML
-    public Label eventDate1, eventDate2, eventDate3, eventDate4;
-
-    @FXML
-    public Label eventGenre1, eventGenre2, eventGenre3, eventGenre4;
-    public Button viewEvent;
-
-    public static int viewEventNumber;
-
-    private final EventDAO eventDAO = new EventDAO();
+    private UserInformation userInformation = new UserInformation();
+    private EventDAO eventDAO = new EventDAO();
+    private List<Event> eventList;
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-     @FXML
-    private void initialize() {
-        displayEventName(1, eventName1);
-        displayEventName(2, eventName2);
-        displayEventName(3, eventName3);
-        displayEventName(4, eventName4);
 
-        displayLocation(1, eventLocation1);
-        displayLocation(2, eventLocation2);
-        displayLocation(3, eventLocation3);
-        displayLocation(4, eventLocation4);
-
-        displayDate(1, eventDate1);
-        displayDate(2, eventDate2);
-        displayDate(3, eventDate3);
-        displayDate(4, eventDate4);
-
-        displayGenre(1, eventGenre1);
-        displayGenre(2, eventGenre2);
-        displayGenre(3, eventGenre3);
-        displayGenre(4, eventGenre4);
+    public void initialize(){
+        //Users only viewing events without intention to edit, ensure cards when clicked have one behaviour
+        userInformation.setDoesUserWantToEditTheirEvents(false);
+        showEventsFromDB();
     }
 
+    /* Summary of how events are dynamically rendered /TLDR
+        For Each Event:
+        Load the event card layout from the FXML file.
+        Update the content of the event card with data from the current event retrieved from the database.
+        Add the event card to the GridPane, positioning it according to the current grid layout (using the columns and rows variables).
+        Grid pane allows a row and column variable to be taken upon trying to add content to the pane. This means we can define where to position the event card
+        Set margins around the event card to provide spacing between cards within the GridPane.
+        Repeat for the number of events within the DB
+    */
+    public void showEventsFromDB() {
+         try {
+             initializeEventList();
+             int columns = 0;
+             int rows = 1;
 
+             for (int counter = 0; counter<eventList.size() ; counter++){
+                 // Create an fxml loader object
+                 FXMLLoader fxmlLoader = new FXMLLoader();
+                 // Use the fxml loader object to load the event card fxml doc to retrieve the structure
+                 fxmlLoader.setLocation(getClass().getResource("event-cards.fxml"));
 
+                 // Create a vbox to hold the structure returned by the event card fxml file upon load
+                 VBox eventCardPlacementBox = fxmlLoader.load();
 
-    @FXML
-    protected void onNavEventCreateClick(ActionEvent event) throws IOException {
-        //Basic code to switch the scene to an appropriate scene
-        Parent root = FXMLLoader.load(getClass().getResource("event-create-template.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+                 // Retrieve the controller associated with the event card fxml
+                 EventCardController eventCardController = fxmlLoader.getController();
+                 // Set the content of the card by supplying the data of an event retrieved from the database
+                 eventCardController.setData(eventList.get(counter));
+
+                 // Check that the number of event cards created does not exceed 3 per row
+                 if (columns == 3){
+                     // Reset the number to 0 to start placing cards at the start of the row
+                     columns = 0;
+                     // Increment the rows to move down 1 before starting to place the next event cards
+                     ++rows;
+                 }
+                 // Add the event card to the actual grid pane for display
+                 eventGrid.add(eventCardPlacementBox, columns++, rows);
+                 // Create a margin between all event cards of 10 pixels for all sides
+                 GridPane.setMargin(eventCardPlacementBox, new Insets(10));
+             }
+
+         } catch (SQLException sqlException) {
+             System.out.println("There was an issue when trying to get all events." + sqlException);
+
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
+
+    // Before dynamically rendering events, fetch all available events from DB
+    // Store them to a field for accessing
+    private void initializeEventList() throws SQLException{
+        eventList = eventDAO.getAllEvents();
     }
-
-    @FXML
-    public void displayEventName(int eventID, Label eventName) {
-        try {
-            String eventNameString = eventDAO.getEventNameById(eventID);
-            eventName.setText(Objects.requireNonNullElse(eventNameString, "Event not found"));
-        } catch (SQLException e) {
-            eventName.setText("Error retrieving event");
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void displayDate(int eventID, Label eventDate) {
-        try {
-            String eventDateString= eventDAO.getDateById(eventID);
-            eventDate.setText(Objects.requireNonNullElse(eventDateString, "Event not found"));
-        } catch (SQLException e) {
-            eventDate.setText("Error retrieving event");
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void displayLocation(int eventID, Label eventLocation) {
-        try {
-            String eventLocationString  = eventDAO.getLocationById(eventID);
-            eventLocation.setText(Objects.requireNonNullElse(eventLocationString, "Event not found"));
-        } catch (SQLException e) {
-            eventLocation.setText("Error retrieving event");
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void displayGenre(int eventID, Label eventGenre) {
-        try {
-            String eventGenreString = eventDAO.getGenreById(eventID);
-            eventGenre.setText(Objects.requireNonNullElse(eventGenreString, "Event not found"));
-        } catch (SQLException e) {
-            eventGenre.setText("Error retrieving event");
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @FXML
-    public void setViewEvent1() throws IOException {
-         viewEventNumber = 1;
-         setViewEventDetail(viewEventNumber);
-    }
-
-    @FXML
-    public void setViewEvent2() throws IOException {
-         viewEventNumber = 2;
-         setViewEventDetail(viewEventNumber);
-    }
-
-    @FXML
-    public void setViewEvent3() throws IOException {
-         viewEventNumber = 3;
-         setViewEventDetail(viewEventNumber);
-    }
-
-    @FXML
-    public void setViewEvent4() throws IOException {
-         viewEventNumber = 4;
-         setViewEventDetail(viewEventNumber);
-    }
-
-    @FXML
-    protected void setViewEventDetail(int viewEventNumber) throws IOException {
-        pageID = "event-detail-page.fxml";
-        LoginController.changeScene(viewEvent, pageID);
-    }
+     
 }

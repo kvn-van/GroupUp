@@ -19,7 +19,7 @@ public class Event {
     private String time;
     private String location;
     private String genre;
-    private int numberOfRegistrationsAvailable;
+    private String numberOfRegistrationsAvailable;
     private String description;
     private String image;
 
@@ -31,7 +31,7 @@ public class Event {
 
     // Default constructor
     // Should be called for instances where an event is created with values from controller
-    public Event(GroupUpUser groupUpUser, String name, String date, String time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image) throws SQLException {
+    public Event(GroupUpUser groupUpUser, String name, String date, String time, String location, String genre, String numberOfRegistrationsAvailable, String description, String image) throws SQLException {
         getValidEventIDFromDB();
         eventCreatorUserID = groupUpUser.getUserID();
         this.name = name;
@@ -46,7 +46,7 @@ public class Event {
 
     // Added constructor for special cases where event can be expiticly be created with an ID
     // Should be used to create an event  when the data for an event is returned from the database
-    public Event(int eventID, int userIDOfEventCreator, String name, String date, String time, String location, String genre, int numberOfRegistrationsAvailable, String description, String image, String listOfAttendees){
+    public Event(int eventID, int userIDOfEventCreator, String name, String date, String time, String location, String genre, String numberOfRegistrationsAvailable, String description, String image, String listOfAttendees){
         this.eventID = eventID;
         eventCreatorUserID = userIDOfEventCreator;
         this.name = name;
@@ -133,7 +133,7 @@ public class Event {
         return genre;
     }
 
-    public int getNumberOfRegistrationsAvailable() {
+    public String getNumberOfRegistrationsAvailable() {
         return numberOfRegistrationsAvailable;
     }
 
@@ -170,7 +170,7 @@ public class Event {
         this.genre = genre;
     }
 
-    public void setNumberOfRegistrationsAvailable(int numberOfRegistrationsAvailable) {
+    public void setNumberOfRegistrationsAvailable(String numberOfRegistrationsAvailable) {
         this.numberOfRegistrationsAvailable = numberOfRegistrationsAvailable;
     }
 

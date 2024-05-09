@@ -1,7 +1,6 @@
 package com.example.groupupcab302;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,8 +12,9 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class LoginController {
+public class LoginController extends ParentViewController {
 
+    private UserInformation userInformation = new UserInformation();
     public PasswordField passwordTextField;
     public TextField emailTextField;
     public TextArea loginStatus;
@@ -35,37 +35,26 @@ public class LoginController {
     private Scene scene;
     private Parent root;
 
+    // Identify the user who successfully logged in
+    private GroupUpUser loggedInUser;
+
 
     public LoginController() {
         userDAO = new UserDAO();
     }
 
-    @FXML
-    protected void onNoAccountClick(ActionEvent event) throws IOException {
-        //Basic code to switch the scene to an appropriate scene
-        Parent root = FXMLLoader.load(getClass().getResource("Sign-Up-Page.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
 
     @FXML
-    protected void onSignUpNavClick() throws IOException {
-        pageID = "Sign-Up-Page.fxml";
-        changeScene(signUpNav, pageID);
-    }
+    protected void onLoginButton(ActionEvent event) throws IOException, SQLException {
+        try{
+            textFieldValues = new String[] {emailTextField.getText(), passwordTextField.getText()};
+            handleUsersLogin(event);
 
-    @FXML
-    protected void onNoAccountButton() throws IOException {
-        changeScene(noAccountButton, pageID);
-    }
-
-    @FXML
-    protected void onLoginButton() throws IOException, SQLException {
-        textFieldValues = new String[] {emailTextField.getText(), passwordTextField.getText()};
-        handleUsersLogin();
-        //changeScene(loginButton, pageID);
+        }
+        catch (SQLException exception){
+            loginStatus.setText(exception.getMessage());
+        }
     }
 
     public static void changeScene(Button button, String pageID) throws IOException {
@@ -75,32 +64,33 @@ public class LoginController {
         stage.setScene(scene);
     }
 
-    public void handleUsersLogin() throws SQLException{
-        getUserDetails();
+    public void handleUsersLogin(ActionEvent event) throws SQLException{
+        getUserDetails(event);
     }
 
-    public void getUserDetails() throws SQLException {
-        try {
-            if (areTextFieldsValid()) {
-                String inputtedEmail = emailTextField.getText();
-                String inputtedPassword = passwordTextField.getText();
-                if (areDetailsFoundInDB(inputtedEmail,inputtedPassword)){
-                    signedInUser = userDAO.getUserRecordByEmail(inputtedEmail);
-                    signedInUser.setIsLoggedIn(true);
-                    changeScene(loginButton, "event-view-template.fxml");
-                }
+    public void getUserDetails(ActionEvent event) throws SQLException {
+        if (areTextFieldsValid()) {
+            String inputtedEmail = emailTextField.getText();
+            String inputtedPassword = passwordTextField.getText();
+            if (areDetailsFoundInDB(inputtedEmail,inputtedPassword)){
+                signedInUser = userDAO.getUserRecordByEmail(inputtedEmail);
+                signedInUser.setIsLoggedIn(true);
+                updateInformationOfLoggedInUser(inputtedEmail);
+                redirectToEventDiscoveryPage(event);
             }
-
-        }
-
-        catch (SQLException exception){
-            loginStatus.setText(exception.getMessage());
-        }
-        catch (IOException e) {
-            loginStatus.setText("Failed to load the events page.");
         }
     }
 
+    private void updateInformationOfLoggedInUser(String userEmail) throws SQLException {
+        try{
+            GroupUpUser loggedInUser = userDAO.getUserRecordByEmail(userEmail);
+            userInformation.setLoggedInUserInformation(loggedInUser);
+        }
+
+        catch (SQLException sqlException){
+            loginStatus.setText("When trying to access your information in the database the following exception was produced!" + sqlException);
+        }
+    }
     public boolean areDetailsFoundInDB(String inputtedEmail, String inputtedPassword) throws SQLException {
         // User is found if not null
         if (userDAO.getUserRecordByEmail(inputtedEmail) != null){

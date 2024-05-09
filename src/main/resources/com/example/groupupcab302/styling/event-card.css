@@ -1,0 +1,11 @@
+
+/*(.) is used to specify a class selector. */
+
+/* (#) is used to specify an ID selector. IDs are used to uniquely identify a single element on a page. */
+
+#eventContainer:hover{
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-scale-z: 1.05;
+}
+

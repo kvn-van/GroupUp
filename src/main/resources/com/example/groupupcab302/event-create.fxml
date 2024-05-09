@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.CreateEventController">
+    <children>
+        <Text fill="#030303" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
+            <font>
+                <Font name="Eras Demi ITC" size="26.0" />
+            </font>
+        </Text>
+        <Button layoutX="762.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
+        <Button layoutX="968.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
+        <Button layoutX="873.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
+        <Button layoutX="1065.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToYourEventsPage" prefHeight="25.0" prefWidth="85.0" text="Your Events" />
+        <Button layoutX="1162.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToStartScreenPage" prefHeight="25.0" prefWidth="85.0" text="Logout" />
+
+        <Button fx:id="REGISTERBUTTON" layoutX="232.0" layoutY="645.0" mnemonicParsing="false" onAction="#submit" prefHeight="50.0" prefWidth="786.0" text="Register Your Event">
+            <font>
+                <Font size="25.0" />
+            </font></Button>
+        <CheckBox fx:id="termsAndConditions" layoutX="279.0" layoutY="600.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="580.0" text="I agree to the terms and conditions of GroupUp!">
+            <font>
+                <Font size="25.0" />
+            </font></CheckBox>
+        <DatePicker fx:id="eventDate" layoutX="220.0" layoutY="169.0" prefHeight="52.0" prefWidth="255.0" />
+        <TextField fx:id="eventName" layoutX="220.0" layoutY="98.0" prefHeight="52.0" prefWidth="255.0">
+            <font>
+                <Font size="25.0" />
+            </font></TextField>
+        <Text layoutX="82.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Name">
+            <font>
+                <Font size="25.0" />
+            </font></Text>
+        <Text layoutX="83.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Date">
+            <font>
+                <Font size="25.0" />
+            </font></Text>
+        <Text layoutX="83.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Limit" wrappingWidth="132.73162841796875">
+            <font>
+                <Font size="25.0" />
+            </font></Text>
+        <Text layoutX="86.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" wrappingWidth="100.0">
+            <font>
+                <Font size="25.0" />
+            </font></Text>
+        <TextField fx:id="eventLocation" layoutX="220.0" layoutY="362.0" prefHeight="52.0" prefWidth="255.0">
+            <font>
+                <Font size="25.0" />
+            </font></TextField>
+        <Text layoutX="79.0" layoutY="500.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Description" wrappingWidth="139.69961547851562">
+            <font>
+                <Font size="25.0" />
+            </font></Text>
+        <TextField fx:id="eventDescription" alignment="TOP_LEFT" layoutX="220.0" layoutY="436.0" prefHeight="146.0" prefWidth="391.0">
+            <font>
+                <Font size="25.0" />
+            </font></TextField>
+        <Text layoutX="41.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp! Event Creation">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Text>
+
+        <TextField fx:id="eventRegistrationQuantity" layoutX="220.0" layoutY="300.0" prefHeight="52.0" prefWidth="255.0">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </TextField>
+        <Text layoutX="724.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Text>
+        <ImageView fx:id="eventImage" fitHeight="334.0" fitWidth="386.0" layoutX="758.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Images/EventCoverImage.png" />
+            </image>
+        </ImageView>
+        <Button layoutX="864.0" layoutY="206.0" mnemonicParsing="false" onAction="#selectPhoto" text="Select Your Image" />
+        <TextField fx:id="eventGenre" layoutX="797.0" layoutY="100.0" prefHeight="52.0" prefWidth="255.0">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </TextField>
+        <Text layoutX="83.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Time">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Text>
+        <TextField fx:id="eventTime" layoutX="220.0" layoutY="232.0" prefHeight="52.0" prefWidth="255.0">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </TextField>
+    </children>
+</AnchorPane>

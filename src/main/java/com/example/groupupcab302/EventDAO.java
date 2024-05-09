@@ -1,6 +1,8 @@
 package com.example.groupupcab302;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 // Implement the database interface with the datatype of the class event as the parameter
 // Allows overriding of interface methods and for specific operations on the user objects and database
@@ -23,7 +25,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
                             + "time VARCHAR NOT NULL, "
                             + "location VARCHAR NOT NULL, "
                             + "genre VARCHAR NOT NULL, "
-                            + "numberOfRegistrationsAvailable INT NOT NULL, "
+                            + "numberOfRegistrationsAvailable VARCHAR NOT NULL, "
                             + "descriptionOfEvent VARCHAR NOT NULL, "
                             + "image STRING NOT NULL, "
                             + "eventAttendees STRING NULL, "
@@ -55,7 +57,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
                         resultSet.getString("time"),
                         resultSet.getString("location"),
                         resultSet.getString("genre"),
-                        resultSet.getInt("numberOfRegistrationsAvailable"),
+                        resultSet.getString("numberOfRegistrationsAvailable"),
                         resultSet.getString("descriptionOfEvent"),
                         resultSet.getString("image"),
                         resultSet.getString("eventAttendees")
@@ -84,7 +86,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
             insertEvent.setString(3, event.getTime());
             insertEvent.setString(4, event.getLocation());
             insertEvent.setString(5, event.getGenre());
-            insertEvent.setInt(6, event.getNumberOfRegistrationsAvailable());
+            insertEvent.setString(6, event.getNumberOfRegistrationsAvailable());
             insertEvent.setString(7, event.getDescription());
             insertEvent.setString(8, event.getImage());
             insertEvent.setString(9, null);
@@ -130,60 +132,25 @@ public class EventDAO implements IDatabaseDAO<Event>{
 
     }
 
-    public String getEventNameById(int eventID) throws SQLException {
-        String eventName = null;
-        String sql = "SELECT name FROM GroupUpEvents WHERE eventID = ?";
-        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
-        stmt.setInt(1, eventID);
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            eventName = rs.getString("name");
-        }
-        rs.close();
-        stmt.close();
-        return eventName;
-    }
+    public List<Event> getAllEvents() throws SQLException{
+        String sqlQuery = "SELECT * FROM GroupUpEvents";
+        PreparedStatement preparedStatement = connectionToDatabase.prepareStatement(sqlQuery);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Event eventFromDB;
 
-    public String getLocationById(int eventID) throws SQLException {
-        String eventLocation = null;
-        String sql = "SELECT location FROM GroupUpEvents WHERE eventID = ?";
-        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
-        stmt.setInt(1, eventID);
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            eventLocation = rs.getString("location");
-        }
-        rs.close();
-        stmt.close();
-        return eventLocation;
-    }
+        List<Event> eventsList =  new ArrayList<Event>();
 
-    public String getDateById(int eventID) throws SQLException {
-        String eventDate= null;
-        String sql = "SELECT date FROM GroupUpEvents WHERE eventID = ?";
-        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
-        stmt.setInt(1, eventID);
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            eventDate= rs.getString("date");
-        }
-        rs.close();
-        stmt.close();
-        return eventDate;
-    }
+        while (resultSet.next()){
+            eventFromDB =  new Event(resultSet.getInt("eventID"), resultSet.getInt("userIDofEventCreator"),
+                    resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
+                    resultSet.getString("location"), resultSet.getString("genre"),
+                    resultSet.getString("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
+                    resultSet.getString("image"), resultSet.getString("eventAttendees"));
 
-    public String getGenreById(int eventID) throws SQLException {
-        String eventGenre= null;
-        String sql = "SELECT genre FROM GroupUpEvents WHERE eventID = ?";
-        PreparedStatement stmt = connectionToDatabase.prepareStatement(sql);
-        stmt.setInt(1, eventID);
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            eventGenre = rs.getString("genre");
+            eventsList.add(eventFromDB);
         }
-        rs.close();
-        stmt.close();
-        return eventGenre;
+
+        return eventsList;
     }
 
     public String getRegNumberById(int eventID) throws SQLException {

@@ -22,7 +22,7 @@ public class MockEventDAOSTS {
     private final GroupUpUser user = new GroupUpUser("username", "firstName", "lastName", "email@example.com", "123456789", "25", "password");
 
     // Create an event object with a fixed id to prevent issues relating to event ID
-    private final Event event = new Event(1, user.getUserID(), "Event Name", "2024-05-01", "12:00 PM", "Event Location", "Event Genre", 100, "Event Description", "image.jpg", "hoodrich@gmail.com, random@gmail.com");
+    private final Event event = new Event(1, user.getUserID(), "Event Name", "2024-05-01", "12:00 PM", "Event Location", "Event Genre", "100", "Event Description", "image.jpg", "hoodrich@gmail.com, random@gmail.com");
 
     @BeforeEach
     public void setUp() {
