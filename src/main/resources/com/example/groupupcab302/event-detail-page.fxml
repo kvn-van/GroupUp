@@ -51,9 +51,9 @@
             <Font name="System Bold" size="14.0" />
         </font>
     </Button>
-    <Button fx:id="joinEvent" layoutX="585.0" onAction="#joinEvent" layoutY="634.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="110.0" styleClass="button" text="Join Event">
+    <Button fx:id="joinEvent" layoutX="352.0" layoutY="631.0" mnemonicParsing="false" onAction="#joinEvent" prefHeight="46.0" prefWidth="269.0" styleClass="button" text="Register To Event">
         <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="22.0" />
         </font>
     </Button>
    <Label fx:id="eventTime" layoutX="169.0" layoutY="177.0" prefHeight="18.0" prefWidth="158.0" text="date">
@@ -66,4 +66,9 @@
          <Font size="14.0" />
       </font>
    </Label>
+   <Button fx:id="leaveEvent" onAction="#leaveEvent" layoutX="650.0" layoutY="631.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="269.0" styleClass="button" text="Unregister From Event">
+      <font>
+         <Font name="System Bold" size="22.0" />
+      </font>
+   </Button>
 </AnchorPane>

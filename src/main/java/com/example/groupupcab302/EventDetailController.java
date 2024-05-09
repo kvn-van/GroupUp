@@ -92,14 +92,20 @@ public class EventDetailController extends ParentViewController {
 
     }
 
-    private void reduceRegistrationsAvailable() throws SQLException {
+    private void reduceRegistrationsAvailable(String typeOfOperation) throws SQLException {
         //Retrieve the event from the DB
         Event eventFromDB = eventDAO.getEventById(eventChosenByUser.getEventID());
-        // Get the current number of registrations avaialble
-        // registration number already parsed/validated as only containg numeric characters before insertion
+        // Get the current number of registrations available
+        // registration number already parsed/validated as only containing numeric characters before insertion
         // Parsing is safe
         int numOfRegistrationsAvailable = Integer.parseInt(eventFromDB.getNumberOfRegistrationsAvailable());
-        numOfRegistrationsAvailable -= 1;
+        if (typeOfOperation.equals("Subtraction")){
+            numOfRegistrationsAvailable -= 1;
+        }
+        else{
+            numOfRegistrationsAvailable += 1;
+        }
+
         eventDAO.update(eventChosenByUser, "numberOfRegistrationsAvailable",Integer.toString(numOfRegistrationsAvailable));
     }
     @FXML
@@ -116,7 +122,7 @@ public class EventDetailController extends ParentViewController {
             // Get the current list of attendees
             String listOfAttendees = eventFromDB.getEventAttendees();
             if (checkIfRegistrationSpotAvailable()){
-                registerUserToEvent(listOfAttendees);
+                registerUserToEvent(listOfAttendees, "Registration");
             }
             else{
                 System.out.println("Unfortunately there isnt enough available spots to register you. This should be displayed to a status text area");
@@ -124,6 +130,26 @@ public class EventDetailController extends ParentViewController {
 
         } catch (SQLException exception){
             System.out.println("There was an issue when trying to add the user to the " +
+                    "list of attendees or reducing the available registrations!" + exception);
+        }
+    }
+
+    @FXML
+    public void leaveEvent(){
+        try{
+            //Retrieve the event from the DB
+            Event eventFromDB = eventDAO.getEventById(eventChosenByUser.getEventID());
+            // Get the current list of attendees
+            String listOfAttendees = eventFromDB.getEventAttendees();
+            if (checkIfRegistrationSpotAvailable()){
+                unregisterUserFromEvent(listOfAttendees, "Unregister");
+            }
+            else{
+                System.out.println("Unfortunately there isnt enough available spots to register you. This should be displayed to a status text area");
+            }
+
+        } catch (SQLException exception){
+            System.out.println("There was an issue when trying to unregister the user from the " +
                     "list of attendees or reducing the available registrations!" + exception);
         }
     }
@@ -143,20 +169,7 @@ public class EventDetailController extends ParentViewController {
         return false;
 
     }
-    private void registerUserToEvent(String listOfEventAttendees) throws SQLException {
-        if (isListOfAttendeesEmpty(listOfEventAttendees) || !isUserAlreadyRegisteredToEvent(listOfEventAttendees)){
-            // String doesnt need to be nicely formatted since .contain will be used to check if user is or isnt attending later on
-            listOfEventAttendees += "," + userInformation.getLoggedInUserInformation().getEmail();
-            eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
-            //Reduce the number of available registrations by 1
-            reduceRegistrationsAvailable();
-        }
 
-        else{
-            System.out.println("User is already found in db, this should be shown to a status text area");
-        }
-
-    }
 
     private boolean isListOfAttendeesEmpty(String listOfEventAttendees){
         if (listOfEventAttendees == null){
@@ -170,5 +183,29 @@ public class EventDetailController extends ParentViewController {
             return true;
         }
         return false;
+    }
+
+    // Too complex to manage the registration of a user in one event due to validation checks on user existence in string
+    // If user in string they can neither register which is expected but also cant unregister
+    private void registerUserToEvent(String listOfEventAttendees, String registration) throws SQLException {
+        GroupUpUser userToManage = userInformation.getLoggedInUserInformation();
+        if (isListOfAttendeesEmpty(listOfEventAttendees) || !isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
+            listOfEventAttendees += "," + userToManage.getEmail();
+            eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
+            reduceRegistrationsAvailable("Subtraction");
+        } else {
+            System.out.println("User is already registered for this event.");
+        }
+    }
+
+    private void unregisterUserFromEvent(String listOfEventAttendees, String unregister) throws SQLException {
+        GroupUpUser userToManage = userInformation.getLoggedInUserInformation();
+        if (isListOfAttendeesEmpty(listOfEventAttendees) || isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
+            listOfEventAttendees = listOfEventAttendees.replace(userToManage.getEmail(), "");
+            eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
+            reduceRegistrationsAvailable("Addition");
+        } else {
+            System.out.println("User is not registered for this event.");
+        }
     }
 }
