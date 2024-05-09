@@ -13,7 +13,7 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class LoginController {
+public class LoginController extends ParentViewController {
 
     private UserInformation userInformation = new UserInformation();
     public PasswordField passwordTextField;
@@ -46,12 +46,7 @@ public class LoginController {
 
     @FXML
     protected void onNoAccountClick(ActionEvent event) throws IOException {
-        //Basic code to switch the scene to an appropriate scene
-        Parent root = FXMLLoader.load(getClass().getResource("Sign-Up-Page.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        onSignUpButtonClick(event);
     }
 
     @FXML

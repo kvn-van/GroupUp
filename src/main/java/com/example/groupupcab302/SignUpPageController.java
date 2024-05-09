@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignUpPageController {
+public class SignUpPageController extends ParentViewController {
     private UserDAO userDAO;
 
     // Create data collection to hold value of all fields
@@ -65,28 +65,27 @@ public class SignUpPageController {
 
     @FXML
     protected void onAlreadyHaveAnAccountClick(ActionEvent event) throws IOException {
-        //Basic code to switch the scene to an appropriate scene
-        Parent root = FXMLLoader.load(getClass().getResource("Login-Page.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+       onLoginButtonClick(event);
     }
 
+
+
     @FXML
-    protected void onSignUpButtonClick(){
+    protected void onSignUpButtonClick(ActionEvent event){
         //Initialize the data collections with values from form
         textFieldValues = new String[] {UserNameTextField.getText(), FirstNameTextField.getText(),
                 LastNameTextField.getText(), EmailTextField.getText(), PhoneNumberTextField.getText(), AgeTextField.getText(),
                 PasswordTextField.getText(), ConfirmationPasswordTextField.getText()};
-        handleUserSignUp();
+        handleUserSignUp(event);
     }
 
-    public void handleUserSignUp(){
+    public void handleUserSignUp(ActionEvent event){
         if (areAllUserDetailsValid()) {
-            createUser();
+            createUser(event);
         }
     }
+
+
 
     public boolean areAllUserDetailsValid() {
         return areBasicTextFieldsValid() &&
@@ -97,17 +96,24 @@ public class SignUpPageController {
     }
 
 
-    public void createUser(){
+    public void createUser(ActionEvent event){
         GroupUpUser groupUpUser = new GroupUpUser(textFieldValues[0], textFieldValues[1],
                 textFieldValues[2], textFieldValues[3], textFieldValues[4], textFieldValues[5], textFieldValues[6]);
 
         try {
             userDAO.insert(groupUpUser);
             SigningInStatus.setText("Successful! Welcome To GroupUp!");
+            //Redirect to login page as details are valid
+            onAlreadyHaveAnAccountClick(event);
         }
 
         catch (CustomSQLException sqlException){
             SigningInStatus.setText(sqlException.getMessage());
+        }
+
+        catch (IOException ioException){
+            SigningInStatus.setText("There was an issue when trying to take you to the login page! Please try it manually via the \"Dont " +
+                    "Have an account button?\" " + ioException.getMessage());
         }
 
 

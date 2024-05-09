@@ -17,10 +17,11 @@
                 <Font name="Eras Demi ITC" size="26.0" />
             </font>
         </Text>
-        <Button layoutX="822.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavDiscoverEventClick" text="Discover Events" />
-        <Button layoutX="1028.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavRegistrationClick" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
-        <Button layoutX="933.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavCreateEventClick" text="Create Event" />
-        <Button layoutX="1125.0" onAction="#onNavYourEventsClick" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Your Events" />
+        <Button layoutX="762.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavDiscoverEventClick" text="Discover Events" />
+        <Button layoutX="968.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavRegistrationClick" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
+        <Button layoutX="873.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavCreateEventClick" text="Create Event" />
+        <Button layoutX="1065.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavYourEventsClick" prefHeight="25.0" prefWidth="85.0" text="Your Events" />
+        <Button layoutX="1162.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavLogOutClick" prefHeight="25.0" prefWidth="85.0" text="Logout" />
 
         <Button fx:id="REGISTERBUTTON" layoutX="232.0" layoutY="645.0" mnemonicParsing="false" onAction="#submit" prefHeight="50.0" prefWidth="786.0" text="Register Your Event">
             <font>

@@ -98,5 +98,4 @@ public class EditingEventController extends ParentViewController {
         }
     }
 
-
 }
