@@ -82,9 +82,6 @@ public class EditingEventController extends ParentViewController {
                     TextField textField = (TextField) node;
                     // Get the ID of the TextField (assuming it's set in the FXML)
                     String attributeOfEventToUpdate = textField.getId();
-                    // Print the ID for debugging purposes
-                    System.out.println(attributeOfEventToUpdate);
-
                     // If the ID is "location1", rename it to match the database column name
                     if (Objects.equals(attributeOfEventToUpdate, "location1")){
                         attributeOfEventToUpdate = "location";

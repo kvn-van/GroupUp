@@ -60,7 +60,7 @@ public class CreateEventController extends ParentViewController {
             try{
                 // Retrieve the user who is currently logged in to use their ID and associate it with event being created
                 Event eventToBeCreated = new Event(userInformation.getLoggedInUserInformation(), eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
-                        eventLocation.getText(), eventGenre.getText(), eventRegistrationQuantityParsed, eventDescription.getText(), urlOfImageInMavenResourceFolder);
+                        eventLocation.getText(), eventGenre.getText(), eventRegistrationQuantity.getText(), eventDescription.getText(), urlOfImageInMavenResourceFolder);
 
                 eventDAO.insert(eventToBeCreated);
             }
