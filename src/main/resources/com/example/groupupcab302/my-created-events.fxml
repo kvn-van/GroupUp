@@ -18,11 +18,11 @@
             <Font name="Eras Demi ITC" size="26.0" />
          </font>
       </Text>
-      <Button layoutX="762.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavDiscoverEventClick" text="Discover Events" />
-      <Button layoutX="968.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavRegistrationClick" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
-      <Button layoutX="873.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavCreateEventClick" text="Create Event" />
-      <Button layoutX="1065.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavYourEventsClick" prefHeight="25.0" prefWidth="85.0" text="Your Events" />
-      <Button layoutX="1162.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavLogOutClick" prefHeight="25.0" prefWidth="85.0" text="Logout" />
+      <Button layoutX="762.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
+      <Button layoutX="968.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
+      <Button layoutX="873.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
+      <Button layoutX="1065.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToYourEventsPage" prefHeight="25.0" prefWidth="85.0" text="Your Events" />
+      <Button layoutX="1162.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToStartScreenPage" prefHeight="25.0" prefWidth="85.0" text="Logout" />
       <VBox layoutX="47.0" layoutY="151.0" prefHeight="535.0" prefWidth="1169.0" style="-fx-background-color: white;">
          <children>
             <ScrollPane prefHeight="562.0" prefWidth="1169.0" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">

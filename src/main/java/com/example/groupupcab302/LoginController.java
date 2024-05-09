@@ -1,7 +1,6 @@
 package com.example.groupupcab302;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -44,27 +43,13 @@ public class LoginController extends ParentViewController {
         userDAO = new UserDAO();
     }
 
-    @FXML
-    protected void onNoAccountClick(ActionEvent event) throws IOException {
-        onSignUpButtonClick(event);
-    }
+
 
     @FXML
-    protected void onSignUpNavClick() throws IOException {
-        pageID = "Sign-Up-Page.fxml";
-        changeScene(signUpNav, pageID);
-    }
-
-    @FXML
-    protected void onNoAccountButton() throws IOException {
-        changeScene(noAccountButton, pageID);
-    }
-
-    @FXML
-    protected void onLoginButton() throws IOException, SQLException {
+    protected void onLoginButton(ActionEvent event) throws IOException, SQLException {
         try{
             textFieldValues = new String[] {emailTextField.getText(), passwordTextField.getText()};
-            handleUsersLogin();
+            handleUsersLogin(event);
 
         }
         catch (SQLException exception){
@@ -79,27 +64,20 @@ public class LoginController extends ParentViewController {
         stage.setScene(scene);
     }
 
-    public void handleUsersLogin() throws SQLException{
-        getUserDetails();
+    public void handleUsersLogin(ActionEvent event) throws SQLException{
+        getUserDetails(event);
     }
 
-    public void getUserDetails() throws SQLException {
-        try {
-            if (areTextFieldsValid()) {
-                String inputtedEmail = emailTextField.getText();
-                String inputtedPassword = passwordTextField.getText();
-                if (areDetailsFoundInDB(inputtedEmail,inputtedPassword)){
-                    signedInUser = userDAO.getUserRecordByEmail(inputtedEmail);
-                    signedInUser.setIsLoggedIn(true);
-                    updateInformationOfLoggedInUser(inputtedEmail);
-                    changeScene(loginButton, "event-view.fxml");
-                }
+    public void getUserDetails(ActionEvent event) throws SQLException {
+        if (areTextFieldsValid()) {
+            String inputtedEmail = emailTextField.getText();
+            String inputtedPassword = passwordTextField.getText();
+            if (areDetailsFoundInDB(inputtedEmail,inputtedPassword)){
+                signedInUser = userDAO.getUserRecordByEmail(inputtedEmail);
+                signedInUser.setIsLoggedIn(true);
+                updateInformationOfLoggedInUser(inputtedEmail);
+                redirectToEventDiscoveryPage(event);
             }
-
-        }
-
-        catch (IOException ioException) {
-            loginStatus.setText("Failed to load the events page." + ioException);
         }
     }
 

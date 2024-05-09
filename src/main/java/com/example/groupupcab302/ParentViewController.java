@@ -17,7 +17,7 @@ public class ParentViewController {
     private UserInformation userInformation = new UserInformation();
 
     @FXML
-    protected void onNavCreateEventClick(ActionEvent event) {
+    protected void redirectToEventCreatePage(ActionEvent event) {
         try {
             // Load the FXML file describing the new scene
             Parent root = FXMLLoader.load(getClass().getResource("event-create.fxml"));
@@ -36,7 +36,7 @@ public class ParentViewController {
     }
 
     @FXML
-    protected void onLoginButtonClick(ActionEvent event) {
+    protected void redirectToLoginPage(ActionEvent event) {
         try {
             // Load the FXML file describing the login page
             Parent root = FXMLLoader.load(getClass().getResource("login-page.fxml"));
@@ -55,7 +55,7 @@ public class ParentViewController {
     }
 
     @FXML
-    protected void onSignUpButtonClick(ActionEvent event) {
+    protected void redirectToSignUpPage(ActionEvent event) {
         try {
             // Load the FXML file describing the sign-up page
             Parent root = FXMLLoader.load(getClass().getResource("sign-up-page.fxml"));
@@ -75,7 +75,7 @@ public class ParentViewController {
 
 
     @FXML
-    protected void onNavYourEventsClick(ActionEvent event) {
+    protected void redirectToYourEventsPage(ActionEvent event) {
         try {
             // Load the FXML file describing the new scene
             Parent root = FXMLLoader.load(getClass().getResource("my-created-events.fxml"));
@@ -93,7 +93,7 @@ public class ParentViewController {
     }
 
     @FXML
-    protected void onNavLogOutClick(ActionEvent event) {
+    protected void redirectToStartScreenPage(ActionEvent event) {
         try {
             // Basic code to switch the scene to an appropriate scene
             Parent root = FXMLLoader.load(getClass().getResource("start-screen.fxml"));
@@ -107,7 +107,7 @@ public class ParentViewController {
     }
 
     @FXML
-    protected void onNavDiscoverEventClick(ActionEvent event) {
+    protected void redirectToEventDiscoveryPage(ActionEvent event) {
         try {
             // Basic code to switch the scene to an appropriate scene
             Parent root = FXMLLoader.load(getClass().getResource("event-view.fxml"));
@@ -121,7 +121,7 @@ public class ParentViewController {
     }
 
     @FXML
-    protected void onNavRegistrationClick(ActionEvent event) {
+    protected void redirectToRegisteredForEventsPage(ActionEvent event) {
         try {
             // Basic code to switch the scene to an appropriate scene
             Parent root = FXMLLoader.load(getClass().getResource("my-registered-events.fxml"));

@@ -2,20 +2,14 @@ package com.example.groupupcab302;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SignUpPageController extends ParentViewController {
     private UserDAO userDAO;
@@ -64,13 +58,6 @@ public class SignUpPageController extends ParentViewController {
 
 
     @FXML
-    protected void onAlreadyHaveAnAccountClick(ActionEvent event) throws IOException {
-       onLoginButtonClick(event);
-    }
-
-
-
-    @FXML
     protected void onSignUpButtonClick(ActionEvent event){
         //Initialize the data collections with values from form
         textFieldValues = new String[] {UserNameTextField.getText(), FirstNameTextField.getText(),
@@ -104,17 +91,13 @@ public class SignUpPageController extends ParentViewController {
             userDAO.insert(groupUpUser);
             SigningInStatus.setText("Successful! Welcome To GroupUp!");
             //Redirect to login page as details are valid
-            onAlreadyHaveAnAccountClick(event);
+            onSignUpButtonClick(event);
         }
 
         catch (CustomSQLException sqlException){
             SigningInStatus.setText(sqlException.getMessage());
         }
 
-        catch (IOException ioException){
-            SigningInStatus.setText("There was an issue when trying to take you to the login page! Please try it manually via the \"Dont " +
-                    "Have an account button?\" " + ioException.getMessage());
-        }
 
 
     }

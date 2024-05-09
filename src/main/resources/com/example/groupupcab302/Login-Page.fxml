@@ -32,7 +32,7 @@
         </font>
     </Text>
     <Button fx:id="loginButton" layoutX="867.0" layoutY="531.0" mnemonicParsing="false" onAction="#onLoginButton" prefHeight="25.0" prefWidth="366.0" text="Login" />
-    <Button layoutX="870.0" layoutY="589.0" mnemonicParsing="false" onAction="#onNoAccountClick" prefHeight="25.0" prefWidth="366.0" text="Don't Have An Account?" />
+    <Button layoutX="870.0" layoutY="589.0" mnemonicParsing="false" onAction="#redirectToSignUpPage" prefHeight="25.0" prefWidth="366.0" text="Don't Have An Account?" />
     <Line endX="75.0" layoutX="968.0" layoutY="573.0" startX="-100.0" />
     <Text fill="#5b5555" layoutX="1041.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="23.51025390625">
         <font>
