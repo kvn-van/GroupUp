@@ -1,44 +1,32 @@
 package com.example.groupupcab302;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class EventViewController extends ParentViewController implements Initializable{
+public class EventViewController extends ParentViewController{
     @FXML
     private GridPane eventGrid;
 
     private UserInformation userInformation = new UserInformation();
     private EventDAO eventDAO = new EventDAO();
     private List<Event> eventList;
-
-    // Before dynamically rendering events, fetch all available events from DB
-    // Store them to a field for accessing
-    private void initializeEventList() throws SQLException{
-            eventList = eventDAO.getAllEvents();
-    }
-
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-
+    public void initialize(){
+        showEventsFromDB();
+    }
     /* Summary of how events are dynamically rendered /TLDR
         For Each Event:
         Load the event card layout from the FXML file.
@@ -48,8 +36,7 @@ public class EventViewController extends ParentViewController implements Initial
         Set margins around the event card to provide spacing between cards within the GridPane.
         Repeat for the number of events within the DB
     */
-     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void showEventsFromDB() {
          try {
              initializeEventList();
              int columns = 0;
@@ -89,5 +76,11 @@ public class EventViewController extends ParentViewController implements Initial
              e.printStackTrace();
          }
      }
+
+    // Before dynamically rendering events, fetch all available events from DB
+    // Store them to a field for accessing
+    private void initializeEventList() throws SQLException{
+        eventList = eventDAO.getAllEvents();
+    }
      
 }

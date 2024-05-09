@@ -1,10 +1,6 @@
 package com.example.groupupcab302;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
@@ -21,7 +17,6 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 
 public class CreateEventController extends ParentViewController {
@@ -57,13 +52,7 @@ public class CreateEventController extends ParentViewController {
 
 
     public CreateEventController(){
-
         eventDAO = new EventDAO();
-        // test that the event selected details are printed out, this is only temporary we need to design a page to view event details
-        if (userInformation.getEventSelectedByUser() != null){
-            Event eventSelectedByUser = userInformation.getEventSelectedByUser();
-            System.out.println(eventSelectedByUser.getAllEventDetails());
-        }
 
     }
     @FXML

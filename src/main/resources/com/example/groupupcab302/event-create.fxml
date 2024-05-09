@@ -18,7 +18,7 @@
             </font>
         </Text>
         <Button layoutX="947.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavDiscoverEventClick" text="Discover Events" />
-        <Button layoutX="1153.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
+        <Button layoutX="1153.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavRegistrationClick" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
         <Button layoutX="1058.0" layoutY="24.0" mnemonicParsing="false" text="Create Event" />
 
         <Button fx:id="REGISTERBUTTON" layoutX="232.0" layoutY="645.0" mnemonicParsing="false" onAction="#submit" prefHeight="50.0" prefWidth="786.0" text="Register Your Event">

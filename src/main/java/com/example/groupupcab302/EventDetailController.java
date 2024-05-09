@@ -11,7 +11,6 @@ import javafx.scene.control.TextArea;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Objects;
 
 import static com.example.groupupcab302.LoginController.changeScene;
 import static com.example.groupupcab302.LoginController.pageID;
@@ -106,7 +105,7 @@ public class EventDetailController extends ParentViewController {
     @FXML
     public void goBackBtn() throws IOException {
         pageID = "event-view-template.fxml";
-        LoginController.changeScene(goBack, pageID);
+        changeScene(goBack, pageID);
     }
 
     @FXML

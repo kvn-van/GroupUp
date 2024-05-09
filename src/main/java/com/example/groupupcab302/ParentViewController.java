@@ -29,6 +29,22 @@ public class ParentViewController {
     }
 
     @FXML
+    protected void onNavYourEventsClick(ActionEvent event) throws IOException {
+        // Load the FXML file describing the new scene
+        Parent root = FXMLLoader.load(getClass().getResource("your-events.fxml"));
+        // Get the stage (window) where the event occurred
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        // Create a new scene with the loaded content
+        Scene scene = new Scene(root);
+        // Set the newly created scene to the stage
+        stage.setScene(scene);
+        // Show the stage with the new scene
+        stage.show();
+    }
+
+
+
+    @FXML
     protected void onNavDiscoverEventClick(ActionEvent event) throws IOException {
         //Basic code to switch the scene to an appropriate scene
         Parent root = FXMLLoader.load(getClass().getResource("event-view.fxml"));
@@ -37,4 +53,17 @@ public class ParentViewController {
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    protected void onNavRegistrationClick(ActionEvent event) throws IOException {
+        //Basic code to switch the scene to an appropriate scene
+        Parent root = FXMLLoader.load(getClass().getResource("my-registered-events.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
 }
