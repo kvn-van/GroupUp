@@ -31,7 +31,7 @@ public class ParentViewController {
     @FXML
     protected void onNavYourEventsClick(ActionEvent event) throws IOException {
         // Load the FXML file describing the new scene
-        Parent root = FXMLLoader.load(getClass().getResource("your-events.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("my-created-events.fxml"));
         // Get the stage (window) where the event occurred
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         // Create a new scene with the loaded content

@@ -15,9 +15,10 @@
             <Font name="Eras Demi ITC" size="26.0" />
         </font>
     </Text>
-    <Button layoutX="952.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavDiscoverEventClick" text="Discover Events" />
-    <Button layoutX="1158.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavRegistrationClick" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
-    <Button layoutX="1063.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavCreateEventClick" text="Create Event" />
+    <Button layoutX="822.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavDiscoverEventClick" text="Discover Events" />
+    <Button layoutX="1028.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavRegistrationClick" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
+    <Button layoutX="933.0" layoutY="24.0" mnemonicParsing="false" onAction="#onNavCreateEventClick" text="Create Event" />
+    <Button layoutX="1125.0" onAction="#onNavYourEventsClick" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Your Events" />
 
     <Label fx:id="eventName" layoutX="169.0" layoutY="83.0" text="Event Name" textAlignment="CENTER">
         <font>

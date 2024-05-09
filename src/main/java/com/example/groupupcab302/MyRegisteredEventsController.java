@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class MyEventViewController extends ParentViewController implements IDisplayingEvent  {
+public class MyRegisteredEventsController extends ParentViewController implements IDisplayingEvent  {
 
     @FXML
     private GridPane eventGrid;
@@ -37,7 +37,6 @@ public class MyEventViewController extends ParentViewController implements IDisp
             int columns = 0;
             int rows = 1;
             for (int counter = 0; counter<eventList.size() ; counter++){
-                // Create an fxml loader object
                 String listOfAttendees = eventList.get(counter).getEventAttendees();
                 if (listOfAttendees != null){
                     if (listOfAttendees.contains(userInformation.getLoggedInUserInformation().getEmail())){
@@ -70,7 +69,7 @@ public class MyEventViewController extends ParentViewController implements IDisp
             }
 
         } catch (SQLException sqlException) {
-            System.out.println("There was an issue when trying to get all events." + sqlException);
+            System.out.println("There was an issue when trying to get all events which you are signed up for!" + sqlException);
 
         } catch (IOException e) {
             e.printStackTrace();
