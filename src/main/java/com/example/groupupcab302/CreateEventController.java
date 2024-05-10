@@ -76,9 +76,6 @@ public class CreateEventController extends ParentViewController {
     public void submit(ActionEvent event ) throws CustomSQLException {
         try {
             if (termsAndConditions.isSelected()) {
-                // Change the text below to show in status field
-                System.out.println("Working on Event...");
-
                 // Define the local directory where the image will be stored
                 File localDirectory = new File("src\\main\\resources\\com\\example\\groupupcab302\\Images");
 
@@ -110,6 +107,7 @@ public class CreateEventController extends ParentViewController {
                         // by combining the folder path with the filename
                         urlOfImageInMavenResourceFolder = "/com/example/groupupcab302/Images/" + selectedFile.getName();
                         createEvent();
+                        displayNotification("Event Creation", "Event Successfully Created!", false);
                         redirectToEventDiscoveryPage(event);
 
                     } catch (IOException e) {

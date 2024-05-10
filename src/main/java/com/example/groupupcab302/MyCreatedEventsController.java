@@ -36,7 +36,7 @@ public class MyCreatedEventsController extends ParentViewController implements I
             // When user is viewing their created events they may have intention to update'
             // Change user state to employ different behaviour of cards when clicked
             userInformation.setDoesUserWantToEditTheirEvents(true);
-            eventList = eventDAO.getAllEvents();
+            eventList = eventDAO.getAllEvents(false);
             int columns = 0;
             int rows = 1;
             for (int counter = 0; counter<eventList.size() ; counter++){

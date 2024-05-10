@@ -93,22 +93,6 @@ public class EventDetailController extends ParentViewController {
 
     }
 
-    private void reduceRegistrationsAvailable(String typeOfOperation) throws SQLException {
-        //Retrieve the event from the DB
-        Event eventFromDB = eventDAO.getEventById(eventChosenByUser.getEventID());
-        // Get the current number of registrations available
-        // registration number already parsed/validated as only containing numeric characters before insertion
-        // Parsing is safe
-        int numOfRegistrationsAvailable = Integer.parseInt(eventFromDB.getNumberOfRegistrationsAvailable());
-        if (typeOfOperation.equals("Subtraction")){
-            numOfRegistrationsAvailable -= 1;
-        }
-        else{
-            numOfRegistrationsAvailable += 1;
-        }
-
-        eventDAO.update(eventChosenByUser, "numberOfRegistrationsAvailable",Integer.toString(numOfRegistrationsAvailable));
-    }
     @FXML
     public void goBackBtn() throws IOException {
         pageID = "event-view-template.fxml";
@@ -143,9 +127,7 @@ public class EventDetailController extends ParentViewController {
             Event eventFromDB = eventDAO.getEventById(eventChosenByUser.getEventID());
             // Get the current list of attendees
             String listOfAttendees = eventFromDB.getEventAttendees();
-            if (checkIfRegistrationSpotAvailable()){
-                unregisterUserFromEvent(listOfAttendees, event);
-            }
+            unregisterUserFromEvent(listOfAttendees, event);
 
         } catch (SQLException exception){
             displayNotification("Unregistration Error", "There was an issue when trying \nto remove you from the" +
@@ -168,7 +150,6 @@ public class EventDetailController extends ParentViewController {
 
     }
 
-
     private boolean isListOfAttendeesEmpty(String listOfEventAttendees){
         return listOfEventAttendees == null;
     }
@@ -180,28 +161,43 @@ public class EventDetailController extends ParentViewController {
     // Too complex to manage the registration of a user in one event due to validation checks on user existence in string
     // If user in string they can neither register which is expected but also cant unregister
     private void registerUserToEvent(String listOfEventAttendees, ActionEvent event) throws SQLException {
-        GroupUpUser userToManage = userInformation.getLoggedInUserInformation();
-        if (isListOfAttendeesEmpty(listOfEventAttendees) || !isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
-            listOfEventAttendees += "," + userToManage.getEmail();
-            eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
-            reduceRegistrationsAvailable("Subtraction");
-            displayNotification("Registration Success", "You have successfully registered for the event!", false);
-            redirectToRegisteredForEventsPage(event);
-        } else {
-            displayNotification("Registration Error", "You are already registered for this event!", true );
+        try{
+            GroupUpUser userToManage = userInformation.getLoggedInUserInformation();
+            if (isListOfAttendeesEmpty(listOfEventAttendees) || !isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
+                listOfEventAttendees += "," + userToManage.getEmail();
+                eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
+                eventDAO.manageRegistrationsAvailable("Subtraction", eventChosenByUser);
+                displayNotification("Registration Success", "You have successfully registered for the event!", false);
+                redirectToRegisteredForEventsPage(event);
+            }
+            else {
+                displayNotification("Registration Error", "You are already registered for this event!", true );
+            }
         }
+
+        catch (CustomSQLException customSQLException){
+            displayNotification("Event Error", customSQLException.getMessage(), true );
+        }
+
     }
 
     private void unregisterUserFromEvent(String listOfEventAttendees, ActionEvent event) throws SQLException {
-        GroupUpUser userToManage = userInformation.getLoggedInUserInformation();
-        if (isListOfAttendeesEmpty(listOfEventAttendees) || isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
-            listOfEventAttendees = listOfEventAttendees.replace(userToManage.getEmail(), "");
-            eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
-            reduceRegistrationsAvailable("Addition");
-            displayNotification("Unregistration Success", "You have successfully unregistered from the event!", false);
-            redirectToEventDiscoveryPage(event);
-        } else {
-            displayNotification("Unregistration Error", "You are not registered for this event!", true );
+        try{
+            GroupUpUser userToManage = userInformation.getLoggedInUserInformation();
+            if (isListOfAttendeesEmpty(listOfEventAttendees) || isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
+                listOfEventAttendees = listOfEventAttendees.replace(userToManage.getEmail(), "");
+                eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
+                eventDAO.manageRegistrationsAvailable("Addition", eventChosenByUser);
+                displayNotification("Unregistration Success", "You have successfully unregistered from the event!", false);
+                redirectToEventDiscoveryPage(event);
+            } else {
+                displayNotification("Unregistration Error", "You are not registered for this event!", true );
+            }
         }
+
+        catch (CustomSQLException customSQLException){
+            displayNotification("Event Error", customSQLException.getMessage(), true );
+        }
+
     }
 }

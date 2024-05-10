@@ -35,7 +35,7 @@ public class MyRegisteredEventsController extends ParentViewController implement
     // Modify the code to only show events which the user signed up to
     public void showEventsFromDB() {
         try {
-            eventList = eventDAO.getAllEvents();
+            eventList = eventDAO.getAllEvents(false);
             int columns = 0;
             int rows = 1;
             for (int counter = 0; counter<eventList.size() ; counter++){
