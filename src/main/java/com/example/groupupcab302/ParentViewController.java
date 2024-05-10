@@ -161,8 +161,9 @@ public class ParentViewController {
                 .title(title)
                 .text(notificationDescription)
                 .graphic(new ImageView(image))
+                .owner(this.scene)
                 .hideAfter(Duration.seconds(6))
-                .position(Pos.BASELINE_RIGHT);
+                .position(Pos.TOP_LEFT);
 
         if (!isNotificationAnError) {
             // Show a successful notification graphic
