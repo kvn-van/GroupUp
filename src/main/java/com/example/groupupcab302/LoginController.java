@@ -32,19 +32,16 @@ public class LoginController extends ParentViewController {
 
     // Identify the user who successfully logged in
     private GroupUpUser loggedInUser;
-
-
     public LoginController() {
         userDAO = new UserDAO();
     }
-
-
 
     @FXML
     protected void onLoginButton(ActionEvent event) throws IOException, SQLException {
         try{
             textFieldValues = new String[] {emailTextField.getText(), passwordTextField.getText()};
             handleUsersLogin(event);
+
         }
         catch (SQLException exception){
             displayNotification("Login Failure", "When trying to log you in there was an error!\n" + exception.getMessage(), true);

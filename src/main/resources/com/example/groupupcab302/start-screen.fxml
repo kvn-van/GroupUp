@@ -12,7 +12,7 @@
             <Font name="Eras Demi ITC" size="26.0" />
          </font>
       </Text>
-      <Button layoutX="726.0" layoutY="250.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="486.0" text="Login" onAction="#redirectToLoginPage" />
-      <Button layoutX="726.0" layoutY="405.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="486.0" text="SignUp" onAction="#redirectToSignUpPage" />
+      <Button layoutX="726.0" layoutY="250.0" mnemonicParsing="false" onAction="#redirectToLoginPage" prefHeight="65.0" prefWidth="486.0" text="Login" />
+      <Button layoutX="726.0" layoutY="405.0" mnemonicParsing="false" onAction="#redirectToSignUpPage" prefHeight="65.0" prefWidth="486.0" text="SignUp" />
    </children>
 </AnchorPane>
