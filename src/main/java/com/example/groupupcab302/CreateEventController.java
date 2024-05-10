@@ -10,6 +10,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.text.Text;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +27,8 @@ import java.sql.SQLException;
 public class CreateEventController extends ParentViewController {
     private UserInformation userInformation = new UserInformation();
     private EventDAO eventDAO;
+
+    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
     private Stage stage;
     public File selectedFile;
     @FXML
@@ -43,6 +49,8 @@ public class CreateEventController extends ParentViewController {
     private ImageView eventImage;
     @FXML
     private TextField eventTime;
+    @FXML
+    private Text ErrorText;
 
     private String urlOfImageInMavenResourceFolder;
 
@@ -76,8 +84,11 @@ public class CreateEventController extends ParentViewController {
     public void submit(ActionEvent event ) throws CustomSQLException {
         try {
             if (termsAndConditions.isSelected()) {
-                // Change the text below to show in status field
-                System.out.println("Working on Event...");
+                ErrorText.setText("Working on Event...");
+
+                if (!errorChecks()){
+                    return;
+                }
 
                 // Define the local directory where the image will be stored
                 File localDirectory = new File("src\\main\\resources\\com\\example\\groupupcab302\\Images");
@@ -116,6 +127,8 @@ public class CreateEventController extends ParentViewController {
                         e.printStackTrace();
                     }
                 }
+            }else{
+                ErrorText.setText("Please agree to the terms and conditions!");
             }
         }
 
@@ -139,4 +152,44 @@ public class CreateEventController extends ParentViewController {
         }
     }
 
+    public boolean errorChecks() {
+        if (eventName.getText().trim().isEmpty()) {
+            ErrorText.setText("Event name cannot be empty!");
+            return false;
+        } else if (eventDescription.getText().trim().isEmpty()) {
+            ErrorText.setText("Event description cannot be empty!");
+            return false;
+        } else if (eventDate.getValue() == null) {
+            ErrorText.setText("Event date cannot be empty!");
+            return false;
+        } else if (!isValidEventTimeFormat(eventTime.getText())) {
+            ErrorText.setText("Event time must be in 24 hour time (00:00)!");
+            return false;
+        } else if (eventLocation.getText().trim().isEmpty()) {
+            ErrorText.setText("Event location cannot be empty!");
+            return false;
+        } else if (eventGenre.getText().trim().isEmpty()) {
+            ErrorText.setText("Event genre cannot be empty!");
+            return false;
+        } else if (eventRegistrationQuantity.getText().trim().isEmpty()) {
+            ErrorText.setText("Event registration quantity cannot be empty!");
+            return false;
+        } try {
+            int eventQuantity = Integer.parseInt(eventRegistrationQuantity.getText());
+        } catch (NumberFormatException e) {
+            ErrorText.setText("Event registration quantity must be a number!");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isValidEventTimeFormat(String rawTime){
+        try {
+            LocalTime parsedTime = LocalTime.parse(rawTime, timeFormatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
 }
