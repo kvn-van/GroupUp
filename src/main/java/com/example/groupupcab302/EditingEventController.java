@@ -67,6 +67,32 @@ public class EditingEventController extends ParentViewController {
     }
 
     @FXML
+    public void onConfirmEventClick(ActionEvent event){
+        try{
+            eventDAO.update(eventSelected, "status", "completed");
+            displayNotification("Editing Event", "The event was successfully archived for completion", false);
+            redirectToYourEventsPage(event);
+        }
+        catch (SQLException sqlException){
+            displayNotification("Editing Event Error", "There was an error when trying to archive the event!", true);
+        }
+
+    }
+
+    @FXML
+    public void onCancelEventClick(ActionEvent event){
+        try{
+            eventDAO.update(eventSelected, "status", "cancelled");
+            displayNotification("Editing Event", "The event was successfully cancelled", false);
+            redirectToYourEventsPage(event);
+        }
+        catch (SQLException sqlException){
+            displayNotification("Editing Event Error", "There was an error when trying to cancel/close the event!", true);
+        }
+
+    }
+
+    @FXML
     public void onSubmit(ActionEvent event){
         update();
         redirectToYourEventsPage(event);
