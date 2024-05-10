@@ -21,8 +21,6 @@ public class SignUpPageController extends ParentViewController {
     // Create data collection to hold value of all fields
     private String textFieldValues[];
 
-    @FXML
-    private Label welcomeText;
 
     @FXML
     private TextField FirstNameTextField;
@@ -48,8 +46,6 @@ public class SignUpPageController extends ParentViewController {
     @FXML
     private TextField ConfirmationPasswordTextField;
 
-    @FXML
-    private TextArea SigningInStatus;
 
     private Stage stage;
     private Scene scene;

@@ -109,6 +109,8 @@ public class ParentViewController {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            displayNotification("Logout Success", "You were successfully logged out " +
+                    "from GroupUp!\nWe hope to see you again!", false);
         } catch (IOException e) {
             System.out.println("Unfortunately there was an issue when trying to redirect you to the start screen!");
         }

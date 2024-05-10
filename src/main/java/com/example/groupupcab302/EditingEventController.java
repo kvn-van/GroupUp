@@ -93,8 +93,10 @@ public class EditingEventController extends ParentViewController {
                     eventDAO.update(eventSelected, attributeOfEventToUpdate, valueToSetAttributeTo);
                 }
             }
-        } catch (SQLException sqlException) {
+            displayNotification("Event Update", "Event was successfully updated!", false);
+        } catch (CustomSQLException sqlException) {
             System.out.println("Enter a detailed message here for reason of error and what user did wrong" + sqlException);
+            displayNotification("Event Update", sqlException.getMessage(), true);
         }
     }
 

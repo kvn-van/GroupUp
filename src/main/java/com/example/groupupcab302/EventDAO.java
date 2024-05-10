@@ -126,8 +126,9 @@ public class EventDAO implements IDatabaseDAO<Event>{
             updateToRowStatement.setInt(2, event.getEventID());
             updateToRowStatement.execute();
         } catch (SQLException sqlException) {
+            //keep for trouble shooting
             System.out.println(sqlException);
-            throw new CustomSQLException("Enter a detailed message here for reason of error and what user did wrong");
+            throw new CustomSQLException("There was an error when trying to update the event!");
         }
 
     }

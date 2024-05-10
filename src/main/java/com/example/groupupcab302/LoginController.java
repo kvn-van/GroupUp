@@ -20,17 +20,9 @@ public class LoginController extends ParentViewController {
     private UserInformation userInformation = new UserInformation();
     public PasswordField passwordTextField;
     public TextField emailTextField;
-    public TextArea loginStatus;
     private GroupUpUser signedInUser;
     private UserDAO userDAO;
     private String[] textFieldValues;
-
-    @FXML
-    private Button signUpNav;
-    @FXML
-    private Button noAccountButton;
-    @FXML
-    private Button loginButton;
     @FXML
     public static String pageID;
 
