@@ -47,6 +47,12 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.gluonhq/charm-down-core -->
+    <dependency>
+      <groupId>com.gluonhq</groupId>
+      <artifactId>charm-down-core</artifactId>
+      <version>3.8.6</version>
+    </dependency>
   </dependencies>
 
   <build>
