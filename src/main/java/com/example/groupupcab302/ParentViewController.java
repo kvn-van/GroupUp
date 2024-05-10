@@ -157,12 +157,22 @@ public class ParentViewController {
             image = new Image(file.toURI().toString());
         }
 
+        // Define notification to notify user when they are performing too many actions
+        Notifications excessNotification = Notifications.create()
+                .title("Too Many Actions!")
+                .text("Please slow down!")
+                .graphic(new ImageView(image))
+                .owner(scene)
+                .hideAfter(Duration.seconds(2))
+                .position(Pos.TOP_LEFT);
+
         Notifications notification = Notifications.create()
                 .title(title)
                 .text(notificationDescription)
                 .graphic(new ImageView(image))
-                .owner(this.scene)
+                .owner(scene)
                 .hideAfter(Duration.seconds(6))
+                .threshold(6,excessNotification)
                 .position(Pos.TOP_LEFT);
 
         if (!isNotificationAnError) {
