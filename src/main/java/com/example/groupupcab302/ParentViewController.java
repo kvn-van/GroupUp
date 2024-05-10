@@ -2,10 +2,18 @@ package com.example.groupupcab302;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
+import javafx.scene.image.Image;
+
+
+import java.io.File;
 import java.io.IOException;
 
 public class ParentViewController {
@@ -131,6 +139,36 @@ public class ParentViewController {
             stage.show();
         } catch (IOException e) {
             System.out.println("An error occurred while loading your registered events.");
+        }
+    }
+
+    // Create a universal function to handle displaying personalised notifications for user
+    // type of notification is either success or error
+    protected void displayNotification(String title, String notificationDescription, boolean isNotificationAnError){
+        // If error type no need for graphic, otherwise its a success. Supply custom img
+        String imageLocation = isNotificationAnError ? null : "src/main/resources/com/example/groupupcab302/Images/successIcon.jpg";
+        Image image = null;
+
+        if (imageLocation != null){
+            // Follow basic process to convert resource at path to file then to img
+            File file = new File(imageLocation);
+            image = new Image(file.toURI().toString());
+        }
+
+        Notifications notification = Notifications.create()
+                .title(title)
+                .text(notificationDescription)
+                .graphic(new ImageView(image))
+                .hideAfter(Duration.seconds(6))
+                .position(Pos.BASELINE_RIGHT);
+
+        if (!isNotificationAnError) {
+            // Show a successful notification graphic
+            notification.show();
+        }
+        else {
+            // Show an error notification graphic
+            notification.showError();
         }
     }
 

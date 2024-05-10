@@ -2,14 +2,18 @@ package com.example.groupupcab302;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SignUpPageController extends ParentViewController {
     private UserDAO userDAO;
@@ -72,8 +76,6 @@ public class SignUpPageController extends ParentViewController {
         }
     }
 
-
-
     public boolean areAllUserDetailsValid() {
         return areBasicTextFieldsValid() &&
                 isEmailValid(textFieldValues[3]) &&
@@ -89,25 +91,23 @@ public class SignUpPageController extends ParentViewController {
 
         try {
             userDAO.insert(groupUpUser);
-            SigningInStatus.setText("Successful! Welcome To GroupUp!");
+            displayNotification("Sign Up Success","Account Successfully Created! Please Login To Access GroupUp!", false);
             //Redirect to login page as details are valid
-            onSignUpButtonClick(event);
+            redirectToLoginPage(event);
         }
 
         catch (CustomSQLException sqlException){
-            SigningInStatus.setText(sqlException.getMessage());
+            displayNotification("Database error", sqlException.getMessage(), true);
         }
-
-
 
     }
 
     public boolean areBasicTextFieldsValid() {
         for (int counter = 0; counter < textFieldValues.length; counter++) {
             // Ensure fields are not empty
-            if (textFieldValues[counter].length() == 0) {
+            if (textFieldValues[counter].isEmpty()) {
                 //display error message if form isnt filled out properly
-                SigningInStatus.setText(ErrorConstants.INVALID_USERINPUT.getErrorDescription());
+                displayNotification("Sign Up Failure",ErrorConstants.INVALID_USERINPUT.getErrorDescription(), true);
                 return false; // Return false if any string is invalid
             }
         }
@@ -116,18 +116,15 @@ public class SignUpPageController extends ParentViewController {
 
 
     public boolean doPasswordsMatch(String password, String passwordConfirmation){
-        if (password.equals(passwordConfirmation)){
-            return true;
-        }
-        return false;
+        return password.equals(passwordConfirmation);
     }
 
     public boolean isPhoneNumberValid(String phoneNumber){
         //Check if an error is returned when validating phone number
-        if (userDAO.validatePhoneNumber(phoneNumber) == ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue() ||
-                userDAO.validatePhoneNumber(phoneNumber) == ErrorConstants.INT_PARSE_ERROR.getErrorValue()){
+        if (Objects.equals(userDAO.validatePhoneNumber(phoneNumber), ErrorConstants.INVALID_PHONE_NUMBER.getErrorValue()) ||
+                Objects.equals(userDAO.validatePhoneNumber(phoneNumber), ErrorConstants.INT_PARSE_ERROR.getErrorValue())){
             // Display the error code produced when validating phone number
-            SigningInStatus.setText(ErrorConstants.retrieveErrorConstantDescription(userDAO.validatePhoneNumber(phoneNumber)));
+            displayNotification("Sign Up Failure",ErrorConstants.retrieveErrorConstantDescription(userDAO.validatePhoneNumber(phoneNumber)), true);
             return false;
         }
         return true;
@@ -137,17 +134,17 @@ public class SignUpPageController extends ParentViewController {
         if(userDAO.isPasswordValid(password) && doPasswordsMatch(password, passwordConfirmation)){
             return true;
         }
-        // display error message if passwords dont match
-        SigningInStatus.setText(ErrorConstants.INVALID_PASSWORD.getErrorDescription());
+        // display error notification if passwords dont match
+        displayNotification("Sign Up Failure",ErrorConstants.INVALID_PASSWORD.getErrorDescription(), true);
         return false;
     }
 
     public boolean isAgeValid(String age){
         //Check if an error is returned when validating phone number
-        if (userDAO.validateAge(age) == ErrorConstants.INVALID_AGE.getErrorValue() ||
-                userDAO.validateAge(age) == ErrorConstants.INT_PARSE_ERROR.getErrorValue()){
+        if (Objects.equals(userDAO.validateAge(age), ErrorConstants.INVALID_AGE.getErrorValue()) ||
+                Objects.equals(userDAO.validateAge(age), ErrorConstants.INT_PARSE_ERROR.getErrorValue())){
             // Display the error code produced when validating age
-            SigningInStatus.setText(ErrorConstants.retrieveErrorConstantDescription(userDAO.validateAge(age)));
+            displayNotification("Sign Up Failure",ErrorConstants.retrieveErrorConstantDescription(userDAO.validateAge(age)), true);
             return false;
         }
         return true;
@@ -157,8 +154,8 @@ public class SignUpPageController extends ParentViewController {
         if (email.contains("@") && email.length() > 1){
             return true;
         }
-        //display error message if email input is incorrect
-        SigningInStatus.setText(ErrorConstants.INVALID_EMAIL.getErrorDescription());
+        //display error notification if email input is incorrect
+        displayNotification("Sign Up Failure",ErrorConstants.INVALID_EMAIL.getErrorDescription(), true);
         return false;
     }
 

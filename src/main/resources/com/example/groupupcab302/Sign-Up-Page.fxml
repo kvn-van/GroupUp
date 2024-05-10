@@ -59,7 +59,7 @@
             <Font name="Eras Demi ITC" size="26.0" />
          </font>
       </Text>
-      <Button id="SignInButton" layoutX="863.0" layoutY="593.0" mnemonicParsing="false" onAction="#redirectToSignUpPage" prefHeight="25.0" prefWidth="366.0" text="Sign In" />
+      <Button id="SignInButton" layoutX="863.0" layoutY="593.0" mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="25.0" prefWidth="366.0" text="Sign In" />
       <Button layoutX="866.0" layoutY="651.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="366.0" text="Already Have An Account?" onAction="#redirectToLoginPage" />
       <Line endX="75.0" layoutX="964.0" layoutY="635.0" startX="-100.0" />
       <Text fill="#5b5555" layoutX="1037.0" layoutY="639.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="23.51025390625">

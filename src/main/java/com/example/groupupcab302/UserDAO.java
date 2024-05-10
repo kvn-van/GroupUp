@@ -66,7 +66,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser>{
         catch (SQLException exception) {
             if (exception.getMessage().contains("SQLITE_CONSTRAINT_UNIQUE")){
                 throw new CustomSQLException("The email you entered " +
-                        "belongs to a registered user already. Please consider logging in under this email instead");
+                        "belongs to a registered user already. \nPlease consider logging in under this email instead");
             }
 
             else{
