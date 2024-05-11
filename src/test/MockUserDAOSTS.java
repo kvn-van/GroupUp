@@ -1,4 +1,4 @@
-import com.example.groupupcab302.misc.DatabaseConnection;
+import com.example.groupupcab302.DatabaseConnection;
 import com.example.groupupcab302.Objects.GroupUpUser;
 import com.example.groupupcab302.mockDAO.MockUserDAO;
 import org.junit.jupiter.api.BeforeEach;

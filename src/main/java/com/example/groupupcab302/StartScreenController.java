@@ -1,6 +1,4 @@
-package com.example.groupupcab302.Controllers;
-
-import com.example.groupupcab302.Controllers.ParentViewController;
+package com.example.groupupcab302;
 
 public class StartScreenController extends ParentViewController {
 

@@ -1,6 +1,4 @@
-
-
-import com.example.groupupcab302.misc.DatabaseConnection;
+import com.example.groupupcab302.DatabaseConnection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

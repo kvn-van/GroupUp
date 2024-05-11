@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="eventContainer" fx:id="eventCardContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;" stylesheets="@styling/event-card.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.Controllers.EventCardController">
+<VBox id="eventContainer" fx:id="eventCardContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="416.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-style: solid;" stylesheets="@styling/event-card.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.EventCardController">
    <children>
       <ImageView fx:id="eventImage" fitHeight="259.0" fitWidth="412.0" pickOnBounds="true" />
       <Pane prefHeight="182.0" prefWidth="412.0">

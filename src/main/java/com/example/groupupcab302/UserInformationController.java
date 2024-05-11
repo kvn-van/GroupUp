@@ -1,4 +1,4 @@
-package com.example.groupupcab302.Controllers;
+package com.example.groupupcab302;
 
 import com.example.groupupcab302.Objects.Event;
 import com.example.groupupcab302.Objects.GroupUpUser;

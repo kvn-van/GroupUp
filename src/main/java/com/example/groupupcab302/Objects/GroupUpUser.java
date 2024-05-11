@@ -1,4 +1,4 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Objects;
 
 public class GroupUpUser {
     private int userID;

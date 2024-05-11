@@ -1,4 +1,4 @@
-package com.example.groupupcab302.Controllers;
+package com.example.groupupcab302;
 import com.example.groupupcab302.Constants.EventTypes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

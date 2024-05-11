@@ -1,4 +1,10 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.DAO;
+
+import com.example.groupupcab302.CustomSQLException;
+import com.example.groupupcab302.DatabaseConnection;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.Interfaces.IDatabaseDAO;
+import com.example.groupupcab302.Objects.GroupUpUser;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -156,12 +162,61 @@ public class EventDAO implements IDatabaseDAO<Event> {
         return eventsList;
     }
 
+    // Retrieve all events from DB of a specific user
+    public List<Event> getAllEventsForSpecificUser(int userID) throws SQLException{
+
+        String sqlQuery = "SELECT * FROM GroupUpEvents";
+        PreparedStatement preparedStatement = connectionToDatabase.prepareStatement(sqlQuery);
+        preparedStatement.setInt(1, userID);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Event eventFromDB;
+
+        List<Event> eventsList =  new ArrayList<Event>();
+
+        while (resultSet.next()){
+            eventFromDB =  new Event(resultSet.getInt("eventID"), resultSet.getInt("userIDofEventCreator"),
+                    resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
+                    resultSet.getString("location"), resultSet.getString("genre"),
+                    resultSet.getString("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
+                    resultSet.getString("image"), resultSet.getString("eventAttendees"));
+
+            eventsList.add(eventFromDB);
+        }
+        return eventsList;
+    }
+
     // Paramater should take the returned value/string of the event type constant to determine types of events to exclusively fetch from DB
-    public List<Event> getAllEventsOfSpecificType(String specificEventType) throws SQLException{
+    // Method overload/polymorphic approach to the original method, except it fetches events of a specific status/takes string
+    public List<Event> getAllEvents(String specificEventType) throws SQLException{
 
         String sqlQuery = "SELECT * FROM GroupUpEvents WHERE status = ?";
         PreparedStatement preparedStatement = connectionToDatabase.prepareStatement(sqlQuery);
         preparedStatement.setString(1, specificEventType);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Event eventFromDB;
+
+        List<Event> eventsList =  new ArrayList<Event>();
+
+        while (resultSet.next()){
+            eventFromDB =  new Event(resultSet.getInt("eventID"), resultSet.getInt("userIDofEventCreator"),
+                    resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
+                    resultSet.getString("location"), resultSet.getString("genre"),
+                    resultSet.getString("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
+                    resultSet.getString("image"), resultSet.getString("eventAttendees"));
+
+            eventsList.add(eventFromDB);
+        }
+        return eventsList;
+    }
+
+    // This parameter should accept a GroupUp user object.
+    // This method is an overload or polymorphic version of the original method, but it retrieves events in which a specific user is listed as an attendee.
+    public List<Event> getAllEvents(GroupUpUser groupUpUser) throws SQLException{
+
+        String sqlQuery = "SELECT * FROM GroupUpEvents WHERE eventAttendees LIKE ?";
+        PreparedStatement preparedStatement = connectionToDatabase.prepareStatement(sqlQuery);
+        preparedStatement.setString(1, "%" + groupUpUser.getEmail() + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         Event eventFromDB;
 

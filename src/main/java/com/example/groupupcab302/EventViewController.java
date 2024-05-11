@@ -1,8 +1,8 @@
-package com.example.groupupcab302.Controllers;
+package com.example.groupupcab302;
 
 import com.example.groupupcab302.Constants.EventTypes;
-import com.example.groupupcab302.Objects.Event;
 import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Objects.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -87,7 +87,7 @@ public class EventViewController extends ParentViewController{
     // Before dynamically rendering events, fetch all available events from DB
     // Store them to a field for accessing
     private void initializeEventList() throws SQLException{
-        eventList = eventDAO.getAllEventsOfSpecificType(EventTypes.OPEN_FOR_REGISTRATION.getEventType());
+        eventList = eventDAO.getAllEvents(EventTypes.OPEN_FOR_REGISTRATION.getEventType());
     }
      
 }

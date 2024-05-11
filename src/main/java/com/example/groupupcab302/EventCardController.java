@@ -1,7 +1,7 @@
-package com.example.groupupcab302.Controllers;
+package com.example.groupupcab302;
 
-import com.example.groupupcab302.Objects.Event;
 import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Objects.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

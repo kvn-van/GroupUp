@@ -1,9 +1,8 @@
-package com.example.groupupcab302.Controllers;
+package com.example.groupupcab302;
 
-import com.example.groupupcab302.misc.CustomSQLException;
 import com.example.groupupcab302.Constants.ErrorConstants;
-import com.example.groupupcab302.Objects.GroupUpUser;
 import com.example.groupupcab302.DAO.UserDAO;
+import com.example.groupupcab302.Objects.GroupUpUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;

@@ -1,10 +1,10 @@
-package com.example.groupupcab302.Controllers;
+package com.example.groupupcab302;
 
 import com.example.groupupcab302.Constants.EventTypes;
-import com.example.groupupcab302.Objects.Event;
 import com.example.groupupcab302.DAO.EventDAO;
-import com.example.groupupcab302.Interfaces.IDisplayingEvent;
 import com.example.groupupcab302.Interfaces.IDisplayDynamicHeader;
+import com.example.groupupcab302.Interfaces.IDisplayingEvent;
+import com.example.groupupcab302.Objects.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -67,7 +67,7 @@ public class MyCreatedEventsController extends ParentViewController implements I
             // Identify the type of events which the user wants to view, affects the events rendered
             // Extract events of that type
             // Reduces need for multiple pages to display events of various types
-            eventList = eventDAO.getAllEventsOfSpecificType(userInformationController.getUserEventPreferences());
+            eventList = eventDAO.getAllEvents(userInformationController.getUserEventPreferences());
             int columns = 0;
             int rows = 1;
             for (int counter = 0; counter<eventList.size() ; counter++){

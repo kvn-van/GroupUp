@@ -1,6 +1,6 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Interfaces;
 
-import com.example.groupupcab302.misc.CustomSQLException;
+import com.example.groupupcab302.CustomSQLException;
 
 // Declare the interface with a generic "T" parameter
 // allows abstract functions to take varying datatypes as parameters depending on the database class extending the interface

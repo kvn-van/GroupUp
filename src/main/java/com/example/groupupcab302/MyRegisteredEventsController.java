@@ -1,10 +1,10 @@
-package com.example.groupupcab302.Controllers;
+package com.example.groupupcab302;
 
 import com.example.groupupcab302.Constants.EventTypes;
-import com.example.groupupcab302.Objects.Event;
 import com.example.groupupcab302.DAO.EventDAO;
-import com.example.groupupcab302.Interfaces.IDisplayingEvent;
 import com.example.groupupcab302.Interfaces.IDisplayDynamicHeader;
+import com.example.groupupcab302.Interfaces.IDisplayingEvent;
+import com.example.groupupcab302.Objects.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -46,39 +46,35 @@ public class MyRegisteredEventsController extends ParentViewController implement
     // Modify the code to only show events which the user signed up to
     public void showEventsFromDB() {
         try {
-            eventList = eventDAO.getAllEvents();
+            eventList = eventDAO.getAllEvents(userInformationController.getLoggedInUserInformation());
             int columns = 0;
             int rows = 1;
             for (int counter = 0; counter<eventList.size() ; counter++){
-                String listOfAttendees = eventList.get(counter).getEventAttendees();
-                if (listOfAttendees != null){
-                    if (listOfAttendees.contains(userInformationController.getLoggedInUserInformation().getEmail())){
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        // Use the fxml loader object to load the event card fxml doc to retrieve the structure
-                        fxmlLoader.setLocation(getClass().getResource("event-cards.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                // Use the fxml loader object to load the event card fxml doc to retrieve the structure
+                fxmlLoader.setLocation(getClass().getResource("event-cards.fxml"));
 
-                        // Create a vbox to hold the structure returned by the event card fxml file upon load
-                        VBox eventCardPlacementBox = fxmlLoader.load();
+                // Create a vbox to hold the structure returned by the event card fxml file upon load
+                VBox eventCardPlacementBox = fxmlLoader.load();
 
-                        // Retrieve the controller associated with the event card fxml
-                        EventCardController eventCardController = fxmlLoader.getController();
-                        // Set the content of the card by supplying the data of an event retrieved from the database
-                        eventCardController.setData(eventList.get(counter));
+                // Retrieve the controller associated with the event card fxml
+                EventCardController eventCardController = fxmlLoader.getController();
+                // Set the content of the card by supplying the data of an event retrieved from the database
+                eventCardController.setData(eventList.get(counter));
 
-                        // Check that the number of event cards created does not exceed 3 per row
-                        if (columns == 3){
-                            // Reset the number to 0 to start placing cards at the start of the row
-                            columns = 0;
-                            // Increment the rows to move down 1 before starting to place the next event cards
-                            ++rows;
-                        }
-                        // Add the event card to the actual grid pane for display
-                        eventGrid.add(eventCardPlacementBox, columns++, rows);
-                        // Create a margin between all event cards of 10 pixels for all sides
-                        GridPane.setMargin(eventCardPlacementBox, new Insets(10));
-                        continue;
-                    }
+                // Check that the number of event cards created does not exceed 3 per row
+                if (columns == 3){
+                    // Reset the number to 0 to start placing cards at the start of the row
+                    columns = 0;
+                    // Increment the rows to move down 1 before starting to place the next event cards
+                    ++rows;
                 }
+                // Add the event card to the actual grid pane for display
+                eventGrid.add(eventCardPlacementBox, columns++, rows);
+                // Create a margin between all event cards of 10 pixels for all sides
+                GridPane.setMargin(eventCardPlacementBox, new Insets(10));
+                continue;
+
             }
 
         } catch (SQLException sqlException) {

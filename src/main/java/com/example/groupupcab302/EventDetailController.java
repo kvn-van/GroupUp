@@ -1,8 +1,6 @@
-package com.example.groupupcab302.Controllers;
-
-import com.example.groupupcab302.misc.CustomSQLException;
-import com.example.groupupcab302.Objects.Event;
+package com.example.groupupcab302;
 import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Objects.Event;
 import com.example.groupupcab302.Objects.GroupUpUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,8 +15,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static com.example.groupupcab302.Controllers.LoginController.changeScene;
-import static com.example.groupupcab302.Controllers.LoginController.pageID;
+import static com.example.groupupcab302.LoginController.changeScene;
+import static com.example.groupupcab302.LoginController.pageID;
 
 public class EventDetailController extends ParentViewController {
 

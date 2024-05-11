@@ -1,6 +1,6 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Objects;
 
-import com.example.groupupcab302.DBorSQL.DatabaseConnection;
+import com.example.groupupcab302.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -1,6 +1,10 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.DAO;
 
 import com.example.groupupcab302.Constants.ErrorConstants;
+import com.example.groupupcab302.CustomSQLException;
+import com.example.groupupcab302.DatabaseConnection;
+import com.example.groupupcab302.Objects.GroupUpUser;
+import com.example.groupupcab302.Interfaces.IDatabaseDAO;
 
 import java.sql.*;
 import java.util.regex.Matcher;
@@ -16,7 +20,7 @@ public class UserDAO implements IDatabaseDAO<GroupUpUser> {
     private Connection connectionToDatabase;
 
     public UserDAO(){
-        connectionToDatabase = com.example.groupupcab302.misc.DatabaseConnection.getInstance();
+        connectionToDatabase = DatabaseConnection.getInstance();
     }
 
 
