@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+#eventText {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
 .button {
     -fx-background-color: transparent;
     -fx-font-size: 12px;
@@ -17,21 +22,6 @@
     -fx-font-family: "Poppins";
 }
 
-#eventName {
-    -fx-font-size: 36px;
-    -fx-font-weight: bold;
-}
-
-#eventDescription {
-    -fx-max-width: 400px;
-    -fx-wrap-text: true;
-    -fx-font-size: 16px;
-}
-
-#eventLocation, #eventDate {
-    -fx-font-weight: bold;
-}
-
 #title {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
@@ -39,17 +29,26 @@
     -fx-text-fill: green;
 }
 
-#joinEvent{
+#eventID {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+
+
+.text-field {
     -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-radius: 5px;
+}
+
+#REGISTERBUTTON11 {
     -fx-background-color: black;
     -fx-text-fill: white;
 }
 
-#joinEvent:hover {
+#REGISTERBUTTON11:hover {
     -fx-background-color: white;
     -fx-text-fill: black;
-}
-
-#eventLabel, #eventTime {
-    -fx-font-weight: bold;
 }

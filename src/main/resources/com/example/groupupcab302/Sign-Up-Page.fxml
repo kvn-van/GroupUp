@@ -14,10 +14,8 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="240.0" prefWidth="1280.0" styleClass="header" stylesheets="@styling/registrationPageStyling.css">
          <children>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="428.0" text="Sign up to GroupUp! " textFill="WHITE">
-               <font>
-                  <Font name="Eras Demi ITC" size="42.0" />
-               </font>
+            <Label fx:id="title" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="428.0" text="Sign up to GroupUp! " textFill="WHITE">
+
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
@@ -32,7 +30,7 @@
                      <children>
                         <TextField fx:id="FirstNameTextField" promptText="First Name" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="18.0" />
                            </font>
                         </TextField>
                      </children>
@@ -44,7 +42,7 @@
                      <children>
                         <TextField fx:id="LastNameTextField" promptText="Last Name" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="18.0" />
                            </font>
                         </TextField>
                      </children>
@@ -60,7 +58,7 @@
                      <children>
                         <TextField fx:id="PhoneNumberTextField" promptText="Phone Number" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="18.0" />
                            </font>
                         </TextField>
                      </children>
@@ -72,7 +70,7 @@
                      <children>
                         <TextField fx:id="AgeTextField" promptText="Age" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="18.0" />
                            </font>
                         </TextField>
                      </children>
@@ -86,7 +84,7 @@
                <children>
                   <TextField fx:id="UserNameTextField" promptText="Username" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </TextField>
                </children>
@@ -98,7 +96,7 @@
                <children>
                   <TextField fx:id="EmailTextField" promptText="Email" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </TextField>
                </children>
@@ -110,7 +108,7 @@
                <children>
                   <TextField fx:id="PasswordTextField" promptText="Password" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </TextField>
                </children>
@@ -122,7 +120,7 @@
                <children>
                   <TextField fx:id="ConfirmationPasswordTextField" promptText="Password Confirmation" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </TextField>
                </children>
@@ -130,19 +128,19 @@
                   <Insets left="80.0" right="80.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="25.0" prefWidth="483.0" styleClass="blue-btn" text="Sign Up">
+            <Button mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="40.0" prefWidth="600.0" styleClass="blue-btn" text="Sign Up">
                <VBox.margin>
                   <Insets bottom="25.0" left="15.0" right="15.0" top="35.0" />
                </VBox.margin>
                <font>
-                  <Font size="28.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
             <HBox prefHeight="40.0" prefWidth="200.0">
                <children>
                   <Hyperlink onAction="#redirectToLoginPage" styleClass="nav-link" stylesheets="@styling/registrationPageStyling.css" text="Already have an account? Click here!" textFill="#4040cf">
                      <font>
-                        <Font size="22.0" />
+                        <Font size="14.0" />
                      </font>
                      <HBox.margin>
                         <Insets top="-10.0" />
