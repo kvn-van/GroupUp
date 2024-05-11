@@ -1,117 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="root" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.EditingEventController">
-   <Text fill="#030303" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
+<AnchorPane fx:id="root" prefHeight="720.0" prefWidth="1280.0" stylesheets="@styling/editEventStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.EditingEventController">
+   <Text fx:id="title" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
       <font>
          <Font name="Eras Demi ITC" size="26.0" />
       </font>
    </Text>
-   <Button layoutX="762.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
-   <Button layoutX="968.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
-   <Button layoutX="873.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
-   <Button layoutX="1065.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToYourEventsPage" prefHeight="25.0" prefWidth="85.0" text="Your Events" />
+   <Button layoutX="721.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
+   <Button layoutX="951.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" prefHeight="25.0" prefWidth="100.0" text="Registrations" />
+   <Button layoutX="845.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
+   <Button layoutX="1063.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToYourEventsPage" prefHeight="25.0" prefWidth="90.0" text="Your Events" />
    <Button layoutX="1162.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToStartScreenPage" prefHeight="25.0" prefWidth="85.0" text="Logout" />
-   <Button fx:id="REGISTERBUTTON" layoutX="733.0" layoutY="645.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="52.0" prefWidth="250.0" text="Update Event">
+   <Button fx:id="REGISTERBUTTON" layoutX="640.0" layoutY="619.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="52.0" prefWidth="200.0" text="Update Event">
       <font>
          <Font size="25.0" />
       </font>
    </Button>
-   <ScrollPane layoutX="123.0" layoutY="81.0" prefHeight="549.0" prefWidth="1030.0">
-      <AnchorPane fx:id="eventDetailsContainer" minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="1028.0" style="-fx-background-color: white;">
-         <TextField fx:id="name" layoutX="190.0" layoutY="84.0" prefHeight="40.0" prefWidth="255.0">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </TextField>
-         <Text layoutX="45.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Name">
-            <font>
-               <Font size="25.0" />
-            </font>
-         </Text>
-         <Text layoutX="45.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Date">
-            <font>
-               <Font size="25.0" />
-            </font>
-         </Text>
-         <Text layoutX="45.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Time">
-            <font>
-               <Font size="25.0" />
-            </font>
-         </Text>
-         <TextField fx:id="time" layoutX="191.0" layoutY="236.0" prefHeight="40.0" prefWidth="255.0">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </TextField>
-         <DatePicker fx:id="date" layoutX="192.0" layoutY="161.0" prefHeight="40.0" prefWidth="252.0" />
-         <Text layoutX="525.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Limit" wrappingWidth="132.73162841796875">
-            <font>
-               <Font size="25.0" />
-            </font>
-         </Text>
-         <TextField fx:id="numberOfRegistrationsAvailable" layoutX="658.0" layoutY="91.0" prefHeight="40.0" prefWidth="255.0">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </TextField>
-         <Text layoutX="525.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" wrappingWidth="100.0">
-            <font>
-               <Font size="25.0" />
-            </font>
-         </Text>
-         <TextField fx:id="location1" layoutX="659.0" layoutY="155.0" prefHeight="40.0" prefWidth="255.0">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </TextField>
-         <Text layoutX="525.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
-            <font>
-               <Font size="25.0" />
-            </font>
-         </Text>
-         <TextField fx:id="genre" layoutX="658.0" layoutY="236.0" prefHeight="40.0" prefWidth="255.0">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </TextField>
-         <Text layoutX="391.0" layoutY="332.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Description" wrappingWidth="511.6996154785156">
-            <font>
-               <Font size="25.0" />
-            </font>
-         </Text>
-         <TextField fx:id="descriptionOfEvent" alignment="TOP_LEFT" layoutX="86.0" layoutY="348.0" prefHeight="146.0" prefWidth="898.0">
-            <font>
-               <Font size="25.0" />
-            </font>
-         </TextField>
-         <Text fx:id="eventID" layoutX="243.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Are Currently Editing Event ID:" wrappingWidth="695.390625">
-            <font>
-               <Font size="32.0" />
-            </font>
-         </Text>
-      </AnchorPane>
-   </ScrollPane>
-   <Button fx:id="REGISTERBUTTON1" layoutX="512.0" layoutY="645.0" mnemonicParsing="false" onAction="#onCancelEventClick" prefHeight="52.0" prefWidth="207.0" text="Cancel Event">
+   <AnchorPane fx:id="eventDetailsContainer" layoutX="126.0" layoutY="74.0" minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="1028.0">
+      <TextField fx:id="name" layoutX="195.0" layoutY="90.0" prefHeight="40.0" prefWidth="255.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Text fx:id="eventText" layoutX="45.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="eventText" layoutX="45.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Date">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="eventText" layoutX="45.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Time">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="time" layoutX="196.0" layoutY="242.0" prefHeight="40.0" prefWidth="255.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <DatePicker fx:id="date" layoutX="197.0" layoutY="167.0" prefHeight="40.0" prefWidth="252.0" />
+      <Text fx:id="eventText" layoutX="525.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Limit" wrappingWidth="132.73162841796875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="numberOfRegistrationsAvailable" layoutX="663.0" layoutY="90.0" prefHeight="40.0" prefWidth="255.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Text fx:id="eventText" layoutX="525.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" wrappingWidth="100.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="location1" layoutX="663.0" layoutY="167.0" prefHeight="40.0" prefWidth="255.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Text fx:id="eventText" layoutX="525.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="genre" layoutX="663.0" layoutY="242.0" prefHeight="40.0" prefWidth="255.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Text fx:id="eventText" layoutX="45.0" layoutY="329.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Description" wrappingWidth="511.6996154785156">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="descriptionOfEvent" alignment="TOP_LEFT" layoutX="45.0" layoutY="347.0" prefHeight="146.0" prefWidth="898.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Text fx:id="eventID" layoutX="301.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You Are Currently Editing Event ID:" wrappingWidth="695.390625">
+
+      </Text>
+   </AnchorPane>
+<!--   <ScrollPane layoutX="123.0" layoutY="81.0" prefHeight="549.0" prefWidth="1030.0">-->
+<!--      -->
+<!--   </ScrollPane>-->
+   <Button fx:id="REGISTERBUTTON1" layoutX="406.0" layoutY="619.0" mnemonicParsing="false" onAction="#onCancelEventClick" prefHeight="52.0" prefWidth="200.0" text="Cancel Event">
       <font>
-         <Font size="25.0" />
+         <Font size="14.0" />
       </font>
    </Button>
-   <Button fx:id="REGISTERBUTTON11" layoutX="123.0" layoutY="645.0" mnemonicParsing="false" onAction="#onConfirmEventClick" prefHeight="52.0" prefWidth="363.0" text="Confirm Event (Happened)">
+   <Button fx:id="REGISTERBUTTON11" layoutX="169.0" layoutY="619.0" mnemonicParsing="false" onAction="#onConfirmEventClick" prefHeight="52.0" prefWidth="200.0" text="Confirm Event (Happened)">
       <font>
-         <Font size="25.0" />
+         <Font size="14.0" />
       </font>
    </Button>
-   <Button fx:id="REGISTERBUTTON2" layoutX="994.0" layoutY="645.0" mnemonicParsing="false" onAction="#redirectToYourEventsPage" prefHeight="52.0" prefWidth="156.0" text="Go Back">
+   <Button fx:id="REGISTERBUTTON2" layoutX="871.0" layoutY="619.0" mnemonicParsing="false" onAction="#redirectToYourEventsPage" prefHeight="52.0" prefWidth="200.0" text="Go Back">
       <font>
-         <Font size="25.0" />
+         <Font size="14.0" />
       </font>
    </Button>
 </AnchorPane>
