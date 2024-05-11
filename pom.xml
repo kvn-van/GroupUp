@@ -53,6 +53,13 @@
       <artifactId>charm-down-core</artifactId>
       <version>3.8.6</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.webjars/font-awesome -->
+    <!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx-fontawesome -->
+    <dependency>
+      <groupId>de.jensd</groupId>
+      <artifactId>fontawesomefx-fontawesome</artifactId>
+      <version>4.7.0-9.1.2</version>
+    </dependency>
   </dependencies>
 
   <build>
