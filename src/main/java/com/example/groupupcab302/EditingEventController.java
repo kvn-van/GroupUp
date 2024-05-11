@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -76,7 +77,6 @@ public class EditingEventController extends ParentViewController {
         catch (SQLException sqlException){
             displayNotification("Editing Event Error", "There was an error when trying to archive the event!", true);
         }
-
     }
 
     @FXML
@@ -89,7 +89,6 @@ public class EditingEventController extends ParentViewController {
         catch (SQLException sqlException){
             displayNotification("Editing Event Error", "There was an error when trying to cancel/close the event!", true);
         }
-
     }
 
     @FXML
