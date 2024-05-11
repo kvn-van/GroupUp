@@ -1,9 +1,4 @@
-package com.example.groupupcab302.DAO;
-
-import com.example.groupupcab302.misc.CustomSQLException;
-import com.example.groupupcab302.misc.DatabaseConnection;
-import com.example.groupupcab302.Objects.Event;
-import com.example.groupupcab302.Interfaces.IDatabaseDAO;
+package com.example.groupupcab302;
 
 import java.sql.*;
 import java.util.ArrayList;

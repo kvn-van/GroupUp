@@ -1,7 +1,7 @@
-package com.example.groupupcab302.mockDAO;
+package com.example.groupupcab302;
 
-import com.example.groupupcab302.misc.DatabaseConnection;
-import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.DBorSQL.DatabaseConnection;
+import com.example.groupupcab302.Event;
 
 import java.sql.*;
 

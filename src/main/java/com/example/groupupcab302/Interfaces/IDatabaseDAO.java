@@ -1,4 +1,4 @@
-package com.example.groupupcab302.Interfaces;
+package com.example.groupupcab302;
 
 import com.example.groupupcab302.misc.CustomSQLException;
 
