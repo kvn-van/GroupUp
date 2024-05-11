@@ -1,100 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.SignUpPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="anchor" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.SignUpPageController">
    <children>
-      <ImageView fitHeight="608.0" fitWidth="804.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Images/Social_events.jpg" />
-         </image>
-      </ImageView>
-      <Text fill="#030303" layoutX="854.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="42.0" />
-         </font>
-      </Text>
-      <Text fill="#5b5555" layoutX="853.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-       <TextField fx:id="UserNameTextField" layoutX="855.0" layoutY="144.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter UserName" />
-      <TextField fx:id="FirstNameTextField" layoutX="853.0" layoutY="204.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter First Name..." />
-      <TextField fx:id="LastNameTextField" layoutX="1057.0" layoutY="204.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter Last Name.." />
-      <Text fill="#5b5555" layoutX="1055.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <TextField fx:id="AgeTextField" layoutX="1062.0" layoutY="327.0" prefHeight="25.0" prefWidth="176.0" promptText="Enter Age.. i.e 21" />
-      <Text fill="#5b5555" layoutX="1065.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <Text fill="#5b5555" layoutX="853.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <Text fill="#5b5555" layoutX="853.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Confirmation" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <PasswordField fx:id="PasswordTextField" layoutX="853.0" layoutY="391.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter Password..." />
-      <PasswordField fx:id="ConfirmationPasswordTextField" layoutX="853.0" layoutY="456.0" prefHeight="25.0" prefWidth="389.0" promptText="Confirm Password..." />
-      <Text fill="#030303" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="26.0" />
-         </font>
-      </Text>
-      <Button id="SignInButton" layoutX="863.0" layoutY="593.0" mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="25.0" prefWidth="366.0" text="Sign In" />
-      <Button layoutX="866.0" layoutY="651.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="366.0" text="Already Have An Account?" onAction="#redirectToLoginPage" />
-      <Line endX="75.0" layoutX="964.0" layoutY="635.0" startX="-100.0" />
-      <Text fill="#5b5555" layoutX="1037.0" layoutY="639.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="23.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="15.0" />
-         </font>
-      </Text>
-      <Line endX="75.0" layoutX="1155.0" layoutY="635.0" startX="-98.01025390625" />
-      <Text fill="#5b5555" layoutX="855.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserName" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <TextField fx:id="EmailTextField" layoutX="853.0" layoutY="268.0" prefHeight="25.0" prefWidth="389.0" promptText="Enter Email..." />
-      <Text fill="#5b5555" layoutX="853.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <TextField fx:id="PhoneNumberTextField" layoutX="856.0" layoutY="327.0" prefHeight="25.0" prefWidth="186.0" promptText="Enter Phone Number..." />
-      <Text fill="#5b5555" layoutX="853.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" wrappingWidth="176.0">
-         <font>
-            <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="608.0" fitWidth="804.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Images/Social_events.jpg" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="SigningInStatus" editable="false" layoutX="854.0" layoutY="524.0" prefHeight="58.0" prefWidth="389.0" promptText="Any Errors With User Details Are Displawyed Here" wrapText="true" />
-      <Text fill="#5b5555" layoutX="853.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Signing In Status" wrappingWidth="288.51025390625">
-         <font>
-            <Font name="Eras Demi ITC" size="21.0" />
-         </font>
-      </Text>
+      <VBox alignment="TOP_CENTER" prefHeight="240.0" prefWidth="1280.0" styleClass="header" stylesheets="@styles.css">
+         <children>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="428.0" text="Sign up to GroupUp! " textFill="WHITE">
+               <font>
+                  <Font name="Eras Demi ITC" size="42.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutX="256.0" layoutY="100.0" prefHeight="600.0" prefWidth="768.0" styleClass="white-pane" stylesheets="@styles.css">
+         <children>
+            <HBox id="tf_box" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="275.0">
+                     <children>
+                        <TextField fx:id="FirstNameTextField" promptText="First Name" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="60.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="275.0">
+                     <children>
+                        <TextField fx:id="LastNameTextField" promptText="Last Name" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="80.0" right="80.0" top="25.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="275.0">
+                     <children>
+                        <TextField fx:id="PhoneNumberTextField" promptText="Phone Number" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="60.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="275.0">
+                     <children>
+                        <TextField fx:id="AgeTextField" promptText="Age" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="80.0" right="80.0" top="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="90.0" layoutY="201.0" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="UserNameTextField" promptText="Username" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets left="80.0" right="80.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="EmailTextField" promptText="Email" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets left="80.0" right="80.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="PasswordTextField" promptText="Password" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets left="80.0" right="80.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="ConfirmationPasswordTextField" promptText="Password Confirmation" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets left="80.0" right="80.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#onSignUpButtonClick" prefHeight="25.0" prefWidth="483.0" styleClass="blue-btn" text="Sign Up">
+               <VBox.margin>
+                  <Insets bottom="25.0" left="15.0" right="15.0" top="35.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+            <HBox prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <Hyperlink onAction="#redirectToLoginPage" styleClass="nav-link" stylesheets="@styles.css" text="Already have an account? Click here!" textFill="#4040cf">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="-10.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+               </children>
+               <padding>
+                  <Insets left="75.0" right="75.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="-5.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
