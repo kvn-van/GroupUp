@@ -19,7 +19,7 @@ public class Main extends Application {
         eventDAO.createTable();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("start-screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),1280 , 720);
-        stage.setTitle("GroupUp");
+        stage.setTitle("GroupUp!");
         stage.setScene(scene);
         stage.show();
     }
