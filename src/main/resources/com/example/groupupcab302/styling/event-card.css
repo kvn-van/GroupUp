@@ -9,3 +9,8 @@
     -fx-scale-z: 1.05;
 }
 
+#eventName {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
