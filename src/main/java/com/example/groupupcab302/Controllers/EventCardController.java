@@ -1,5 +1,7 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Controllers;
 
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.DAO.EventDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -34,7 +36,7 @@ public class EventCardController extends ParentViewController{
     private Scene scene;
     private Parent root;
     private EventDAO eventDAO = new EventDAO();
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
 
     // Store the event retrieved from the DB and its details so that the details can be passed to other screens
     private Event event;
@@ -83,11 +85,11 @@ public class EventCardController extends ParentViewController{
     @FXML
     //Rename the paramater to differentiate from the event object
     public void onEventCardClick(ActionEvent actionableEvent) throws IOException {
-        userInformation.setEventSelectedByUser(this.event);
+        userInformationController.setEventSelectedByUser(this.event);
         //try{
             //Retrieve the intended behaviour of the user
             // If user does want to edit a card then redirect to appropriate page, else display the events details
-            if (userInformation.getDoesUserWantToEditTheirEvents()){
+            if (userInformationController.getDoesUserWantToEditTheirEvents()){
                 redirectToEventEditing(actionableEvent);
             }
 

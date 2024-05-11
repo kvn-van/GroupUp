@@ -1,4 +1,4 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.misc;
 
 import java.sql.SQLException;
 

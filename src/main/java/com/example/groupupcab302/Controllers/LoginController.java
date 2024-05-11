@@ -1,23 +1,23 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Controllers;
+import com.example.groupupcab302.Constants.ErrorConstants;
+import com.example.groupupcab302.Objects.GroupUpUser;
+import com.example.groupupcab302.Main;
+import com.example.groupupcab302.DAO.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.sql.SQLException;
-import javafx.util.Duration;
-import org.controlsfx.control.*;
 
 public class LoginController extends ParentViewController {
 
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
     public PasswordField passwordTextField;
     public TextField emailTextField;
     private GroupUpUser signedInUser;
@@ -75,7 +75,7 @@ public class LoginController extends ParentViewController {
     private void updateInformationOfLoggedInUser(String userEmail) throws SQLException {
         try{
             GroupUpUser loggedInUser = userDAO.getUserRecordByEmail(userEmail);
-            userInformation.setLoggedInUserInformation(loggedInUser);
+            userInformationController.setLoggedInUserInformation(loggedInUser);
         }
 
         catch (SQLException sqlException){

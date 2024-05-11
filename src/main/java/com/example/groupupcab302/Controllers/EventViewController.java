@@ -1,5 +1,8 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Controllers;
 
+import com.example.groupupcab302.Constants.EventTypes;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.DAO.EventDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -17,7 +20,7 @@ public class EventViewController extends ParentViewController{
     @FXML
     private GridPane eventGrid;
 
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
     private EventDAO eventDAO = new EventDAO();
     private List<Event> eventList;
     private Stage stage;
@@ -27,7 +30,7 @@ public class EventViewController extends ParentViewController{
 
     public void initialize(){
         //Users only viewing events without intention to edit, ensure cards when clicked have one behaviour
-        userInformation.setDoesUserWantToEditTheirEvents(false);
+        userInformationController.setDoesUserWantToEditTheirEvents(false);
         showEventsFromDB();
     }
 
@@ -84,7 +87,7 @@ public class EventViewController extends ParentViewController{
     // Before dynamically rendering events, fetch all available events from DB
     // Store them to a field for accessing
     private void initializeEventList() throws SQLException{
-        eventList = eventDAO.getAllEvents(true);
+        eventList = eventDAO.getAllEventsOfSpecificType(EventTypes.OPEN_FOR_REGISTRATION.getEventType());
     }
      
 }

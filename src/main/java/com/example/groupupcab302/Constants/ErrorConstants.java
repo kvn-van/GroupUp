@@ -1,4 +1,4 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Constants;
 
 public enum ErrorConstants {
 

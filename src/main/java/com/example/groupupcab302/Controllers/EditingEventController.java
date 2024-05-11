@@ -1,12 +1,13 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Controllers;
 
+import com.example.groupupcab302.misc.CustomSQLException;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.DAO.EventDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -50,12 +51,12 @@ public class EditingEventController extends ParentViewController {
     @FXML
     private AnchorPane eventDetailsContainer;
 
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
 
     private Event eventSelected;
 
     public void initialize(){
-        eventSelected = userInformation.getEventSelectedByUser();
+        eventSelected = userInformationController.getEventSelectedByUser();
         eventID.setText("You Are Currently Editing Event ID: " + eventSelected.getEventID());
         name.setText(eventSelected.getName());
         genre.setText(eventSelected.getGenre());

@@ -1,15 +1,12 @@
-import com.example.groupupcab302.CustomSQLException;
-import com.example.groupupcab302.DatabaseConnection;
-import com.example.groupupcab302.Event;
-import com.example.groupupcab302.GroupUpUser;
+import com.example.groupupcab302.misc.CustomSQLException;
+import com.example.groupupcab302.misc.DatabaseConnection;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.Objects.GroupUpUser;
 import com.example.groupupcab302.mockDAO.MockEventDAO;
-import com.example.groupupcab302.mockDAO.MockUserDAO;
-import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;

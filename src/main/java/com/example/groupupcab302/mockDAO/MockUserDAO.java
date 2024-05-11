@@ -1,12 +1,9 @@
 package com.example.groupupcab302.mockDAO;
 
-import com.example.groupupcab302.*;
+import com.example.groupupcab302.Objects.GroupUpUser;
+import com.example.groupupcab302.misc.DatabaseConnection;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 // Create a mock class similiar to the end solution
 public class MockUserDAO {

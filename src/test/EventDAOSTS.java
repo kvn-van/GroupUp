@@ -1,7 +1,6 @@
-import com.example.groupupcab302.Event;
-import com.example.groupupcab302.EventDAO;
-import com.example.groupupcab302.GroupUpUser;
-import com.example.groupupcab302.CustomSQLException;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Objects.GroupUpUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

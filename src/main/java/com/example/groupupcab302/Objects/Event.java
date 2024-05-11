@@ -1,11 +1,8 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Objects;
 
-import javafx.scene.chart.PieChart;
+import com.example.groupupcab302.misc.DatabaseConnection;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

@@ -1,8 +1,5 @@
-import com.example.groupupcab302.*;
-import org.junit.jupiter.api.BeforeEach;
+import com.example.groupupcab302.Constants.ErrorConstants;
 import org.junit.jupiter.api.Test;
-
-import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

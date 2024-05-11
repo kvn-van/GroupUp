@@ -8,16 +8,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.EditingEventController">
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<AnchorPane fx:id="root" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.Controllers.EditingEventController">
    <Text fill="#030303" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
       <font>
          <Font name="Eras Demi ITC" size="26.0" />
       </font>
    </Text>
-   <Button layoutX="762.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
-   <Button layoutX="968.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
-   <Button layoutX="873.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
-   <Button layoutX="1065.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToYourEventsPage" prefHeight="25.0" prefWidth="85.0" text="Your Events" />
+   <Button layoutX="732.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
+   <Button layoutX="938.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" prefHeight="25.0" prefWidth="85.0" text="Registrations" />
+   <Button layoutX="843.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
+   <MenuButton layoutX="1042.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Your Created Events">
+      <items>
+         <MenuItem mnemonicParsing="false" onAction="#redirectToYourEventsPage" text="View Your Created Events" />
+         <MenuItem mnemonicParsing="false" onAction="#redirectToYourEventsPage" text="View Your Cancelled Created Events" />
+         <MenuItem mnemonicParsing="false" onAction="#redirectToYourEventsPage" text="View Your Completed Created Events" />
+      </items>
+   </MenuButton>
    <Button layoutX="1162.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToStartScreenPage" prefHeight="25.0" prefWidth="85.0" text="Logout" />
    <Button fx:id="REGISTERBUTTON" layoutX="733.0" layoutY="645.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="52.0" prefWidth="250.0" text="Update Event">
       <font>

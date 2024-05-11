@@ -1,18 +1,16 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Controllers;
 
+import com.example.groupupcab302.misc.CustomSQLException;
+import com.example.groupupcab302.Constants.ErrorConstants;
+import com.example.groupupcab302.Objects.GroupUpUser;
+import com.example.groupupcab302.DAO.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class SignUpPageController extends ParentViewController {
@@ -103,7 +101,7 @@ public class SignUpPageController extends ParentViewController {
             // Ensure fields are not empty
             if (textFieldValues[counter].isEmpty()) {
                 //display error message if form isnt filled out properly
-                displayNotification("Sign Up Failure",ErrorConstants.INVALID_USERINPUT.getErrorDescription(), true);
+                displayNotification("Sign Up Failure", ErrorConstants.INVALID_USERINPUT.getErrorDescription(), true);
                 return false; // Return false if any string is invalid
             }
         }

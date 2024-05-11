@@ -1,5 +1,8 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Controllers;
 
+import com.example.groupupcab302.misc.CustomSQLException;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.DAO.EventDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -21,7 +24,7 @@ import java.sql.SQLException;
 
 
 public class CreateEventController extends ParentViewController {
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
     private EventDAO eventDAO;
     private Stage stage;
     private File selectedFile;
@@ -60,7 +63,7 @@ public class CreateEventController extends ParentViewController {
     public void createEvent() throws SQLException {
             try{
                 // Retrieve the user who is currently logged in to use their ID and associate it with event being created
-                Event eventToBeCreated = new Event(userInformation.getLoggedInUserInformation(), eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
+                Event eventToBeCreated = new Event(userInformationController.getLoggedInUserInformation(), eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
                         eventLocation.getText(), eventGenre.getText(), eventRegistrationQuantity.getText(), eventDescription.getText(), urlOfImageInMavenResourceFolder);
 
                 eventDAO.insert(eventToBeCreated);
@@ -70,7 +73,6 @@ public class CreateEventController extends ParentViewController {
             }
 
     }
-
 
     @FXML
     public void submit(ActionEvent event ) throws CustomSQLException {

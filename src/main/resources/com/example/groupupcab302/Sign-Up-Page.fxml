@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="anchor" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.SignUpPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="anchor" stylesheets="@styling/registrationPageStyling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.Controllers.SignUpPageController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="240.0" prefWidth="1280.0" styleClass="header" stylesheets="@styles.css">
+      <VBox alignment="TOP_CENTER" prefHeight="240.0" prefWidth="1280.0" styleClass="header" stylesheets="@styling/registrationPageStyling.css">
          <children>
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="428.0" text="Sign up to GroupUp! " textFill="WHITE">
                <font>
@@ -24,13 +24,13 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="256.0" layoutY="100.0" prefHeight="600.0" prefWidth="768.0" styleClass="white-pane" stylesheets="@styles.css">
+      <VBox alignment="TOP_CENTER" layoutX="256.0" layoutY="100.0" prefHeight="600.0" prefWidth="768.0" styleClass="white-pane" stylesheets="@styling/registrationPageStyling.css">
          <children>
             <HBox id="tf_box" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="275.0">
                      <children>
-                        <TextField fx:id="FirstNameTextField" promptText="First Name" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="FirstNameTextField" promptText="First Name" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -42,7 +42,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="275.0">
                      <children>
-                        <TextField fx:id="LastNameTextField" promptText="Last Name" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="LastNameTextField" promptText="Last Name" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -58,7 +58,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="275.0">
                      <children>
-                        <TextField fx:id="PhoneNumberTextField" promptText="Phone Number" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="PhoneNumberTextField" promptText="Phone Number" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -70,7 +70,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="275.0">
                      <children>
-                        <TextField fx:id="AgeTextField" promptText="Age" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="AgeTextField" promptText="Age" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -84,7 +84,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="90.0" layoutY="201.0" prefHeight="40.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="UserNameTextField" promptText="Username" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="UserNameTextField" promptText="Username" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -96,7 +96,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="EmailTextField" promptText="Email" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="EmailTextField" promptText="Email" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -108,7 +108,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="PasswordTextField" promptText="Password" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="PasswordTextField" promptText="Password" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -120,7 +120,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="ConfirmationPasswordTextField" promptText="Password Confirmation" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="ConfirmationPasswordTextField" promptText="Password Confirmation" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -140,7 +140,7 @@
             </Button>
             <HBox prefHeight="40.0" prefWidth="200.0">
                <children>
-                  <Hyperlink onAction="#redirectToLoginPage" styleClass="nav-link" stylesheets="@styles.css" text="Already have an account? Click here!" textFill="#4040cf">
+                  <Hyperlink onAction="#redirectToLoginPage" styleClass="nav-link" stylesheets="@styling/registrationPageStyling.css" text="Already have an account? Click here!" textFill="#4040cf">
                      <font>
                         <Font size="22.0" />
                      </font>

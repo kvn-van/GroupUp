@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="anchor" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="anchor" stylesheets="@styling/registrationPageStyling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.Controllers.LoginController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="240.0" prefWidth="1280.0" styleClass="header" stylesheets="@styles.css">
+      <VBox alignment="TOP_CENTER" prefHeight="240.0" prefWidth="1280.0" styleClass="header" stylesheets="@styling/registrationPageStyling.css">
          <children>
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="332.0" text="GroupUp! Login" textFill="WHITE">
                <font>
@@ -26,9 +26,9 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="320.0" layoutY="140.0" prefHeight="480.0" prefWidth="640.0" styleClass="white-pane" stylesheets="@styles.css">
+      <VBox alignment="TOP_CENTER" layoutX="320.0" layoutY="140.0" prefHeight="480.0" prefWidth="640.0" styleClass="white-pane" stylesheets="@styling/registrationPageStyling.css">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="200.0" styleClass="blue-circle" stylesheets="@styles.css">
+            <VBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="200.0" styleClass="blue-circle" stylesheets="@styling/registrationPageStyling.css">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em">
                      <VBox.margin>
@@ -45,7 +45,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="emailTextField" promptText="Email" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="emailTextField" promptText="Email" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -57,7 +57,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
                <children>
-                  <PasswordField fx:id="passwordTextField" promptText="Password" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                  <PasswordField fx:id="passwordTextField" promptText="Password" styleClass="tf_box" stylesheets="@styling/registrationPageStyling.css" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -77,7 +77,7 @@
             </Button>
             <HBox prefHeight="40.0" prefWidth="200.0">
                <children>
-                  <Hyperlink onAction="#redirectToSignUpPage" styleClass="nav-link" stylesheets="@styles.css" text="Don't have an account? Click here!" textFill="#4040cf">
+                  <Hyperlink onAction="#redirectToSignUpPage" styleClass="nav-link" stylesheets="@styling/registrationPageStyling.css" text="Don't have an account? Click here!" textFill="#4040cf">
                      <font>
                         <Font size="22.0" />
                      </font>

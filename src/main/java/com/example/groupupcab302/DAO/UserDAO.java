@@ -1,8 +1,12 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.DAO;
+
+import com.example.groupupcab302.Constants.ErrorConstants;
+import com.example.groupupcab302.Interfaces.IDatabaseDAO;
+import com.example.groupupcab302.Objects.GroupUpUser;
+import com.example.groupupcab302.misc.CustomSQLException;
+import com.example.groupupcab302.misc.DatabaseConnection;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +16,7 @@ import java.util.regex.Pattern;
 // Implement the database interface with the datatype of the class GroupUpUser as the parameter
 // Allows overriding of interface methods and for specific operations on the GroupUpUser objects and database
 
-public class UserDAO implements IDatabaseDAO<GroupUpUser>{
+public class UserDAO implements IDatabaseDAO<GroupUpUser> {
     private Connection connectionToDatabase;
 
     public UserDAO(){

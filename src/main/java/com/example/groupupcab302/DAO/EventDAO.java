@@ -1,4 +1,9 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.DAO;
+
+import com.example.groupupcab302.misc.CustomSQLException;
+import com.example.groupupcab302.misc.DatabaseConnection;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.Interfaces.IDatabaseDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -7,7 +12,7 @@ import java.util.List;
 // Implement the database interface with the datatype of the class event as the parameter
 // Allows overriding of interface methods and for specific operations on the user objects and database
 // Defines the generic for the interface to be event objects
-public class EventDAO implements IDatabaseDAO<Event>{
+public class EventDAO implements IDatabaseDAO<Event> {
     private Connection connectionToDatabase;
     public EventDAO(){
         connectionToDatabase = DatabaseConnection.getInstance();
@@ -76,7 +81,7 @@ public class EventDAO implements IDatabaseDAO<Event>{
     }
 
     @Override
-    public void insert(Event event) throws CustomSQLException{
+    public void insert(Event event) throws CustomSQLException {
         try {
             PreparedStatement insertEvent = connectionToDatabase.prepareStatement(
                     "INSERT INTO GroupUpEvents (name, date, time, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image, eventAttendees, userIDOfEventCreator, status) " +
@@ -134,12 +139,34 @@ public class EventDAO implements IDatabaseDAO<Event>{
 
     }
 
-    // Valid events are those whose status is "open for registration"
-    // Non valid events are those with a "complete" or "cancelled" status
-    public List<Event> getAllEvents(boolean toFetchValidEvents) throws SQLException{
+    // Retrieve all events from DB regardless of status
+    public List<Event> getAllEvents() throws SQLException{
 
-        String sqlQuery = toFetchValidEvents ? "SELECT * FROM GroupUpEvents WHERE status = \"Open For Registration\"" : "SELECT * FROM GroupUpEvents";
+        String sqlQuery = "SELECT * FROM GroupUpEvents";
         PreparedStatement preparedStatement = connectionToDatabase.prepareStatement(sqlQuery);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Event eventFromDB;
+
+        List<Event> eventsList =  new ArrayList<Event>();
+
+        while (resultSet.next()){
+            eventFromDB =  new Event(resultSet.getInt("eventID"), resultSet.getInt("userIDofEventCreator"),
+                    resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
+                    resultSet.getString("location"), resultSet.getString("genre"),
+                    resultSet.getString("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
+                    resultSet.getString("image"), resultSet.getString("eventAttendees"));
+
+            eventsList.add(eventFromDB);
+        }
+        return eventsList;
+    }
+
+    // Paramater should take the returned value/string of the event type constant to determine types of events to exclusively fetch from DB
+    public List<Event> getAllEventsOfSpecificType(String specificEventType) throws SQLException{
+
+        String sqlQuery = "SELECT * FROM GroupUpEvents WHERE status = ?";
+        PreparedStatement preparedStatement = connectionToDatabase.prepareStatement(sqlQuery);
+        preparedStatement.setString(1, specificEventType);
         ResultSet resultSet = preparedStatement.executeQuery();
         Event eventFromDB;
 
@@ -187,11 +214,11 @@ public class EventDAO implements IDatabaseDAO<Event>{
     private void validateStatusOfEvent(Event eventToBeEdited, int numberOfRegistrationsAvailable) throws CustomSQLException {
         try{
             // Check whether the new number of registrations available makes an event closed or open based on spots
-            // Events with spots <= 0 are closed for registration
+            // Events with spots <= 0 are considered completed/ready to occur
             if (numberOfRegistrationsAvailable <= 0){
-                this.update(eventToBeEdited, "status", "Closed For Registration");
+                this.update(eventToBeEdited, "status", "completed");
             }
-            // Events with spots > 0 are open for registration
+            // Events with spots > 0 are still open for registration
             else if (numberOfRegistrationsAvailable > 0){
                 this.update(eventToBeEdited, "status", "Open For Registration");
             }

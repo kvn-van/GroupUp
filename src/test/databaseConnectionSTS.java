@@ -1,11 +1,9 @@
 
 
-import com.example.groupupcab302.DatabaseConnection;
-import org.junit.jupiter.api.AfterEach;
+import com.example.groupupcab302.misc.DatabaseConnection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.SQLException;
 

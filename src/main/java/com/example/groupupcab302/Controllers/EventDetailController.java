@@ -1,5 +1,9 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Controllers;
 
+import com.example.groupupcab302.misc.CustomSQLException;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Objects.GroupUpUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,8 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static com.example.groupupcab302.LoginController.changeScene;
-import static com.example.groupupcab302.LoginController.pageID;
+import static com.example.groupupcab302.Controllers.LoginController.changeScene;
+import static com.example.groupupcab302.Controllers.LoginController.pageID;
 
 public class EventDetailController extends ParentViewController {
 
@@ -53,7 +57,7 @@ public class EventDetailController extends ParentViewController {
     private Text title;
 
 
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
 
     private final EventDAO eventDAO = new EventDAO();
 
@@ -67,7 +71,7 @@ public class EventDetailController extends ParentViewController {
     // handlers, or binding properties.
     private void initialize() {
         try{
-            eventChosenByUser = userInformation.getEventSelectedByUser();
+            eventChosenByUser = userInformationController.getEventSelectedByUser();
 
             String imageURL = "src/main/resources" + eventChosenByUser.getImage();
             File file = new File(imageURL);
@@ -155,14 +159,14 @@ public class EventDetailController extends ParentViewController {
     }
 
     private boolean isUserAlreadyRegisteredToEvent(String listOfEventAttendees){
-        return listOfEventAttendees.contains(userInformation.getLoggedInUserInformation().getEmail());
+        return listOfEventAttendees.contains(userInformationController.getLoggedInUserInformation().getEmail());
     }
 
     // Too complex to manage the registration of a user in one event due to validation checks on user existence in string
     // If user in string they can neither register which is expected but also cant unregister
     private void registerUserToEvent(String listOfEventAttendees, ActionEvent event) throws SQLException {
         try{
-            GroupUpUser userToManage = userInformation.getLoggedInUserInformation();
+            GroupUpUser userToManage = userInformationController.getLoggedInUserInformation();
             if (isListOfAttendeesEmpty(listOfEventAttendees) || !isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
                 listOfEventAttendees += "," + userToManage.getEmail();
                 eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
@@ -183,7 +187,7 @@ public class EventDetailController extends ParentViewController {
 
     private void unregisterUserFromEvent(String listOfEventAttendees, ActionEvent event) throws SQLException {
         try{
-            GroupUpUser userToManage = userInformation.getLoggedInUserInformation();
+            GroupUpUser userToManage = userInformationController.getLoggedInUserInformation();
             if (isListOfAttendeesEmpty(listOfEventAttendees) || isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
                 listOfEventAttendees = listOfEventAttendees.replace(userToManage.getEmail(), "");
                 eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);

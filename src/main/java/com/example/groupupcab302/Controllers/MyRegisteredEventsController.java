@@ -1,5 +1,10 @@
-package com.example.groupupcab302;
+package com.example.groupupcab302.Controllers;
 
+import com.example.groupupcab302.Constants.EventTypes;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Interfaces.IDisplayingEvent;
+import com.example.groupupcab302.Interfaces.IDisplayDynamicHeader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -13,12 +18,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class MyRegisteredEventsController extends ParentViewController implements IDisplayingEvent  {
+public class MyRegisteredEventsController extends ParentViewController implements IDisplayingEvent, IDisplayDynamicHeader {
 
     @FXML
     private GridPane eventGrid;
 
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
     private EventDAO eventDAO = new EventDAO();
     private List<Event> eventList;
 
@@ -28,20 +33,26 @@ public class MyRegisteredEventsController extends ParentViewController implement
 
     public void initialize(){
         //Users only viewing events without intention to edit, ensure cards when clicked have one behaviour
-        userInformation.setDoesUserWantToEditTheirEvents(false);
+        userInformationController.setDoesUserWantToEditTheirEvents(false);
         showEventsFromDB();
+    }
+
+    public void setHeader(){
+        if (userInformationController.getUserEventPreferences().equals(EventTypes.OPEN_FOR_REGISTRATION.getEventType())){
+
+        }
     }
 
     // Modify the code to only show events which the user signed up to
     public void showEventsFromDB() {
         try {
-            eventList = eventDAO.getAllEvents(false);
+            eventList = eventDAO.getAllEvents();
             int columns = 0;
             int rows = 1;
             for (int counter = 0; counter<eventList.size() ; counter++){
                 String listOfAttendees = eventList.get(counter).getEventAttendees();
                 if (listOfAttendees != null){
-                    if (listOfAttendees.contains(userInformation.getLoggedInUserInformation().getEmail())){
+                    if (listOfAttendees.contains(userInformationController.getLoggedInUserInformation().getEmail())){
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         // Use the fxml loader object to load the event card fxml doc to retrieve the structure
                         fxmlLoader.setLocation(getClass().getResource("event-cards.fxml"));
