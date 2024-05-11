@@ -16,10 +16,10 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="240.0" prefWidth="1280.0" styleClass="header" stylesheets="@styles.css">
          <children>
-            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="332.0" text="GroupUp! Login" textFill="WHITE">
-               <font>
-                  <Font name="Eras Demi ITC" size="42.0" />
-               </font>
+            <Label fx:id="title" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="332.0" text="GroupUp! Login" textFill="WHITE">
+<!--               <font>-->
+<!--                  <Font name="Eras Demi ITC" size="42.0" />-->
+<!--               </font>-->
                <VBox.margin>
                   <Insets top="45.0" />
                </VBox.margin>
@@ -47,7 +47,7 @@
                <children>
                   <TextField fx:id="emailTextField" promptText="Email" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </TextField>
                </children>
@@ -59,7 +59,7 @@
                <children>
                   <PasswordField fx:id="passwordTextField" promptText="Password" styleClass="tf_box" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                      </font>
                   </PasswordField>
                </children>
@@ -67,19 +67,19 @@
                   <Insets left="80.0" right="80.0" top="25.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#onLoginButton" prefHeight="25.0" prefWidth="483.0" styleClass="blue-btn" text="Sign In">
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#onLoginButton" prefHeight="40.0" prefWidth="483.0" styleClass="blue-btn" text="Sign In">
                <VBox.margin>
                   <Insets bottom="25.0" left="15.0" right="15.0" top="50.0" />
                </VBox.margin>
                <font>
-                  <Font size="28.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
             <HBox prefHeight="40.0" prefWidth="200.0">
                <children>
                   <Hyperlink onAction="#redirectToSignUpPage" styleClass="nav-link" stylesheets="@styles.css" text="Don't have an account? Click here!" textFill="#4040cf">
                      <font>
-                        <Font size="22.0" />
+                        <Font size="14.0" />
                      </font>
                      <HBox.margin>
                         <Insets top="-5.0" />
