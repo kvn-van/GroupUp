@@ -14,3 +14,8 @@
     -fx-font-weight: bold;
 }
 
+#eventImage {
+    -fx-border-radius: 5px;
+    -fx-max-width: fit;
+}
+
