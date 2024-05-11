@@ -170,6 +170,7 @@ public class ParentViewController {
                 .title(title)
                 .text(notificationDescription)
                 .graphic(new ImageView(image))
+                // Suppyling any value will cause the notification to render to the javafx screen instead of whole primary (default) screen.
                 .owner(scene)
                 .hideAfter(Duration.seconds(6))
                 .threshold(6,excessNotification)
