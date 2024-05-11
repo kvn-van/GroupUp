@@ -1,0 +1,35 @@
+.anchor {
+    -fx-background-color: #ede7f6;
+}
+
+.header {
+    -fx-background-color: #2196f3;
+}
+
+.white-pane {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 2.5%;
+}
+
+.blue-circle {
+    -fx-background-color: #2196f3;
+    -fx-background-radius: 300%;
+}
+
+.tf_box {
+    -fx-background-color: transparent;
+    -fx-border-color: #DEDEE4;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-text-fill: black; /* Dark blue: #01005d */
+}
+
+.blue-btn {
+    -fx-background-color: #2196f3;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #ffffff;
+}
+
+.ta {
+    -fx-background-color: transparent;
+    -fx-text-fill: #151928;
+}
