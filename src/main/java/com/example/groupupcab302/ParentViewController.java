@@ -104,7 +104,7 @@ public class ParentViewController {
     protected void redirectToStartScreenPage(ActionEvent event) {
         try {
             // Basic code to switch the scene to an appropriate scene
-            Parent root = FXMLLoader.load(getClass().getResource("start-screen.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Login-Page.fxml"));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
