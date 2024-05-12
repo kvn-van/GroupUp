@@ -173,15 +173,19 @@ public class EventDetailController extends ParentViewController {
     private void unregisterUserFromEvent(String listOfEventAttendees, ActionEvent event) throws SQLException {
         try{
             GroupUpUser userToManage = userInformationController.getLoggedInUserInformation();
-            if (isListOfAttendeesEmpty(listOfEventAttendees) || isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
-                listOfEventAttendees = listOfEventAttendees.replace(userToManage.getEmail(), "");
-                eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
-                eventDAO.manageRegistrationsAvailable("Addition", eventChosenByUser);
-                displayNotification("Unregistration Success", "You have successfully unregistered from the event!", false);
-                redirectToEventDiscoveryPage(event);
-            } else {
-                displayNotification("Unregistration Error", "You are not registered for this event!", true );
+            if (!isListOfAttendeesEmpty(listOfEventAttendees)){
+                if (isUserAlreadyRegisteredToEvent(listOfEventAttendees)) {
+                    listOfEventAttendees = listOfEventAttendees.replace(userToManage.getEmail(), "");
+                    eventDAO.update(eventChosenByUser, "eventAttendees", listOfEventAttendees);
+                    eventDAO.manageRegistrationsAvailable("Addition", eventChosenByUser);
+                    displayNotification("Unregistration Success", "You have successfully unregistered from the event!", false);
+                    redirectToEventDiscoveryPage(event);
+                    return;
+                }
             }
+
+
+            displayNotification("Unregistration Error", "You are not registered for this event!", true );
         }
 
         catch (CustomSQLException customSQLException){
