@@ -10,8 +10,8 @@
          <Font name="Eras Demi ITC" size="26.0" />
       </font>
    </Text>
-   <Button layoutX="632.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
-   <Button layoutX="747.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
+   <Button layoutX="614.0" layoutY="25.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
+   <Button layoutX="736.0" layoutY="25.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
    <MenuButton layoutX="996.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Your Created Events">
       <items>
          <MenuItem mnemonicParsing="false" onAction="#redirectToYourEventsPage" text="View Your Created Events" />
@@ -19,7 +19,7 @@
          <MenuItem mnemonicParsing="false" onAction="#redirectToYourEventsPage" text="View Your Completed Created Events" />
       </items>
    </MenuButton>
-   <MenuButton layoutX="850.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Event Registrations">
+   <MenuButton layoutX="839.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Event Registrations">
       <items>
          <MenuItem mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" text="View Your Event Registrations" />
          <MenuItem mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" text="View Your Cancelled Event Registrations" />

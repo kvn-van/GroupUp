@@ -106,7 +106,7 @@ public class ParentViewController {
     @FXML
     protected void redirectToStartScreenPage(ActionEvent event) {
         try {
-            redirectToPage("start-screen.fxml", event);
+            redirectToPage("Login-Page.fxml", event);
             displayNotification("Logout Success", "You were successfully logged out " +
                     "from GroupUp!\nWe hope to see you again!", false);
             resetUsersEventDisplayPreference();
