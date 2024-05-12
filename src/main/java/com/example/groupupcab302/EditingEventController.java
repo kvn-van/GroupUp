@@ -169,13 +169,13 @@ public class EditingEventController extends ParentViewController {
     public boolean CheckRegistrationQuantity(){
         try {
             int ParsedQuantity = Integer.parseInt(numberOfRegistrationsAvailable.getText());
-            if(ParsedQuantity >0){
+            if(ParsedQuantity > 0){
                 return true;
             } else {
                 displayNotification("Event Update","Guest list cannot be 0", true);
                 return false;
             }
-        } catch (DateTimeParseException e) {
+        } catch (NumberFormatException e) {
             displayNotification("Event Update",ErrorConstants.INVALID_QUANTITY.getErrorDescription(),true);
             return false;
         }

@@ -191,13 +191,13 @@ public class CreateEventController extends ParentViewController {
     public boolean CheckRegistrationQuantity(){
         try {
             int ParsedQuantity = Integer.parseInt(eventRegistrationQuantity.getText());
-            if(ParsedQuantity >0){
+            if(ParsedQuantity > 0){
                 return true;
             } else {
                 displayNotification("Event Creation","Guest list cannot be 0", true);
                 return false;
             }
-        } catch (DateTimeParseException e) {
+        } catch (NumberFormatException e) {
            displayNotification("Event Creation",ErrorConstants.INVALID_QUANTITY.getErrorDescription(),true);
             return false;
         }
