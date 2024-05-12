@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.MyCreatedEventsController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" stylesheets="@styling/myCreatedEventStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.MyCreatedEventsController">
    <children>
-      <Text layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
+      <Text fx:id="title" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
          <font>
             <Font name="Eras Demi ITC" size="26.0" />
          </font>
@@ -45,7 +45,7 @@
             </ScrollPane>
          </children>
       </VBox>
-      <Label fx:id="HeaderText" layoutX="47.0" layoutY="68.0" text="Your Created Events!">
+      <Label fx:id="HeaderText" layoutX="47.0" layoutY="99.0" text="Your Created Events!">
          <font>
             <Font size="56.0" />
          </font>
