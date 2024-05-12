@@ -65,22 +65,7 @@ public class ParentViewController {
             resetUsersEventDisplayPreference();
             // Check the type of element which called the action
             if (event.getSource() instanceof MenuItem){
-                // Since the source is a MenuItem, cast it to MenuItem
-                //Get the name of the screen to view to decide what should be rendered
-                MenuItem menuItem = (MenuItem) event.getSource();
-                handleDropDownSelection(menuItem.getText());
-                // Get the parent context menu
-                ContextMenu parentMenu = menuItem.getParentPopup();
-                // Get the owner node of the context menu
-                Node ownerNode = parentMenu.getOwnerNode();
-
-                //Code essentially backtracks from item to its parent to then the entire node of the parent/entire page
-                // Assuming the owner node is the intended source of the action
-                Stage stage = (Stage) ownerNode.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("my-created-events.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                redirectToPageFromDropdown(event, "my-created-events.fxml");
             }
             else{
                 redirectToPage("my-created-events.fxml", event);
@@ -133,12 +118,29 @@ public class ParentViewController {
     private void resetUsersEventDisplayPreference(){
         userInformationController.setUserEventPreferences(null);
     }
+    private void redirectToPageFromDropdown(ActionEvent event, String pageToRedirectTo) throws IOException {
+        // Since the source is a MenuItem, cast it to MenuItem
+        //Get the name of the screen to view to decide what should be rendered
+        MenuItem menuItem = (MenuItem) event.getSource();
+        handleDropDownSelection(menuItem.getText());
+        // Get the parent context menu
+        ContextMenu parentMenu = menuItem.getParentPopup();
+        // Get the owner node of the context menu
+        Node ownerNode = parentMenu.getOwnerNode();
 
+        //Code essentially backtracks from item to its parent to then the entire node of the parent/entire page
+        // Assuming the owner node is the intended source of the action
+        Stage stage = (Stage) ownerNode.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource(pageToRedirectTo));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     @FXML
     protected void redirectToEventDiscoveryPage(ActionEvent event) {
         try {
             redirectToPage("event-view.fxml", event);
-            resetUsersEventDisplayPreference();
+
         } catch (IOException ioException) {
             System.out.println("An error occurred while loading the event view scene.");
         }
@@ -147,9 +149,19 @@ public class ParentViewController {
     @FXML
     protected void redirectToRegisteredForEventsPage(ActionEvent event) {
         try {
-            redirectToPage("my-registered-events.fxml", event);
+            // Reset users display event preference to ensure old preference isnt displayed on new render
+            resetUsersEventDisplayPreference();
+            // Check the type of element which called the action
+            if (event.getSource() instanceof MenuItem){
+                redirectToPageFromDropdown(event, "my-registered-events.fxml");
+            }
+            else{
+                userInformationController.setUserEventPreferences(EventTypes.OPEN_FOR_REGISTRATION.getEventType());
+                redirectToPage("my-registered-events.fxml", event);
+            }
+
         } catch (IOException e) {
-            System.out.println("An error occurred while loading your registered events.");
+            displayNotification("Registered Events Page Error", "Unfortunately there was an error when trying to load your registered events page", true);
         }
     }
 

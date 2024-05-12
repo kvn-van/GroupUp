@@ -86,21 +86,30 @@ public class EventCardController extends ParentViewController{
     //Rename the paramater to differentiate from the event object
     public void onEventCardClick(ActionEvent actionableEvent) throws IOException {
         userInformationController.setEventSelectedByUser(this.event);
-        //try{
+        try{
             //Retrieve the intended behaviour of the user
             // If user does want to edit a card then redirect to appropriate page, else display the events details
+
             if (userInformationController.getDoesUserWantToEditTheirEvents()){
                 redirectToEventEditing(actionableEvent);
             }
-
-            else{
+            // Only events open for registration when clicked should direct user to new window
+            // Abstracts away from unregistering/registering functionality for completed or closed events
+            else if (event.getEventStatus().equals("Open For Registration")){
                 redirectToEventPage(actionableEvent);
             }
-        //}
 
-        /*catch (IOException ioException){
-            System.out.println("There was an issue when trying to redirect you to the appropriate page upon the event being clicked!" + ioException.getStackTrace());
-        }*/
+            else{
+                displayNotification("Event Error", "Unfortunately this event has been archived for completion or was cancelled.\n" +
+                        "You cannot access the details of this event!", true);
+            }
+
+        }
+
+        catch (IOException ioException){
+            displayNotification("Navigation Error", "Unfortunately there was an error when trying to \ndirect " +
+                    "you to the appropriate page of the event!", true);
+        }
 
     }
 

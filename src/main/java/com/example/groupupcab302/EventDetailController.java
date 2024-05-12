@@ -40,9 +40,6 @@ public class EventDetailController extends ParentViewController {
     private Label eventTime;
 
     @FXML
-    private Button goBack;
-
-    @FXML
     private Label numberOfRegistrationSpots;
 
     @FXML
@@ -50,9 +47,6 @@ public class EventDetailController extends ParentViewController {
 
     @FXML
     private ImageView specificEventImage;
-
-    @FXML
-    private Text title;
 
 
     private UserInformationController userInformationController = new UserInformationController();
@@ -93,12 +87,6 @@ public class EventDetailController extends ParentViewController {
             throw new RuntimeException(e);
         }
 
-    }
-
-    @FXML
-    public void goBackBtn() throws IOException {
-        pageID = "event-view-template.fxml";
-        changeScene(goBack, pageID);
     }
 
     @FXML
@@ -180,7 +168,6 @@ public class EventDetailController extends ParentViewController {
         catch (CustomSQLException customSQLException){
             displayNotification("Event Error", customSQLException.getMessage(), true );
         }
-
     }
 
     private void unregisterUserFromEvent(String listOfEventAttendees, ActionEvent event) throws SQLException {

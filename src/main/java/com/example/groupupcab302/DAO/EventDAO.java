@@ -67,7 +67,9 @@ public class EventDAO implements IDatabaseDAO<Event> {
                         resultSet.getString("numberOfRegistrationsAvailable"),
                         resultSet.getString("descriptionOfEvent"),
                         resultSet.getString("image"),
-                        resultSet.getString("eventAttendees")
+                        resultSet.getString("eventAttendees"),
+                        resultSet.getString("status")
+
                 );
             }
             // Close result set to prevent database locking
@@ -155,7 +157,7 @@ public class EventDAO implements IDatabaseDAO<Event> {
                     resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
                     resultSet.getString("location"), resultSet.getString("genre"),
                     resultSet.getString("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
-                    resultSet.getString("image"), resultSet.getString("eventAttendees"));
+                    resultSet.getString("image"), resultSet.getString("eventAttendees"), resultSet.getString("status"));
 
             eventsList.add(eventFromDB);
         }
@@ -179,7 +181,7 @@ public class EventDAO implements IDatabaseDAO<Event> {
                     resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
                     resultSet.getString("location"), resultSet.getString("genre"),
                     resultSet.getString("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
-                    resultSet.getString("image"), resultSet.getString("eventAttendees"));
+                    resultSet.getString("image"), resultSet.getString("eventAttendees"), resultSet.getString("status"));
 
             eventsList.add(eventFromDB);
         }
@@ -203,7 +205,7 @@ public class EventDAO implements IDatabaseDAO<Event> {
                     resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
                     resultSet.getString("location"), resultSet.getString("genre"),
                     resultSet.getString("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
-                    resultSet.getString("image"), resultSet.getString("eventAttendees"));
+                    resultSet.getString("image"), resultSet.getString("eventAttendees"), resultSet.getString("status"));
 
             eventsList.add(eventFromDB);
         }
@@ -212,11 +214,13 @@ public class EventDAO implements IDatabaseDAO<Event> {
 
     // This parameter should accept a GroupUp user object.
     // This method is an overload or polymorphic version of the original method, but it retrieves events in which a specific user is listed as an attendee.
-    public List<Event> getAllEvents(GroupUpUser groupUpUser) throws SQLException{
+    public List<Event> getAllEvents(GroupUpUser groupUpUser, String specificEventType) throws SQLException{
 
-        String sqlQuery = "SELECT * FROM GroupUpEvents WHERE eventAttendees LIKE ?";
+        String sqlQuery = "SELECT * FROM GroupUpEvents WHERE eventAttendees LIKE ? AND status = ?";
         PreparedStatement preparedStatement = connectionToDatabase.prepareStatement(sqlQuery);
         preparedStatement.setString(1, "%" + groupUpUser.getEmail() + "%");
+        preparedStatement.setString(2, specificEventType);
+
         ResultSet resultSet = preparedStatement.executeQuery();
         Event eventFromDB;
 
@@ -227,7 +231,7 @@ public class EventDAO implements IDatabaseDAO<Event> {
                     resultSet.getString("name"), resultSet.getString("date"), resultSet.getString("time"),
                     resultSet.getString("location"), resultSet.getString("genre"),
                     resultSet.getString("numberOfRegistrationsAvailable"), resultSet.getString("descriptionOfEvent"),
-                    resultSet.getString("image"), resultSet.getString("eventAttendees"));
+                    resultSet.getString("image"), resultSet.getString("eventAttendees"), resultSet.getString("status"));
 
             eventsList.add(eventFromDB);
         }

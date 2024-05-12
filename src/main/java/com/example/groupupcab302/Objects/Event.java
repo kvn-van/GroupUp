@@ -19,6 +19,7 @@ public class Event {
     private String numberOfRegistrationsAvailable;
     private String description;
     private String image;
+    private String status;
 
     Connection connection = null;
 
@@ -43,7 +44,7 @@ public class Event {
 
     // Added constructor for special cases where event can be expiticly be created with an ID
     // Should be used to create an event  when the data for an event is returned from the database
-    public Event(int eventID, int userIDOfEventCreator, String name, String date, String time, String location, String genre, String numberOfRegistrationsAvailable, String description, String image, String listOfAttendees){
+    public Event(int eventID, int userIDOfEventCreator, String name, String date, String time, String location, String genre, String numberOfRegistrationsAvailable, String description, String image, String listOfAttendees, String status){
         this.eventID = eventID;
         eventCreatorUserID = userIDOfEventCreator;
         this.name = name;
@@ -55,6 +56,7 @@ public class Event {
         this.description = description;
         this.image = image;
         this.eventAttendees = listOfAttendees;
+        this.status = status;
     }
 
     // Because event doesnt have a unique attribute like email, special case must be applied to give events some primary key/identifier
@@ -190,6 +192,14 @@ public class Event {
                 ", Genre: " + genre +
                 ", Number of Registrations Available: " + numberOfRegistrationsAvailable +
                 ", Description: " + description;
+    }
+
+    public String getEventStatus(){
+        return status;
+    }
+
+    public void setEventStatus(String status){
+        this.status = status;
     }
 
 

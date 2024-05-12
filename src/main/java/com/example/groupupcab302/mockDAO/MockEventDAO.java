@@ -70,7 +70,8 @@ public class MockEventDAO {
                         resultSet.getString("numberOfRegistrationsAvailable"),
                         resultSet.getString("descriptionOfEvent"),
                         resultSet.getString("image"),
-                        resultSet.getString("eventAttendees")
+                        resultSet.getString("eventAttendees"),
+                        resultSet.getString("status")
                 );
             }
             // Close result set to prevent database locking

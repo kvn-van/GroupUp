@@ -12,15 +12,20 @@
             <Font name="Eras Demi ITC" size="26.0" />
          </font>
       </Text>
-      <Button layoutX="721.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
-      <Button layoutX="951.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" prefHeight="25.0" prefWidth="100.0" text="Registrations" />
-      <Button layoutX="845.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
-      <Button layoutX="1063.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToYourEventsPage" prefHeight="25.0" prefWidth="90.0" text="Your Events" />
-      <MenuButton layoutX="1042.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Your Created Events">
+      <Button layoutX="632.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventDiscoveryPage" text="Discover Events" />
+      <Button layoutX="747.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToEventCreatePage" text="Create Event" />
+      <MenuButton layoutX="996.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Your Created Events">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#redirectToYourEventsPage" text="View Your Created Events" />
             <MenuItem mnemonicParsing="false" onAction="#redirectToYourEventsPage" text="View Your Cancelled Created Events" />
             <MenuItem mnemonicParsing="false" onAction="#redirectToYourEventsPage" text="View Your Completed Created Events" />
+         </items>
+      </MenuButton>
+      <MenuButton layoutX="850.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Event Registrations">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" text="View Your Event Registrations" />
+            <MenuItem mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" text="View Your Cancelled Event Registrations" />
+            <MenuItem mnemonicParsing="false" onAction="#redirectToRegisteredForEventsPage" text="View Your Completed Event Registrations" />
          </items>
       </MenuButton>
       <Button layoutX="1162.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToStartScreenPage" prefHeight="25.0" prefWidth="85.0" text="Logout" />

@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -22,6 +23,8 @@ public class MyRegisteredEventsController extends ParentViewController implement
 
     @FXML
     private GridPane eventGrid;
+    @FXML
+    private Label HeaderText;
 
     private UserInformationController userInformationController = new UserInformationController();
     private EventDAO eventDAO = new EventDAO();
@@ -34,19 +37,29 @@ public class MyRegisteredEventsController extends ParentViewController implement
     public void initialize(){
         //Users only viewing events without intention to edit, ensure cards when clicked have one behaviour
         userInformationController.setDoesUserWantToEditTheirEvents(false);
+        setHeader();
         showEventsFromDB();
     }
 
     public void setHeader(){
         if (userInformationController.getUserEventPreferences().equals(EventTypes.OPEN_FOR_REGISTRATION.getEventType())){
-
+            HeaderText.setText("Your Registered Events");
         }
+
+        else if (userInformationController.getUserEventPreferences().equals(EventTypes.CLOSED.getEventType())){
+            HeaderText.setText("Your Cancelled Registered Events");
+        }
+
+        else {
+            HeaderText.setText("Your Completed Registered Events");
+        }
+
     }
 
     // Modify the code to only show events which the user signed up to
     public void showEventsFromDB() {
         try {
-            eventList = eventDAO.getAllEvents(userInformationController.getLoggedInUserInformation());
+            eventList = eventDAO.getAllEvents(userInformationController.getLoggedInUserInformation(), userInformationController.getUserEventPreferences());
             int columns = 0;
             int rows = 1;
             for (int counter = 0; counter<eventList.size() ; counter++){
