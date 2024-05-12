@@ -1,10 +1,9 @@
 
-import com.example.groupupcab302.ErrorConstants;
-import com.example.groupupcab302.GroupUpUser;
-import com.example.groupupcab302.UserDAO;
+import com.example.groupupcab302.Constants.ErrorConstants;
+import com.example.groupupcab302.Objects.GroupUpUser;
+import com.example.groupupcab302.DAO.UserDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 // STS class to test new functionalities in userDAO

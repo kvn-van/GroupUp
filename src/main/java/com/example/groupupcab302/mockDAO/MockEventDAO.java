@@ -1,8 +1,7 @@
 package com.example.groupupcab302.mockDAO;
 
 import com.example.groupupcab302.DatabaseConnection;
-import com.example.groupupcab302.Event;
-import javafx.beans.value.ObservableBooleanValue;
+import com.example.groupupcab302.Objects.Event;
 
 import java.sql.*;
 
@@ -71,7 +70,8 @@ public class MockEventDAO {
                         resultSet.getString("numberOfRegistrationsAvailable"),
                         resultSet.getString("descriptionOfEvent"),
                         resultSet.getString("image"),
-                        resultSet.getString("eventAttendees")
+                        resultSet.getString("eventAttendees"),
+                        resultSet.getString("status")
                 );
             }
             // Close result set to prevent database locking
@@ -84,7 +84,7 @@ public class MockEventDAO {
 
         return event;
     }
-    public ObservableBooleanValue insert (Event event){
+    public void insert (Event event){
         try {
             PreparedStatement insertEvent = connectionToDatabase.prepareStatement(
                     "INSERT INTO MockGroupUpEvents (name, date, time, location, genre, numberOfRegistrationsAvailable, descriptionOfEvent, image, eventAttendees, userIDOfEventCreator) " +
@@ -107,6 +107,5 @@ public class MockEventDAO {
         catch (SQLException exception) {
             System.out.println(exception);
         }
-        return null;
     }
 }

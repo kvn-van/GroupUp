@@ -1,16 +1,17 @@
 package com.example.groupupcab302;
 
+import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Objects.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -50,12 +51,12 @@ public class EditingEventController extends ParentViewController {
     @FXML
     private AnchorPane eventDetailsContainer;
 
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
 
     private Event eventSelected;
 
     public void initialize(){
-        eventSelected = userInformation.getEventSelectedByUser();
+        eventSelected = userInformationController.getEventSelectedByUser();
         eventID.setText("You Are Currently Editing Event ID: " + eventSelected.getEventID());
         name.setText(eventSelected.getName());
         genre.setText(eventSelected.getGenre());
@@ -64,6 +65,30 @@ public class EditingEventController extends ParentViewController {
         time.setText(eventSelected.getTime());
         date.setValue(LocalDate.parse(eventSelected.getDate()));
         numberOfRegistrationsAvailable.setText(eventSelected.getNumberOfRegistrationsAvailable());
+    }
+
+    @FXML
+    public void onConfirmEventClick(ActionEvent event){
+        try{
+            eventDAO.update(eventSelected, "status", "completed");
+            displayNotification("Editing Event", "The event was successfully archived for completion", false);
+            redirectToYourEventsPage(event);
+        }
+        catch (SQLException sqlException){
+            displayNotification("Editing Event Error", "There was an error when trying to archive the event!", true);
+        }
+    }
+
+    @FXML
+    public void onCancelEventClick(ActionEvent event){
+        try{
+            eventDAO.update(eventSelected, "status", "cancelled");
+            displayNotification("Editing Event", "The event was successfully cancelled", false);
+            redirectToYourEventsPage(event);
+        }
+        catch (SQLException sqlException){
+            displayNotification("Editing Event Error", "There was an error when trying to cancel/close the event!", true);
+        }
     }
 
     @FXML
@@ -93,8 +118,10 @@ public class EditingEventController extends ParentViewController {
                     eventDAO.update(eventSelected, attributeOfEventToUpdate, valueToSetAttributeTo);
                 }
             }
-        } catch (SQLException sqlException) {
+            displayNotification("Event Update", "Event was successfully updated!", false);
+        } catch (CustomSQLException sqlException) {
             System.out.println("Enter a detailed message here for reason of error and what user did wrong" + sqlException);
+            displayNotification("Event Update", sqlException.getMessage(), true);
         }
     }
 

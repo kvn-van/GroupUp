@@ -1,5 +1,7 @@
 package com.example.groupupcab302;
 
+import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Objects.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -10,10 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.text.Text;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,12 +23,10 @@ import java.sql.SQLException;
 
 
 public class CreateEventController extends ParentViewController {
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
     private EventDAO eventDAO;
-
-    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
     private Stage stage;
-    public File selectedFile;
+    private File selectedFile;
     @FXML
     private TextField eventName;
     @FXML
@@ -49,10 +45,6 @@ public class CreateEventController extends ParentViewController {
     private ImageView eventImage;
     @FXML
     private TextField eventTime;
-    @FXML
-    private Text ErrorText;
-
-    private String TextFields[];
 
     private String urlOfImageInMavenResourceFolder;
 
@@ -70,7 +62,7 @@ public class CreateEventController extends ParentViewController {
     public void createEvent() throws SQLException {
             try{
                 // Retrieve the user who is currently logged in to use their ID and associate it with event being created
-                Event eventToBeCreated = new Event(userInformation.getLoggedInUserInformation(), eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
+                Event eventToBeCreated = new Event(userInformationController.getLoggedInUserInformation(), eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
                         eventLocation.getText(), eventGenre.getText(), eventRegistrationQuantity.getText(), eventDescription.getText(), urlOfImageInMavenResourceFolder);
 
                 eventDAO.insert(eventToBeCreated);
@@ -81,17 +73,10 @@ public class CreateEventController extends ParentViewController {
 
     }
 
-
     @FXML
     public void submit(ActionEvent event ) throws CustomSQLException {
         try {
             if (termsAndConditions.isSelected()) {
-                ErrorText.setText("Working on Event...");
-
-                TextFields = new String[] {eventName.getText(), eventDescription.getText(), eventLocation.getText(), eventGenre.getText()};
-
-                if(!errorChecks()){
-                }
                 // Define the local directory where the image will be stored
                 File localDirectory = new File("src\\main\\resources\\com\\example\\groupupcab302\\Images");
 
@@ -123,14 +108,13 @@ public class CreateEventController extends ParentViewController {
                         // by combining the folder path with the filename
                         urlOfImageInMavenResourceFolder = "/com/example/groupupcab302/Images/" + selectedFile.getName();
                         createEvent();
+                        displayNotification("Event Creation", "Event Successfully Created!", false);
                         redirectToEventDiscoveryPage(event);
 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-            }else{
-                ErrorText.setText("Please agree to the terms and conditions!");
             }
         }
 
@@ -154,40 +138,4 @@ public class CreateEventController extends ParentViewController {
         }
     }
 
-    public boolean errorChecks() {
-        return CheckStrings() &&
-                isValidEventTimeFormat() &&
-                CheckRegistrationQuantity();
-    }
-
-    private boolean isValidEventTimeFormat(){
-        try {
-            LocalTime parsedTime = LocalTime.parse(eventTime.getText(), timeFormatter);
-            return true;
-        } catch (DateTimeParseException e) {
-            ErrorText.setText(ErrorConstants.INVALID_TIME.getErrorDescription());
-            return false;
-        }
-    }
-
-    private boolean CheckStrings(){
-      for (int counter = 0; counter < TextFields.length; counter++) {
-          if (TextFields[counter].length() == 0) {
-
-              ErrorText.setText(ErrorConstants.INVALID_USERINPUT.getErrorDescription());
-              return false;
-          }
-      }
-      return true;
-    }
-
-    public boolean CheckRegistrationQuantity(){
-        try {
-            int ParsedQuantity = Integer.parseInt(eventRegistrationQuantity.getText());
-            return true;
-        } catch (NumberFormatException e) {
-            ErrorText.setText(ErrorConstants.INVALID_QUANTITY.getErrorDescription());
-            return false;
-        }
-    }
 }

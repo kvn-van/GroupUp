@@ -1,7 +1,6 @@
-import com.example.groupupcab302.Event;
-import com.example.groupupcab302.EventDAO;
-import com.example.groupupcab302.GroupUpUser;
-import com.example.groupupcab302.CustomSQLException;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Objects.GroupUpUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +20,7 @@ public class EventDAOSTS {
     void setUp() throws SQLException {
         eventDAO = new EventDAO();
         user = new GroupUpUser(1, "username", "firstName", "lastName", "email@example.com", "123456789", "25", "password");
+        eventDAO.createTable();
     }
 
     // Due to the nature of the tests, if delete is run work it will fail testUpdateEvent
@@ -77,8 +77,56 @@ public class EventDAOSTS {
             eventDAO.insert(event1);
             eventDAO.insert(event2);
             eventDAO.insert(event3);
+            // Test fetching all events
+            List<Event> eventsFromDB = eventDAO.getAllEvents(false);
 
-            List<Event> eventsFromDB = eventDAO.getAllEvents();
+            int loopCounter = 0;
+            GroupUpUser[] users = {user1, user2, user3};
+
+            for (Event events : eventsFromDB){
+                assertEquals(eventsFromDB.get(loopCounter).getEventCreatorUserID(), events.getEventCreatorUserID());
+                assertEquals(eventsFromDB.get(loopCounter).getName(), events.getName());
+                assertEquals(eventsFromDB.get(loopCounter).getDate(), events.getDate());
+                assertEquals(eventsFromDB.get(loopCounter).getTime(), events.getTime());
+                assertEquals(eventsFromDB.get(loopCounter).getLocation(), events.getLocation());
+                assertEquals(eventsFromDB.get(loopCounter).getGenre(), events.getGenre());
+                assertEquals(eventsFromDB.get(loopCounter).getNumberOfRegistrationsAvailable(), events.getNumberOfRegistrationsAvailable());
+                assertEquals(eventsFromDB.get(loopCounter).getDescription(), events.getDescription());
+                assertEquals(eventsFromDB.get(loopCounter).getImage(), events.getImage());
+                loopCounter += 1;
+            }
+        } catch (SQLException sqlException) {
+            fail("The test case failed due to the sql error" + sqlException);
+        }
+
+    }
+
+    //Test must be conducted on an empty events table
+    @Test
+    void testgetAllValidEvents() throws SQLException {
+        try {
+            GroupUpUser user1 = new GroupUpUser(1, "username1", "John", "Doe", "john@example.com", "123456789", "25", "password1");
+            GroupUpUser user2 = new GroupUpUser(2, "username2", "Jane", "Smith", "jane@example.com", "987654321", "30", "password2");
+            GroupUpUser user3 = new GroupUpUser(3, "username3", "Alice", "Johnson", "alice@example.com", "555555555", "22", "password3");
+
+            // Creating multiple instances of Event
+            Event event1 = new Event(user1, "Event 1", "2024-05-10", "3:00 PM", "Park", "Outdoor", "50", "Family picnic", "picnic.jpg");
+            Event event2 = new Event(user2, "Event 2", "2024-06-15", "7:00 PM", "Concert Hall", "Music", "200", "Live concert", "concert.jpg");
+            Event event3 = new Event(user3, "Event 3", "2024-07-20", "6:30 PM", "Museum", "Art", "80", "Art exhibition", "art.jpg");
+
+            eventDAO.insert(event1);
+            // Modify an event to test the sql query
+            eventDAO.update(event1, "status", "closed");
+            eventDAO.insert(event2);
+            eventDAO.insert(event3);
+            // Test fetching all events with the specific status
+            List<Event> eventsFromDB = eventDAO.getAllEvents(true);
+
+            // Only two events valid every test which can be retrieved, if size is divisible by 2 means correct events were retrieved
+            // DOES NOT CONSIDER EVENTS CREATED OUTSIDE STS TEST
+            if (eventsFromDB.size() % 2 != 0){
+                fail("Only two events should be retrieved from the DB, event 2 and 3. Ensure the group up events table is fresh everytime test run!");
+            }
 
             int loopCounter = 0;
             GroupUpUser[] users = {user1, user2, user3};

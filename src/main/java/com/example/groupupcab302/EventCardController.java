@@ -1,5 +1,8 @@
 package com.example.groupupcab302;
 
+import com.example.groupupcab302.Constants.EventTypes;
+import com.example.groupupcab302.DAO.EventDAO;
+import com.example.groupupcab302.Objects.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -34,7 +37,7 @@ public class EventCardController extends ParentViewController{
     private Scene scene;
     private Parent root;
     private EventDAO eventDAO = new EventDAO();
-    private UserInformation userInformation = new UserInformation();
+    private UserInformationController userInformationController = new UserInformationController();
 
     // Store the event retrieved from the DB and its details so that the details can be passed to other screens
     private Event event;
@@ -83,22 +86,32 @@ public class EventCardController extends ParentViewController{
     @FXML
     //Rename the paramater to differentiate from the event object
     public void onEventCardClick(ActionEvent actionableEvent) throws IOException {
-        userInformation.setEventSelectedByUser(this.event);
-        //try{
+        userInformationController.setEventSelectedByUser(this.event);
+        try{
             //Retrieve the intended behaviour of the user
-            // If user does want to edit a card then redirect to appropriate page, else display the events details
-            if (userInformation.getDoesUserWantToEditTheirEvents()){
+            // If user does want to edit a card then redirect to appropriate page given the event is open for registration
+            // Events with cancelled or completed status shouldnt be modifiable as they are archived
+            if (userInformationController.getDoesUserWantToEditTheirEvents() &&
+                    event.getEventStatus().equals(EventTypes.OPEN_FOR_REGISTRATION.getEventType())){
                 redirectToEventEditing(actionableEvent);
+            }
+            // Only events open for registration when clicked should direct user to new window
+            // Abstracts away from unregistering/registering functionality for completed or closed events
+            else if (event.getEventStatus().equals("Open For Registration")){
+                redirectToEventPage(actionableEvent);
             }
 
             else{
-                redirectToEventPage(actionableEvent);
+                displayNotification("Event Error", "Unfortunately this event has been archived for completion or was cancelled.\n" +
+                        "You cannot access the details of this event!", true);
             }
-        //}
 
-        /*catch (IOException ioException){
-            System.out.println("There was an issue when trying to redirect you to the appropriate page upon the event being clicked!" + ioException.getStackTrace());
-        }*/
+        }
+
+        catch (IOException ioException){
+            displayNotification("Navigation Error", "Unfortunately there was an error when trying to \ndirect " +
+                    "you to the appropriate page of the event!", true);
+        }
 
     }
 

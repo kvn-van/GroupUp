@@ -13,11 +13,7 @@
     -fx-text-fill: white;
 }
 
-#navButton {
-
-}
-
-.text {
+.root {
     -fx-font-family: "Poppins";
 }
 
@@ -54,7 +50,6 @@
     -fx-text-fill: black;
 }
 
-#eventLabel {
+#eventLabel, #eventTime {
     -fx-font-weight: bold;
 }
-

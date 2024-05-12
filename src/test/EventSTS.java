@@ -1,6 +1,5 @@
-import com.example.groupupcab302.Event;
-import com.example.groupupcab302.GroupUpUser;
-import org.junit.jupiter.api.Assertions;
+import com.example.groupupcab302.Objects.Event;
+import com.example.groupupcab302.Objects.GroupUpUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,11 +1,9 @@
-import com.example.groupupcab302.CustomSQLException;
 import com.example.groupupcab302.DatabaseConnection;
-import com.example.groupupcab302.GroupUpUser;
+import com.example.groupupcab302.Objects.GroupUpUser;
 import com.example.groupupcab302.mockDAO.MockUserDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import javax.swing.*;
-import javax.xml.transform.Result;
+
 import java.sql.*;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

@@ -19,13 +19,23 @@
       <artifactId>javafx-controls</artifactId>
       <version>17.0.6</version>
     </dependency>
+
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
       <version>17.0.6</version>
     </dependency>
 
-<dependency>
+    <!-- https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
+    <!-- issues with dependency, wawtch yt video https://www.youtube.com/watch?v=nIpbmHC_bIM -->
+    <dependency>
+      <groupId>org.controlsfx</groupId>
+      <artifactId>controlsfx</artifactId>
+      <version>11.2.1</version>
+    </dependency>
+
+
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>${junit.version}</version>
@@ -36,7 +46,21 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>  </dependencies>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.gluonhq/charm-down-core -->
+    <dependency>
+      <groupId>com.gluonhq</groupId>
+      <artifactId>charm-down-core</artifactId>
+      <version>3.8.6</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.webjars/font-awesome -->
+    <!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx-fontawesome -->
+    <dependency>
+      <groupId>de.jensd</groupId>
+      <artifactId>fontawesomefx-fontawesome</artifactId>
+      <version>4.7.0-9.1.2</version>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>
