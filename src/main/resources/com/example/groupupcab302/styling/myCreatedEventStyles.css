@@ -17,6 +17,12 @@
     -fx-text-fill: white;
 }
 
+#createLabel {
+    /*-fx-font-weight: bold;*/
+    -fx-font-size: 14px;
+    -fx-font-family: "Poppins";
+}
+
 .text {
     -fx-font-family: "Poppins";
 }
@@ -35,8 +41,7 @@
     -fx-border-radius: 5px;
 }
 
-#createTitle, #HeaderText {
+#HeaderText {
     -fx-font-weight: bold;
     -fx-font-size: 30px;
 }
-
