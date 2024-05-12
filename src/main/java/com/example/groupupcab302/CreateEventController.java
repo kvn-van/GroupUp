@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
+
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -161,7 +163,8 @@ public class CreateEventController extends ParentViewController {
     public boolean errorChecks() {
         return CheckStrings() &&
                 isValidEventTimeFormat() &&
-                CheckRegistrationQuantity();
+                CheckRegistrationQuantity() &&
+                CheckEventDate();
     }
 
     private boolean isValidEventTimeFormat(){
@@ -191,12 +194,26 @@ public class CreateEventController extends ParentViewController {
             if(ParsedQuantity >0){
                 return true;
             } else {
-                displayNotification("Event Creation","Guest registration must be higher than 0", true);
+                displayNotification("Event Creation","Guest list cannot be 0", true);
                 return false;
             }
         } catch (DateTimeParseException e) {
            displayNotification("Event Creation",ErrorConstants.INVALID_QUANTITY.getErrorDescription(),true);
             return false;
         }
+    }
+
+    public boolean CheckEventDate(){
+            if (eventDate.getValue()  != null) {
+                if (eventDate.getValue().compareTo(LocalDate.now()) > 0){
+                    return true;
+                }else {
+                    displayNotification("Event Creation", "Date cannot be earlier than current date", true);
+                    return false;
+                }
+            } else {
+                displayNotification("Event Creation", ErrorConstants.INVALID_USERINPUT.getErrorDescription(), true);
+                return false;
+            }
     }
 }
