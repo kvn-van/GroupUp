@@ -89,7 +89,6 @@ public class CreateEventController extends ParentViewController {
     public void submit(ActionEvent event ) throws CustomSQLException {
         try {
             if (termsAndConditions.isSelected()) {
-                displayNotification("Event Creation", "Checking information for event...", false);
 
                 TextFields = new String[] {eventName.getText(), eventDescription.getText(), eventLocation.getText(), eventGenre.getText()};
 
