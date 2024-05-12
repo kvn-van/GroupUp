@@ -28,7 +28,6 @@ import java.nio.file.StandardCopyOption;
 
 import java.sql.SQLException;
 
-
 public class CreateEventController extends ParentViewController {
     private UserInformationController userInformationController = new UserInformationController();
     private EventDAO eventDAO;
@@ -57,52 +56,39 @@ public class CreateEventController extends ParentViewController {
     @FXML
     private Text ErrorText;
 
-    private String TextFields[];
+    private String[] TextFields;
 
     private String urlOfImageInMavenResourceFolder;
-
 
     private String eventRegistrationQuantityParsed;
 
     private Scene scene;
 
-
-    public CreateEventController(){
+    public CreateEventController() {
         eventDAO = new EventDAO();
-
     }
+
     @FXML
     public void createEvent() throws SQLException {
         try{
             // Retrieve the user who is currently logged in to use their ID and associate it with event being created
             Event eventToBeCreated = new Event(userInformationController.getLoggedInUserInformation(), eventName.getText(), eventDate.getValue().toString(), eventTime.getText(),
                     eventLocation.getText(), eventGenre.getText(), eventRegistrationQuantity.getText(), eventDescription.getText(), urlOfImageInMavenResourceFolder);
-
             eventDAO.insert(eventToBeCreated);
-        }
-        catch (CustomSQLException e) {
+        } catch (CustomSQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
-
     @FXML
-    public void submit(ActionEvent event ) throws CustomSQLException {
+    public void submit(ActionEvent event) {
         try {
             if (termsAndConditions.isSelected()) {
-
-                TextFields = new String[] {eventName.getText(), eventDescription.getText(), eventLocation.getText(), eventGenre.getText()};
-
-                if(errorChecks()){
-
-                    // Define the local directory where the image will be stored
-                    File localDirectory = new File("src\\main\\resources\\com\\example\\groupupcab302\\Images");
-
-                    // Check if the local directory does not exist
+                TextFields = new String[]{eventName.getText(), eventDescription.getText(), eventLocation.getText(), eventGenre.getText()};
+                if (errorChecks()) {
+                    File localDirectory = new File("src/main/resources/com/example/groupupcab302/Images");
                     if (!localDirectory.exists()) {
-                        // If the directory doesn't exist, handle the situation (e.g., communicate to the user)
-                       displayNotification("Event Creation","The directory for image files could not be found, please re-open the page",true);
+                        displayNotification("Event Creation", "The directory for image files could not be found, please re-open the page", true);
                         return;
                     }
 
@@ -127,20 +113,17 @@ public class CreateEventController extends ParentViewController {
                             createEvent();
                             displayNotification("Event Creation", "Event Created!", false);
                             redirectToEventDiscoveryPage(event);
-
                         } catch (IOException e) {
                             displayNotification("Event Creation", "The photo was null, please select another photo", true);
                             e.printStackTrace();
                         }
                     }
                 }
-            }else{
+            } else {
                 displayNotification("Event Creation", "Please agree to terms and conditions", true);
             }
-        }
-
-        catch (SQLException sqlException){
-            displayNotification("Event Creation","There was an error submitting, please retry.", true);
+        } catch (SQLException sqlException) {
+            displayNotification("Event Creation", "There was an error submitting, please retry.", true);
             System.out.println("There was an issue" + sqlException);
         }
     }
@@ -149,13 +132,17 @@ public class CreateEventController extends ParentViewController {
     public void selectPhoto() throws CustomSQLException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an image");
-        fileChooser.setInitialDirectory(new File("C://"));
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPEG image","*.jpg"), new FileChooser.ExtensionFilter("PNG image", "*.png"), new FileChooser.ExtensionFilter("All Images", "*.jpg", "*.png"));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("JPEG image", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG image", "*.png"),
+                new FileChooser.ExtensionFilter("All Images", "*.jpg", "*.png")
+        );
         selectedFile = fileChooser.showOpenDialog(stage);
-        if(selectedFile != null){
+        if (selectedFile != null) {
             Image image = new Image(selectedFile.toURI().toString());
             eventImage.setImage(image);
-        }else{
+        } else {
             System.out.println("No file has been selected");
         }
     }
@@ -167,53 +154,52 @@ public class CreateEventController extends ParentViewController {
                 CheckEventDate();
     }
 
-    private boolean isValidEventTimeFormat(){
+    private boolean isValidEventTimeFormat() {
         try {
-            LocalTime parsedTime = LocalTime.parse(eventTime.getText(), timeFormatter);
+            LocalTime.parse(eventTime.getText(), timeFormatter);
             return true;
         } catch (DateTimeParseException e) {
-            displayNotification("Event Creation",ErrorConstants.INVALID_TIME.getErrorDescription(),true);
+            displayNotification("Event Creation", ErrorConstants.INVALID_TIME.getErrorDescription(), true);
             return false;
         }
     }
 
-    private boolean CheckStrings(){
-        for (int counter = 0; counter < TextFields.length; counter++) {
-            if (TextFields[counter].length() == 0) {
-
-                displayNotification("Event Creation",ErrorConstants.INVALID_USERINPUT.getErrorDescription(),true);
+    private boolean CheckStrings() {
+        for (String textField : TextFields) {
+            if (textField.isEmpty()) {
+                displayNotification("Event Creation", ErrorConstants.INVALID_USERINPUT.getErrorDescription(), true);
                 return false;
             }
         }
         return true;
     }
 
-    public boolean CheckRegistrationQuantity(){
+    public boolean CheckRegistrationQuantity() {
         try {
             int ParsedQuantity = Integer.parseInt(eventRegistrationQuantity.getText());
-            if(ParsedQuantity > 0){
+            if (ParsedQuantity > 0) {
                 return true;
             } else {
-                displayNotification("Event Creation","Guest list cannot be 0", true);
+                displayNotification("Event Creation", "Guest list cannot be 0", true);
                 return false;
             }
         } catch (NumberFormatException e) {
-           displayNotification("Event Creation",ErrorConstants.INVALID_QUANTITY.getErrorDescription(),true);
+            displayNotification("Event Creation", ErrorConstants.INVALID_QUANTITY.getErrorDescription(), true);
             return false;
         }
     }
 
-    public boolean CheckEventDate(){
-            if (eventDate.getValue()  != null) {
-                if (eventDate.getValue().compareTo(LocalDate.now()) > 0){
-                    return true;
-                }else {
-                    displayNotification("Event Creation", "Date cannot be earlier than current date", true);
-                    return false;
-                }
+    public boolean CheckEventDate() {
+        if (eventDate.getValue() != null) {
+            if (eventDate.getValue().isAfter(LocalDate.now())) {
+                return true;
             } else {
-                displayNotification("Event Creation", ErrorConstants.INVALID_USERINPUT.getErrorDescription(), true);
+                displayNotification("Event Creation", "Date cannot be earlier than current date", true);
                 return false;
             }
+        } else {
+            displayNotification("Event Creation", ErrorConstants.INVALID_USERINPUT.getErrorDescription(), true);
+            return false;
+        }
     }
 }
