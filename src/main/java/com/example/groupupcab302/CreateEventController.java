@@ -52,6 +52,8 @@ public class CreateEventController extends ParentViewController {
     @FXML
     private Text ErrorText;
 
+    private String TextFields[];
+
     private String urlOfImageInMavenResourceFolder;
 
 
@@ -86,10 +88,10 @@ public class CreateEventController extends ParentViewController {
             if (termsAndConditions.isSelected()) {
                 ErrorText.setText("Working on Event...");
 
-                if (!errorChecks()){
-                    return;
-                }
+                TextFields = new String[] {eventName.getText(), eventDescription.getText(), eventLocation.getText(), eventGenre.getText()};
 
+                if(!errorChecks()){
+                }
                 // Define the local directory where the image will be stored
                 File localDirectory = new File("src\\main\\resources\\com\\example\\groupupcab302\\Images");
 
@@ -153,42 +155,38 @@ public class CreateEventController extends ParentViewController {
     }
 
     public boolean errorChecks() {
-        if (eventName.getText().trim().isEmpty()) {
-            ErrorText.setText("Event name cannot be empty!");
-            return false;
-        } else if (eventDescription.getText().trim().isEmpty()) {
-            ErrorText.setText("Event description cannot be empty!");
-            return false;
-        } else if (eventDate.getValue() == null) {
-            ErrorText.setText("Event date cannot be empty!");
-            return false;
-        } else if (!isValidEventTimeFormat(eventTime.getText())) {
-            ErrorText.setText("Event time must be in 24 hour time (00:00)!");
-            return false;
-        } else if (eventLocation.getText().trim().isEmpty()) {
-            ErrorText.setText("Event location cannot be empty!");
-            return false;
-        } else if (eventGenre.getText().trim().isEmpty()) {
-            ErrorText.setText("Event genre cannot be empty!");
-            return false;
-        } else if (eventRegistrationQuantity.getText().trim().isEmpty()) {
-            ErrorText.setText("Event registration quantity cannot be empty!");
-            return false;
-        } try {
-            int eventQuantity = Integer.parseInt(eventRegistrationQuantity.getText());
-        } catch (NumberFormatException e) {
-            ErrorText.setText("Event registration quantity must be a number!");
-            return false;
-        }
-
-        return true;
+        return CheckStrings() &&
+                isValidEventTimeFormat() &&
+                CheckRegistrationQuantity();
     }
 
-    private boolean isValidEventTimeFormat(String rawTime){
+    private boolean isValidEventTimeFormat(){
         try {
-            LocalTime parsedTime = LocalTime.parse(rawTime, timeFormatter);
+            LocalTime parsedTime = LocalTime.parse(eventTime.getText(), timeFormatter);
             return true;
         } catch (DateTimeParseException e) {
+            ErrorText.setText(ErrorConstants.INVALID_TIME.getErrorDescription());
+            return false;
+        }
+    }
+
+    private boolean CheckStrings(){
+      for (int counter = 0; counter < TextFields.length; counter++) {
+          if (TextFields[counter].length() == 0) {
+
+              ErrorText.setText(ErrorConstants.INVALID_USERINPUT.getErrorDescription());
+              return false;
+          }
+      }
+      return true;
+    }
+
+    public boolean CheckRegistrationQuantity(){
+        try {
+            int ParsedQuantity = Integer.parseInt(eventRegistrationQuantity.getText());
+            return true;
+        } catch (NumberFormatException e) {
+            ErrorText.setText(ErrorConstants.INVALID_QUANTITY.getErrorDescription());
             return false;
         }
     }

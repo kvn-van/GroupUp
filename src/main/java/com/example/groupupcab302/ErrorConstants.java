@@ -15,7 +15,10 @@ public enum ErrorConstants {
 
     EMAIL_IN_USE("-7", "Email entered for signup is already registered to a user. Please consider logging in under this email!"),
 
-    INSERTING_USER_ERROR("-8", "Error occurred when trying to register you to the database. Please try again and make sure a database has been initialized");
+    INSERTING_USER_ERROR("-8", "Error occurred when trying to register you to the database. Please try again and make sure a database has been initialized"),
+    INVALID_TIME("-9","Input the time in 24 hour time (00:00), make sure there are no spaces or symbols."),
+    INVALID_QUANTITY("-10","Input the quantity as a number only, no spaces, symbols or letters.");
+
 
     private String value;
     private String errorDescription;
