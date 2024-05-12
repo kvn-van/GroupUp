@@ -1,5 +1,6 @@
 package com.example.groupupcab302;
 
+import com.example.groupupcab302.Constants.EventTypes;
 import com.example.groupupcab302.DAO.EventDAO;
 import com.example.groupupcab302.Objects.Event;
 import javafx.fxml.FXML;
@@ -88,9 +89,10 @@ public class EventCardController extends ParentViewController{
         userInformationController.setEventSelectedByUser(this.event);
         try{
             //Retrieve the intended behaviour of the user
-            // If user does want to edit a card then redirect to appropriate page, else display the events details
-
-            if (userInformationController.getDoesUserWantToEditTheirEvents()){
+            // If user does want to edit a card then redirect to appropriate page given the event is open for registration
+            // Events with cancelled or completed status shouldnt be modifiable as they are archived
+            if (userInformationController.getDoesUserWantToEditTheirEvents() &&
+                    event.getEventStatus().equals(EventTypes.OPEN_FOR_REGISTRATION.getEventType())){
                 redirectToEventEditing(actionableEvent);
             }
             // Only events open for registration when clicked should direct user to new window

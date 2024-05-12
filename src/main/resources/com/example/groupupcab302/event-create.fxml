@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styling/eventCreateStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.CreateEventController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@styling/eventCreateStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.groupupcab302.CreateEventController">
     <children>
         <Text fx:id="title" layoutX="25.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GroupUp!" wrappingWidth="288.51025390625">
             <font>
@@ -29,53 +36,57 @@
             </items>
         </MenuButton>
         <Button layoutX="1162.0" layoutY="24.0" mnemonicParsing="false" onAction="#redirectToStartScreenPage" prefHeight="25.0" prefWidth="85.0" text="Logout" />
+      <AnchorPane layoutX="71.0" layoutY="110.0" prefHeight="502.0" prefWidth="1114.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 3; -fx-border-width: 3;">
+         <children>
+              <DatePicker fx:id="eventDate" layoutX="159.0" layoutY="120.0" prefHeight="40.0" prefWidth="255.0" />
+              <TextField fx:id="eventName" layoutX="159.0" layoutY="60.0" prefHeight="40.0" prefWidth="255.0">
+           </TextField>
+              <Text fx:id="createLabel" layoutX="77.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Name">
+
+        </Text>
+              <Text fx:id="createLabel" layoutX="81.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Date">
+            </Text>
+              <Text fx:id="createLabel" layoutX="69.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Limit" wrappingWidth="132.73162841796875">
+            </Text>
+      
+              <TextField fx:id="eventRegistrationQuantity" layoutX="159.0" layoutY="176.0" prefHeight="40.0" prefWidth="255.0">
+
+        </TextField>
+              <Text fx:id="createLabel" layoutX="85.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" wrappingWidth="100.0">
+            </Text>
+              <TextField fx:id="eventLocation" layoutX="159.0" layoutY="359.0" prefHeight="40.0" prefWidth="255.0">
+            </TextField>
+              <Text fx:id="createLabel" layoutX="96.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
+
+        </Text>
+              <TextField fx:id="eventGenre" layoutX="159.0" layoutY="243.0" prefHeight="40.0" prefWidth="255.0">
+
+        </TextField>
+              <Text fx:id="createLabel" layoutX="67.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Time">
+
+        </Text>
+              <TextField fx:id="eventTime" layoutX="159.0" layoutY="303.0" prefHeight="40.0" prefWidth="255.0">
+
+        </TextField>
+              <Text fx:id="createLabel" layoutX="564.0" layoutY="111.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Description" wrappingWidth="139.69961547851562">
+            </Text>
+              <TextField fx:id="eventDescription" alignment="TOP_LEFT" layoutX="706.0" layoutY="33.0" prefHeight="146.0" prefWidth="391.0">
+            </TextField>
+              <ImageView fx:id="eventImage" fitHeight="249.0" fitWidth="376.0" layoutX="714.0" layoutY="204.0" pickOnBounds="true">
+                  <image>
+                      <Image url="@Images/EventCoverImage.png" />
+                  </image>
+              </ImageView>
+              <Button layoutX="564.0" layoutY="306.0" mnemonicParsing="false" onAction="#selectPhoto" text="Select Your Image" />
+         </children>
+      </AnchorPane>
 
         <Button fx:id="REGISTERBUTTON" layoutX="232.0" layoutY="645.0" mnemonicParsing="false" onAction="#submit" prefHeight="50.0" prefWidth="786.0" text="Register Your Event">
             </Button>
         <CheckBox fx:id="termsAndConditions" layoutX="447.0" layoutY="600.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="580.0" text="I agree to the terms and conditions of GroupUp!">
             </CheckBox>
-        <DatePicker fx:id="eventDate" layoutX="220.0" layoutY="189.0" prefHeight="40.0" prefWidth="255.0" />
-        <TextField fx:id="eventName" layoutX="220.0" layoutY="129.0" prefHeight="40.0" prefWidth="255.0">
-           </TextField>
-        <Text fx:id="createLabel" layoutX="82.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Name">
+        <Text fx:id="createTitle" layoutX="520.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Your Event!">
 
         </Text>
-        <Text fx:id="createLabel" layoutX="82.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Date">
-            </Text>
-        <Text fx:id="createLabel" layoutX="82.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Limit" wrappingWidth="132.73162841796875">
-            </Text>
-        <Text fx:id="createLabel" layoutX="82.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" wrappingWidth="100.0">
-            </Text>
-        <TextField fx:id="eventLocation" layoutX="220.0" layoutY="382.0" prefHeight="40.0" prefWidth="255.0">
-            </TextField>
-        <Text fx:id="createLabel" layoutX="78.0" layoutY="523.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Description" wrappingWidth="139.69961547851562">
-            </Text>
-        <TextField fx:id="eventDescription" alignment="TOP_LEFT" layoutX="220.0" layoutY="445.0" prefHeight="146.0" prefWidth="391.0">
-            </TextField>
-        <Text fx:id="createTitle" layoutX="537.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Your Event!">
-
-        </Text>
-
-        <TextField fx:id="eventRegistrationQuantity" layoutX="220.0" layoutY="319.0" prefHeight="40.0" prefWidth="255.0">
-
-        </TextField>
-        <Text fx:id="createLabel" layoutX="723.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
-
-        </Text>
-        <ImageView fx:id="eventImage" fitHeight="334.0" fitWidth="386.0" layoutX="758.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Images/EventCoverImage.png" />
-            </image>
-        </ImageView>
-        <Button layoutX="867.0" layoutY="196.0" mnemonicParsing="false" onAction="#selectPhoto" text="Select Your Image" />
-        <TextField fx:id="eventGenre" layoutX="800.0" layoutY="138.0" prefHeight="40.0" prefWidth="255.0">
-
-        </TextField>
-        <Text fx:id="createLabel" layoutX="82.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Time">
-
-        </Text>
-        <TextField fx:id="eventTime" layoutX="220.0" layoutY="254.0" prefHeight="40.0" prefWidth="255.0">
-
-        </TextField>
     </children>
 </AnchorPane>

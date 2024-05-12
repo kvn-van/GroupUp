@@ -84,7 +84,7 @@ public class EventViewController extends ParentViewController{
          }
      }
 
-    // Before dynamically rendering events, fetch all available events from DB
+    // Before dynamically rendering events, fetch all available events from DB with status "oper for registration"
     // Store them to a field for accessing
     private void initializeEventList() throws SQLException{
         eventList = eventDAO.getAllEvents(EventTypes.OPEN_FOR_REGISTRATION.getEventType());
