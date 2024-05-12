@@ -13,7 +13,9 @@ public enum ErrorConstants {
     INVALID_EMAIL("-6", "Please enter a valid email address containing '@'"),
     EMAIL_IN_USE("-7", "Email is already registered. Please log in"),
     INSERTING_USER_ERROR("-8", "Error registering user. Please try again"),
-    INVALID_ACCOUNT_CREDENTIALS("-9", "Either the email entered was invalid or the password was incorrect! Please try again");
+    INVALID_ACCOUNT_CREDENTIALS("-9", "Either the email entered was invalid or the password was incorrect! Please try again"),
+    INVALID_TIME("-10", "Time must be in the format of 24 hour time (00:00)"),
+    INVALID_QUANTITY("-11","User amount must be an interger; no letters/text can be inputed");
 
     private String value;
     private String errorDescription;
