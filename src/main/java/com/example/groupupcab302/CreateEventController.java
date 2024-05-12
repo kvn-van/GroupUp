@@ -89,7 +89,7 @@ public class CreateEventController extends ParentViewController {
     public void submit(ActionEvent event ) throws CustomSQLException {
         try {
             if (termsAndConditions.isSelected()) {
-                displayNotification("Creating Event", "Checking information for event...", false);
+                displayNotification("Event Creation", "Checking information for event...", false);
 
                 TextFields = new String[] {eventName.getText(), eventDescription.getText(), eventLocation.getText(), eventGenre.getText()};
 
@@ -101,9 +101,7 @@ public class CreateEventController extends ParentViewController {
                     // Check if the local directory does not exist
                     if (!localDirectory.exists()) {
                         // If the directory doesn't exist, handle the situation (e.g., communicate to the user)
-                        // and return from the method
-                        // (Note: This is commented out, so it won't be executed)
-                        // create a status text area box
+                       displayNotification("Event Creation","The directory for image files could not be found, please re-open the page",true);
                         return;
                     }
 
@@ -126,20 +124,22 @@ public class CreateEventController extends ParentViewController {
                             // by combining the folder path with the filename
                             urlOfImageInMavenResourceFolder = "/com/example/groupupcab302/Images/" + selectedFile.getName();
                             createEvent();
-                            displayNotification("Create Event", "Event Created!", false);
+                            displayNotification("Event Creation", "Event Created!", false);
                             redirectToEventDiscoveryPage(event);
 
                         } catch (IOException e) {
+                            displayNotification("Event Creation", "The photo was null, please select another photo", true);
                             e.printStackTrace();
                         }
                     }
                 }
             }else{
-                displayNotification("Event Error", "Please agree to terms and conditions", true);
+                displayNotification("Event Creation", "Please agree to terms and conditions", true);
             }
         }
 
         catch (SQLException sqlException){
+            displayNotification("Event Creation","There was an error submitting, please retry.", true);
             System.out.println("There was an issue" + sqlException);
         }
     }
@@ -170,7 +170,7 @@ public class CreateEventController extends ParentViewController {
             LocalTime parsedTime = LocalTime.parse(eventTime.getText(), timeFormatter);
             return true;
         } catch (DateTimeParseException e) {
-            displayNotification("Event Time Error",ErrorConstants.INVALID_TIME.getErrorDescription(),true);
+            displayNotification("Event Creation",ErrorConstants.INVALID_TIME.getErrorDescription(),true);
             return false;
         }
     }
@@ -179,7 +179,7 @@ public class CreateEventController extends ParentViewController {
         for (int counter = 0; counter < TextFields.length; counter++) {
             if (TextFields[counter].length() == 0) {
 
-                displayNotification("Missing Information",ErrorConstants.INVALID_USERINPUT.getErrorDescription(),true);
+                displayNotification("Event Creation",ErrorConstants.INVALID_USERINPUT.getErrorDescription(),true);
                 return false;
             }
         }
@@ -189,9 +189,14 @@ public class CreateEventController extends ParentViewController {
     public boolean CheckRegistrationQuantity(){
         try {
             int ParsedQuantity = Integer.parseInt(eventRegistrationQuantity.getText());
-            return true;
+            if(ParsedQuantity >0){
+                return true;
+            } else {
+                displayNotification("Event Creation","Guest registration must be higher than 0", true);
+                return false;
+            }
         } catch (DateTimeParseException e) {
-           displayNotification("Event Quantity Error",ErrorConstants.INVALID_QUANTITY.getErrorDescription(),true);
+           displayNotification("Event Creation",ErrorConstants.INVALID_QUANTITY.getErrorDescription(),true);
             return false;
         }
     }
