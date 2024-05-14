@@ -24,6 +24,10 @@
     -fx-text-fill: white;
 }
 
+.menu-button .label:hover {
+    -fx-text-fill: #2196f3;
+}
+
 .menu-item .label {
     -fx-text-fill: black;
 }
@@ -39,9 +43,9 @@
 }
 
 .button:hover, .menu-button:hover {
-    -fx-background-color: black;
+    -fx-background-color: white;
     -fx-border-radius: 5px;
-    -fx-text-fill: white;
+    -fx-text-fill: #2196f3;
 }
 
 .text {

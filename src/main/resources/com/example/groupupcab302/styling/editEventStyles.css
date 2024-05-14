@@ -28,6 +28,10 @@
     -fx-text-fill: black;
 }
 
+.menu-button .label:hover {
+    -fx-text-fill: #2196f3;
+}
+
 .nav-button {
     -fx-border-color: white;
     -fx-border-radius: 5px;
@@ -35,9 +39,9 @@
 }
 
 .button:hover, .menu-button:hover {
-    -fx-background-color: black;
+    -fx-background-color: white;
     -fx-border-radius: 5px;
-    -fx-text-fill: white;
+    -fx-text-fill: #2196f3;
 }
 
 .root {
@@ -73,4 +77,15 @@
 #REGISTERBUTTON11:hover {
     -fx-background-color: white;
     -fx-text-fill: black;
+}
+
+#REGISTERBUTTON1, #REGISTERBUTTON2, #REGISTERBUTTON {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+}
+
+#REGISTERBUTTON1:hover, #REGISTERBUTTON2:hover, #REGISTERBUTTON:hover {
+    -fx-background-color: black;
+    -fx-text-fill: white;
 }
