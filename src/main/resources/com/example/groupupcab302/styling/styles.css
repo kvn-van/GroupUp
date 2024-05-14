@@ -4,17 +4,30 @@
     -fx-background-color: #ede7f6;
 }
 
+.navbar {
+    -fx-background-color: #2196f3;
+}
+
 .button, .menu-button {
     -fx-background-color: transparent;
     -fx-font-size: 12px;
-    -fx-border-color: black;
+    -fx-border-color: white;
     -fx-border-radius: 5px;
+    -fx-text-fill: white;
 }
 
 .button:hover, .menu-button:hover {
     -fx-background-color: black;
     -fx-border-radius: 5px;
     -fx-text-fill: white;
+}
+
+.menu-button .label {
+    -fx-text-fill: white;
+}
+
+.menu-item .label {
+    -fx-text-fill: black;
 }
 
 .root {
@@ -56,4 +69,28 @@
 
 #eventLabel, #eventTime {
     -fx-font-weight: bold;
+}
+
+#leaveEvent, #goBack {
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
+}
+
+#leaveEvent:hover, #goBack:hover {
+    -fx-border-color: black;
+    -fx-text-fill: white;
+    -fx-background-color: black;
+}
+
+#joinEvent {
+    -fx-border-color: black;
+    -fx-text-fill: white;
+    -fx-background-color: black;
+}
+
+#joinEvent:hover {
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
 }

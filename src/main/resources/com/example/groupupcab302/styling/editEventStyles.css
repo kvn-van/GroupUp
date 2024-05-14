@@ -20,8 +20,12 @@
     -fx-border-radius: 5px;
 }
 
-.label {
+.menu-button .label {
     -fx-text-fill: white;
+}
+
+.menu-item .label {
+    -fx-text-fill: black;
 }
 
 .nav-button {
