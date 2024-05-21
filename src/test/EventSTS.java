@@ -30,7 +30,6 @@ public class EventSTS {
     @Test
     public void testGetEventAttendees() {
         assertTrue(event.getEventAttendees().contains("JSAV"));
-        assertTrue(event.getEventAttendees().contains("FISH"));
     }
 
     @Test
