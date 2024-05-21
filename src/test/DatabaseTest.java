@@ -1,4 +1,4 @@
-import com.example.addressbook.model.*;
+import com.example.groupupcab302.DatabaseConnection;
 import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DatabaseTest {
 
     private Connection conn = null;
+    private DatabaseConnection SqliteConnection;
 
     @BeforeEach
     public void setUp() {

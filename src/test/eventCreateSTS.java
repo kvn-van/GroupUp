@@ -2,7 +2,7 @@ import com.example.groupupcab302.CreateEventController;
 import com.example.groupupcab302.CustomSQLException;
 import com.example.groupupcab302.DatabaseConnection;
 import com.example.groupupcab302.mockDAO.MockEventDAO;
-import com.example.groupupcab302.Event;
+import com.example.groupupcab302.Objects.Event;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
