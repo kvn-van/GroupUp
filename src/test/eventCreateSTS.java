@@ -29,7 +29,6 @@ public class eventCreateSTS{
     @BeforeEach
     public void setUp() {
         createEventController = new CreateEventController();
-        createEventController.MockEventDA= mockEventDAO;
     }
 
     @Test
@@ -70,12 +69,12 @@ public class eventCreateSTS{
         String image = "test_image.jpg";
 
         //Set details
-        createEventController.NAMETEXT.setText(eventName);
-        createEventController.DATETEXT.setText(eventDate);
-        createEventController.LOCATIONTEXT.setText(location);
-        createEventController.EVENTTEXT.setText(summary);
-        createEventController.GENRETEXT.setText(genre);
-        createEventController.GUESTLIMIT.setText(String.valueOf(guestLimit));
+        createEventController.eventName.setText(eventName);
+        createEventController.eventDate.setText(eventDate);
+        createEventController.eventLocation.setText(location);
+        createEventController.eventDescription.setText(summary);
+        createEventController.eventGenre.setText(genre);
+        createEventController.eventRegistrationQuantity.setText(String.valueOf(guestLimit));
         createEventController.selectedFile = new File(image);
 
         Event testEvent = new Event(1, eventName, eventDate, 0, location, genre, guestLimit, summary, image);
