@@ -78,7 +78,7 @@ public class EventDAOSTS {
             eventDAO.insert(event2);
             eventDAO.insert(event3);
             // Test fetching all events
-            List<Event> eventsFromDB = eventDAO.getAllEvents(false);
+            List<Event> eventsFromDB = eventDAO.getAllEvents("Party");
 
             int loopCounter = 0;
             GroupUpUser[] users = {user1, user2, user3};
@@ -120,7 +120,7 @@ public class EventDAOSTS {
             eventDAO.insert(event2);
             eventDAO.insert(event3);
             // Test fetching all events with the specific status
-            List<Event> eventsFromDB = eventDAO.getAllEvents(true);
+            List<Event> eventsFromDB = eventDAO.getAllEvents("Party");
 
             // Only two events valid every test which can be retrieved, if size is divisible by 2 means correct events were retrieved
             // DOES NOT CONSIDER EVENTS CREATED OUTSIDE STS TEST

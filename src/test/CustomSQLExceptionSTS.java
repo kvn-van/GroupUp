@@ -1,4 +1,5 @@
 
+import com.example.groupupcab302.CustomSQLException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
