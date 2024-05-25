@@ -73,13 +73,13 @@
     -fx-font-size: 24px;
 }
 
-#REGISTERBUTTON {
+#REGISTERBUTTON, #imageButton {
     -fx-border-color: black;
     -fx-text-fill: black;
     -fx-background-color: transparent;
 }
 
-#REGISTERBUTTON:hover {
+#REGISTERBUTTON:hover, #imageButton:hover {
     -fx-border-color: black;
     -fx-text-fill: white;
     -fx-background-color: black;

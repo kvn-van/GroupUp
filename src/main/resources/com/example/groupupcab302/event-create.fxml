@@ -79,7 +79,7 @@
                       <Image url="@Images/EventCoverImage.png" />
                   </image>
               </ImageView>
-              <Button layoutX="564.0" layoutY="306.0" mnemonicParsing="false" onAction="#selectPhoto" text="Select Your Image" />
+              <Button fx:id="imageButton" layoutX="564.0" layoutY="306.0" mnemonicParsing="false" onAction="#selectPhoto" text="Select Your Image" />
          </children>
       </AnchorPane>
 
