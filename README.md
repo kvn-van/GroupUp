@@ -1,4 +1,4 @@
-# CAB302 Project: GroupUp!
+# Project: GroupUp!
 
 ## Description
 
@@ -166,11 +166,6 @@ The authors of *GroupUp!* are the Software Sisters:
 - Jin Choi
 - Kevin Nguyen
 - Kundai Burekeni
-
-We would like to acknowledge **QUT** and the **CAB302 Software Development** course teaching team
-who are facilitating the learning required to develop *GroupUp!* and supporting its development for
-the duration of Semester 1, 2024.
-
 ## Project Status
 
 This project is in the design stage.
